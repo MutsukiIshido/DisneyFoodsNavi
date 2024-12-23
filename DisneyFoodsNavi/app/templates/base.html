@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DisneyFoodsNavi{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>DisneyFoodsNavi</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'writereview' %}">レビュー投稿</a></li>
+                <li><a href="{% url 'readingreview' %}">レビュー閲覧</a></li>
+                <li><a href="{% url 'ranking' %}">ランキング</a></li>
+                <li><a href="{% url 'map' %}">マップ</a></li>
+                <li><a href="{% url 'favorite' %}">お気に入り</a></li>
+                <li><a href="{% url 'myreview' %}">マイレビュー</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+</body>
+</html>

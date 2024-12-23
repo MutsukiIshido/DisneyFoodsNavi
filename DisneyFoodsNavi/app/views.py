@@ -61,3 +61,7 @@ class RankingView(View):
 class MapView(View):
     def get(self, request):
         return render(request, "map.html")
+    
+class MyReviewView(View):
+    def get(self, request):
+        return render(request, "myreview.html")

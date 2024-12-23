@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DisneyFoodsNavi</title>
+    <title>{% block title %}DisneyFoodsNavi{% endblock %}</title>
 </head>
+{% block content %}
 <body>
     <h1>ホーム</h1>
     <a href="{% url 'login' %}">ログイン画面へ</a><br>
@@ -14,6 +17,6 @@
     <a href="{% url 'favorite' %}">お気に入り一覧</a><br>
     <a href="{% url 'ranking' %}">ランキングを見る</a><br>
     <a href="{% url 'map' %}">マップ（検索結果）画面へ</a><br>
-
 </body>
+{% endblock %}
 </html>
