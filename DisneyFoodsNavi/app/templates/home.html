@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>ホーム</h1>
-    <a href="{% url 'login' %}">ログイン画面へ</a>
+    <a href="{% url 'login' %}">ログイン画面へ</a><br>
+    <br>
+    <a href="{% url 'writereview' %}">レビューを投稿する</a><br>
+    <a href="{% url 'readingreview' %}">レビューを見る</a><br>
+    <a href="{% url 'favorite' %}">お気に入り一覧</a><br>
+    <a href="{% url 'ranking' %}">ランキングを見る</a><br>
+    <a href="{% url 'map' %}">マップ（検索結果）画面へ</a><br>
+
 </body>
 </html>

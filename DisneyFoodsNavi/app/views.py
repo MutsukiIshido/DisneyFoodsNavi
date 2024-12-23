@@ -41,3 +41,23 @@ class LoginView(View):
 class HomeView(View):
     def get(self, request):
         return render(request, "home.html")
+
+class WriteReviewView(View):
+    def get(self, request):
+        return render(request, "writereview.html")
+    
+class ReadingReviewView(View):
+    def get(self, request):
+        return render(request, "readingreview.html")
+    
+class FavoriteView(View):
+    def get(self, request):
+        return render(request, "favorite.html")
+    
+class RankingView(View):
+    def get(self, request):
+        return render(request, "ranking.html")    
+
+class MapView(View):
+    def get(self, request):
+        return render(request, "map.html")
