@@ -15,3 +15,20 @@ class SignupForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("このメールアドレスはすでに登録されています")
         return email
+    
+
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField()
+    
+    
+    def clean(self):
+        print("ログインフォームのcleanが呼び出された")
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        print(email, password)
+        self.user = authenticate(email=email, password=password)
+        if self.user is None:
+            raise forms.ValidationError("認証に失敗しました")
+        return self.cleaned_data
+        
