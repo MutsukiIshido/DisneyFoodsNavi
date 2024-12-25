@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -6,10 +7,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}DisneyFoodsNavi{% endblock %}</title>
+    <style>
+        button:hover { /* ホバー時に背景色を変更 */
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 {% block content %}
-    <h1>ホーム</h1>
+    <h1>ホーム</h1><br>
+    <br>
+    <h2 style="text-align: left;">検索する</h2><br>
+    <form id="searchForm" method="GET" action="{% url 'map' %}">
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="category" style="display: block; margin-bottom: 8px;">カテゴリー：</label>
+            <select name="category" id="category"
+            style="padding: 8px; width: 30%; margin-top: 5px;">
+                <option value="maindish">メインディッシュ</option>
+                <option value="snacks">軽食</option>
+                <option value="sidemenu">サイドメニュー</option>
+                <option value="kidsmenu">キッズメニュー</option>
+                <option value="dessert">デザート</option>
+                <option value="drink">ドリンク</option>
+                <option value="alcoholdrink">アルコールドリンク</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="category" style="display: block; margin-bottom: 8px;">エリア：</label>
+            <select name="area" id="area"
+            style="padding: 8px; width: 30%; margin-top: 5px;">
+                <option value="WorldBazaar">ワールドバザール</option>
+                <option value="Adventureland">アドベンチャーランド</option>
+                <option value="Westernland">ウエスタンランド</option>
+                <option value="Critter Country">クリッターカントリー</option>
+                <option value="Fantasyland">ファンタジーランド</option>
+                <option value="Toontown">トゥーンタウン</option>
+                <option value="Tomorrowland">トゥモローランド</option>
+                <option value="MediterraneanHarbor">メディテレーニアンハーバー</option>
+                <option value="AmericanWaterfront">アメリカンウォーターフロント</option>
+                <option value="PortDiscovery">ポートディスカバリー</option>
+                <option value="LostRiverDelta">ロストリバーデルタ</option>
+                <option value="FantasySprings">ファンタジースプリングス</option>
+                <option value="ArabianCoast">アラビアンコースト</option>
+                <option value="MermaidLagoon">マーメイドラグーン</option>
+                <option value="MysteriousIsland">ミステリアスアイランド</option>
+            </select>
+        </div>
+
+        <button type="submit"
+        style="padding: 10px 20px;
+        background-color: #3a835e;
+        color: white;
+        border: none;
+        cursor: pointer;">検索する🔍</button>
+    </form>
+
+    <div id="searchResults" style="margin-top: 20px;"></div>
+
+    <script src="{% static 'script.js' %}"></script>
+
     <a href="{% url 'login' %}">ログイン画面へ</a><br>
     <br>
     <a href="{% url 'writereview' %}">レビューを投稿する</a><br>
@@ -18,6 +75,5 @@
     <a href="{% url 'ranking' %}">ランキングを見る</a><br>
     <a href="{% url 'map' %}">マップ（検索結果）画面へ</a><br>
 {% endblock %}
-
 </body>
 </html>
