@@ -6,8 +6,8 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: #ffe556;
+    color: #ff9933;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,7 +30,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: white;
+    color: #ff9933;
     text-decoration: none;
     font-size: 16px;
 }
