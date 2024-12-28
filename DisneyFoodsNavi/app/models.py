@@ -68,16 +68,15 @@ class Stores(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    area = models.OneToOneField(Areas, on_delete=models.CASCADE,  related_name="store", default=1)
-    foods = models.ManyToManyField(Foods, related_name="foods")
+    area = models.OneToOneField(Areas, on_delete=models.CASCADE,  related_name="stores")
     
     class Meta:
         db_table = "stores"
 
 
 class FoodStores(models.Model):
-    foods = models.ForeignKey(Foods, on_delete=models.CASCADE)
-    stores = models.ForeignKey(Stores, on_delete=models.CASCADE)
+    food = models.ForeignKey(Foods, on_delete=models.CASCADE)
+    store = models.ForeignKey(Stores, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
