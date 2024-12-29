@@ -26,7 +26,7 @@ class User(AbstractUser):
         db_table = "users"
         
 
-class Foods(models.Model):
+class Food(models.Model):
     foods_name = models.CharField(max_length=64)
     price = models.IntegerField()
     foods_image_path = models.CharField(max_length=255)
@@ -42,7 +42,7 @@ class Foods(models.Model):
         return self.foods_name
 
 
-class Areas(models.Model):
+class Area(models.Model):
     area_name = models.CharField(max_length=64)
     park = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -52,7 +52,7 @@ class Areas(models.Model):
         db_table = "areas"
         
 
-class Stores(models.Model):
+class Store(models.Model):
     store_name = models.CharField(max_length=24)
     latitude = models.DecimalField(
         max_digits=9,
@@ -68,15 +68,15 @@ class Stores(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    area = models.OneToOneField(Areas, on_delete=models.CASCADE,  related_name="stores")
+    area = models.OneToOneField(Area, on_delete=models.CASCADE,  related_name="stores")
     
     class Meta:
         db_table = "stores"
 
 
-class FoodStores(models.Model):
-    food = models.ForeignKey(Foods, on_delete=models.CASCADE)
-    store = models.ForeignKey(Stores, on_delete=models.CASCADE)
+class FoodStore(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -84,8 +84,8 @@ class FoodStores(models.Model):
         db_table = "food_stores"
     
     
-class FoodCategories(models.Model):
-    foods = models.ForeignKey(Foods, on_delete=models.PROTECT)
+class FoodCategory(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.PROTECT)
     kind = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -93,3 +93,35 @@ class FoodCategories(models.Model):
     class Meta:
         db_table = "food_categories"
         
+        
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "favorites"
+
+
+class Review(models.Model):
+    comment = models.TextField()
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "reviews"
+   
+    
+class ReviewImages(models.Model):
+    review_image_path = models.CharField(max_length=512)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "review_images"
