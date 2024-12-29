@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,6 +12,20 @@
 <body>
 {% block content %}
     <h1>マップ（検索結果）画面</h1>
+    <p>カテゴリー： {{ category }}</p>
+    <p>エリア： {{ area }}</p>
+    <hr>
+    <ul>
+        {% for store in stores %}
+            <li>
+                店舗名: {{ store.store_name }}<br>
+                緯度: {{ store.latitude }}<br>
+                経度: {{ store.longitude }}<br>
+            </li>
+        {% empty %}
+            <p>該当する結果が見つかりませんでした。</p>
+        {% endfor %}
+    </ul>
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
 </body>

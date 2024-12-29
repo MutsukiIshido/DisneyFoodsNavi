@@ -43,8 +43,13 @@ class Food(models.Model):
 
 
 class Area(models.Model):
+    # parkの選択肢
+    PARK_CHOICES = [
+        (0, 'ランド'),
+        (1, 'シー'),        
+    ]
     area_name = models.CharField(max_length=64)
-    park = models.IntegerField()
+    park = models.IntegerField(choices=PARK_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -85,13 +90,27 @@ class FoodStore(models.Model):
     
     
 class FoodCategory(models.Model):
+    # kindの選択肢
+    KIND_CHOICES = [
+        (0, 'メインディッシュ'),
+        (1, '軽食'),
+        (2, 'サイド'),
+        (3, 'キッズメニュー'),
+        (4, 'デザート'),
+        (5, 'ドリンク'),
+        (6, 'アルコールドリンク」'),
+    ]
+    
     food = models.ForeignKey(Food, on_delete=models.PROTECT)
-    kind = models.IntegerField()
+    kind = models.IntegerField(choices=KIND_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         db_table = "food_categories"
+        
+    def __str__(self):
+        return f"{self.food} - {dict(self.KIND_CHOICES).get(self.kind, '不明')}"
         
         
 class Favorite(models.Model):

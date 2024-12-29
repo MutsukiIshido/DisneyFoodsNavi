@@ -19,6 +19,7 @@
     <br>
     <h2 style="text-align: left;">検索する</h2><br>
     <form id="searchForm" method="GET" action="{% url 'map' %}">
+        {% csrf_token %}
         <div class="form-group" style="margin-bottom: 20px;">
             <label for="category" style="display: block; margin-bottom: 8px;">カテゴリー：</label>
             <select name="category" id="category"
@@ -27,7 +28,7 @@
                 <option value="snacks">軽食</option>
                 <option value="sidemenu">サイドメニュー</option>
                 <option value="kidsmenu">キッズメニュー</option>
-                <option value="dessert">デザート</option>
+                <option value="デザート">デザート</option>
                 <option value="drink">ドリンク</option>
                 <option value="alcoholdrink">アルコールドリンク</option>
             </select>
@@ -37,7 +38,7 @@
             <label for="category" style="display: block; margin-bottom: 8px;">エリア：</label>
             <select name="area" id="area"
             style="padding: 8px; width: 30%; margin-top: 5px;">
-                <option value="WorldBazaar">ワールドバザール</option>
+                <option value="ワールドバザール">ワールドバザール</option>
                 <option value="Adventureland">アドベンチャーランド</option>
                 <option value="Westernland">ウエスタンランド</option>
                 <option value="Critter Country">クリッターカントリー</option>
@@ -55,7 +56,8 @@
             </select>
         </div>
 
-        <button type="submit"
+        <button id="searchButton"
+        type="submit"
         style="padding: 10px 20px;
         background-color: #3a835e;
         color: white;
