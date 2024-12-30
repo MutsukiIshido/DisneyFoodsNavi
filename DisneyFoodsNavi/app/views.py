@@ -67,24 +67,30 @@ class RankingView(View):
     def get(self, request):
         return render(request, "ranking.html")    
 
-
+    
 class MapView(View):
-    def search_results(request):
+    def search_results(self, request):
         category = request.GET.get('category')
         area_name = request.GET.get('area')
-    
+        
+        try:
+            category = int(request.GET.get('category')) # categoryを正数に変換
+        except (ValueError, TypeError):
+            category = None # 不正な値の場合は　None を設定
+
         # フードとストアを条件に基づいてフィルタリング
-        foods = FoodCategory.objects.filter(kind=category).values('food')
+        foods = FoodCategory.objects.filter(kind=category).values_list('food', flat=True)
         stores = Store.objects.filter(area__area_name=area_name, foodstore__food_id__in=foods)
-    
+
         context = {
-        'stores': stores,
-        'category': category,
-        'area': area_name,
+            'stores': stores,
+            'category': category,
+            'area': area_name,
         }
         return render(request, 'map.html', context)
+    
     def get(self, request):
-        return render(request, "map.html")
+        return self.search_results(request)
 
     
 class MyReviewView(View):

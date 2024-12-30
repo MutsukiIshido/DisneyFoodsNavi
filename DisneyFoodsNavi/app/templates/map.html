@@ -14,6 +14,8 @@
     <h1>マップ（検索結果）画面</h1>
     <p>カテゴリー： {{ category }}</p>
     <p>エリア： {{ area }}</p>
+    <p>検索条件: カテゴリー={{ category }} エリア={{ area }}</p>
+    <p>データ数: {{ stores|length }}</p>
     <hr>
     <ul>
         {% for store in stores %}
