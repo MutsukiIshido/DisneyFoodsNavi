@@ -124,8 +124,15 @@ class Favorite(models.Model):
 
 
 class Review(models.Model):
+    SCORE_CHOICES = [
+        (1, '★'),
+        (2, '★★'),
+        (3, '★★★'),
+        (4, '★★★★'),
+        (5, '★★★★★'),
+    ]
     comment = models.TextField()
-    rating = models.IntegerField()
+    rating = models.PositiveSmallIntegerField(verbose_name='レビュースコア', choices=SCORE_CHOICES, default='3')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -134,6 +141,11 @@ class Review(models.Model):
 
     class Meta:
         db_table = "reviews"
+        
+    def get_percent(self):
+        percent = round(self.rating / 5 * 100)
+        return percent
+        
    
     
 class ReviewImages(models.Model):

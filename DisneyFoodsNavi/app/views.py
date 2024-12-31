@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from app.forms import SignupForm, LoginForm
+from app.forms import SignupForm, LoginForm, ReviewForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Food, FoodStore, Store, Area, FoodCategory
+from .models import Food, FoodStore, Store, Area, FoodCategory, Review
+from django.db.models import Avg
 
 
 class PortfolioView(View):
@@ -50,7 +51,19 @@ class HomeView(View):
 
 class WriteReviewView(View):
     def get(self, request):
-        return render(request, "writereview.html")
+        form = ReviewForm()
+        return render(request, "writereview.html", {"form": form})
+    
+    def post(self, request):
+        form = ReviewForm(request.POST)
+        if form.is_valid:
+            review = form.save(commit=False)
+            review.user = request.user # ログインしているユーザーを設定
+            review.save()
+        else:
+            print(form.errors) # フォームエラーを出力してデバッグ
+            return redirect("home") # 投稿後にホームページにレダイレクト
+        return render(request, "writeview.html", {"form": form})
 
     
 class ReadingReviewView(View):

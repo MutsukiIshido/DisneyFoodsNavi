@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from app.models import User
+from app.models import User, Review, Review, Food, Store
 from django.contrib.auth import authenticate
 
 
@@ -31,4 +31,15 @@ class LoginForm(forms.Form):
         if self.user is None:
             raise forms.ValidationError("認証に失敗しました")
         return self.cleaned_data
-        
+    
+    
+class ReviewForm(forms.ModelForm):
+    food = forms.ModelChoiceField(queryset=Food.objects.all(), label="商品名", required=True)
+    store = forms.ModelChoiceField(queryset=Store.objects.all(), label="店舗名", required=True)
+    
+    class Meta:
+        model = Review
+        fields = ['food', 'store', 'rating', 'comment']
+        widgets = {
+            'comment': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
+        }
