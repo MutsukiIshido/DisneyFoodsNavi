@@ -52,6 +52,7 @@ class HomeView(View):
 class WriteReviewView(View):
     def get(self, request):
         form = ReviewForm()
+        print("Rating field choices:", form.fields['rating'].choices)  # 追加
         return render(request, "writereview.html", {"form": form})
     
     def post(self, request):

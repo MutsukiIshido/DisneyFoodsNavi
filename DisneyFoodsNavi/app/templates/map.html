@@ -18,15 +18,15 @@
     <p>データ数: {{ stores|length }}</p>
     <hr>
     <ul>
-        {% for store in stores %}
+        {% comment %} {% for store in stores %} {% endcomment %}
             <li>
                 店舗名: {{ store.store_name }}<br>
                 緯度: {{ store.latitude }}<br>
                 経度: {{ store.longitude }}<br>
             </li>
-        {% empty %}
-            <p>該当する結果が見つかりませんでした。</p>
-        {% endfor %}
+        {% comment %} {% empty %} {% endcomment %}
+            {% comment %} <p>該当する結果が見つかりませんでした。</p> {% endcomment %}
+        {% comment %} {% endfor %} {% endcomment %}
     </ul>
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
