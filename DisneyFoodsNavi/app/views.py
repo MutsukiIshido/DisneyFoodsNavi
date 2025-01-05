@@ -85,7 +85,7 @@ class RankingView(View):
 class MapView(View):
     def search_results(self, request):
         category = request.GET.get('category')
-        area_name = request.GET.get('area')
+        area = request.GET.get('area')
         
         try:
             category = int(request.GET.get('category')) # categoryを正数に変換
@@ -93,13 +93,13 @@ class MapView(View):
             category = None # 不正な値の場合は　None を設定
 
         # フードとストアを条件に基づいてフィルタリング
-        foods = FoodCategory.objects.filter(kind=category).values_list('food', flat=True)
-        stores = Store.objects.filter(area__area_name=area_name, foodstore__food_id__in=foods)
+        foods = Food.objects.filter(category__kind=category) if category else Food.objects.all()
+        stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods)
 
         context = {
             'stores': stores,
             'category': category,
-            'area': area_name,
+            'area': area,
         }
         return render(request, 'map.html', context)
     

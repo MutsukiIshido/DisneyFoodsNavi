@@ -29,6 +29,6 @@ urlpatterns = [
     path('favorite/', FavoriteView.as_view(), name="favorite"),
     path('ranking/', RankingView.as_view(), name="ranking"),
     path('map/', MapView.as_view(), name="map"),
+    # path('search-result/', views.search_results, name="search_results"),
     path('myreview/', MyReviewView.as_view(), name="myreview"),
-
 ]

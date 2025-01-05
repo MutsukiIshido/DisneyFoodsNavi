@@ -50,10 +50,29 @@ class User(AbstractUser):
     
     class Meta:
         db_table = "users"
-        
+
+
+class FoodCategory(models.Model):
+    # kindの選択肢
+    KIND_CHOICES = [
+        (0, 'メインディッシュ'),
+        (1, '軽食'),
+        (2, 'サイド'),
+        (3, 'キッズメニュー'),
+        (4, 'デザート'),
+        (5, 'ドリンク'),
+        (6, 'アルコールドリンク」'),
+    ]
+    
+    # food = models.ForeignKey(Food, on_delete=models.PROTECT)
+    kind = models.IntegerField(choices=KIND_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True) 
+
 
 class Food(models.Model):
     foods_name = models.CharField(max_length=64)
+    category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, default=0)
     price = models.IntegerField()
     foods_image_path = models.CharField(max_length=255)
     total_reviews = models.IntegerField()
@@ -114,23 +133,6 @@ class FoodStore(models.Model):
     class Meta:
         db_table = "food_stores"
     
-    
-class FoodCategory(models.Model):
-    # kindの選択肢
-    KIND_CHOICES = [
-        (0, 'メインディッシュ'),
-        (1, '軽食'),
-        (2, 'サイド'),
-        (3, 'キッズメニュー'),
-        (4, 'デザート'),
-        (5, 'ドリンク'),
-        (6, 'アルコールドリンク」'),
-    ]
-    
-    food = models.ForeignKey(Food, on_delete=models.PROTECT)
-    kind = models.IntegerField(choices=KIND_CHOICES)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         db_table = "food_categories"
