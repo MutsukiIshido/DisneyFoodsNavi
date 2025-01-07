@@ -61,13 +61,20 @@ class FoodCategory(models.Model):
         (3, 'キッズメニュー'),
         (4, 'デザート'),
         (5, 'ドリンク'),
-        (6, 'アルコールドリンク」'),
+        (6, 'アルコールドリンク'),
     ]
     
     # food = models.ForeignKey(Food, on_delete=models.PROTECT)
     kind = models.IntegerField(choices=KIND_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
+    
+    class Meta:
+        db_table = "food_categories"
+        
+    def __str__(self):
+        return f"{self.food} - {dict(self.KIND_CHOICES).get(self.kind, '不明')}"
+
 
 
 class Food(models.Model):
@@ -132,14 +139,7 @@ class FoodStore(models.Model):
     
     class Meta:
         db_table = "food_stores"
-    
-    
-    class Meta:
-        db_table = "food_categories"
-        
-    def __str__(self):
-        return f"{self.food} - {dict(self.KIND_CHOICES).get(self.kind, '不明')}"
-        
+            
         
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
