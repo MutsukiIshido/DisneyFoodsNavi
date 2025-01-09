@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from app.forms import SignupForm, LoginForm, ReviewForm
+from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Food, FoodStore, Store, Area, FoodCategory, Review
+from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages
 from django.db.models import Avg
+from django.http import JsonResponse
 
 
 class PortfolioView(View):
@@ -51,20 +52,34 @@ class HomeView(View):
 
 class WriteReviewView(View):
     def get(self, request):
-        form = ReviewForm()
-        print("Rating field choices:", form.fields['rating'].choices)  # 追加
-        return render(request, "writereview.html", {"form": form})
+        review_form = ReviewForm()
+        images_form = ReviewImagesForm()
+        return render(request, "writereview.html", {
+            "review_form": review_form,
+            "images_form": images_form
+        })
     
     def post(self, request):
-        form = ReviewForm(request.POST)
-        if form.is_valid:
-            review = form.save(commit=False)
-            review.user = request.user # ログインしているユーザーを設定
+        review_form = ReviewForm(request.POST)
+        images_form = ReviewImagesForm(request.POST, request.FILES)
+        
+        if review_form.is_valid:
+            # レビューを保存
+            review = review_form.save(commit=False)
+            review.user = request.user # ログインユーザーを紐付け
             review.save()
-        else:
-            print(form.errors) # フォームエラーを出力してデバッグ
-            return redirect("home") # 投稿後にホームページにレダイレクト
-        return render(request, "writeview.html", {"form": form})
+            
+            # 複数画像を保存
+            images = request.FILES.getlist('review_image_path')
+            for image in images:
+                ReviewImages.objects.create(review=review, review_image_path=image)
+                
+            return redirect("home")
+        
+        return render(request, "writeview.html", {
+            "review_form": review_form,
+            "images_form": images_form     
+        })
 
     
 class ReadingReviewView(View):
@@ -114,4 +129,11 @@ class MyReviewView(View):
     def get(self, request):
         return render(request, "myreview.html")
 
-
+def search_foods(request):
+    query = request.GET.get('q', '').strip()
+    if query:
+        foods = Food.objects.filter(foods_name__icontains=query).values('id', 'foods_name')
+        results = [{'id': food['id'], 'name': food['foods_name']} for food in foods]
+    else:
+        results = []
+    return JsonResponse(results, safe=False)

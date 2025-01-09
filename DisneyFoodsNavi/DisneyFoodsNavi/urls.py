@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +34,5 @@ urlpatterns = [
     path('map/', MapView.as_view(), name="map"),
     # path('search-result/', views.search_results, name="search_results"),
     path('myreview/', MyReviewView.as_view(), name="myreview"),
-]
+    path('search-foods/', views.search_foods, name='search_foods'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -42,3 +42,10 @@ header nav ul li a:hover {
 main {
     padding: 20px;
 }
+
+#foodResults {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

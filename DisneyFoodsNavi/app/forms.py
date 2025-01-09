@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from app.models import User, Review, Review, Food, Store
+from app.models import User, Review, ReviewImages, Food, Store
 from django.contrib.auth import authenticate
 
 
@@ -34,14 +34,38 @@ class LoginForm(forms.Form):
     
     
 class ReviewForm(forms.ModelForm):
-    food = forms.ModelChoiceField(queryset=Food.objects.all(), label="商品名", required=True)
-    store = forms.ModelChoiceField(queryset=Store.objects.all(), label="店舗名", required=True)
+    food = forms.ModelChoiceField(
+        queryset=Food.objects.all(),
+        widget=forms.HiddenInput(), # 商品名を非表示フィールドに変更
+        label="商品名"
+    )
+    
+    store = forms.ModelChoiceField(
+        queryset=Store.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        label="利用した店舗"
+    )
+    
+    rating = forms.ChoiceField(
+        choices=Review.SCORE_CHOICES,
+        widget=forms.RadioSelect,
+        initial=3,
+        label="評価"
+    )
+    
+    comment = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+        label="レビュー"
+    )
     
     class Meta:
         model = Review
         fields = ['food', 'store', 'rating', 'comment']
-        widgets = {
-            'rating': forms.Select(attrs={'class': 'form-control'}),
-            'comment': forms.Textarea(attrs={'class': 'form-control'}),
-
-        }
+        
+        
+class ReviewImagesForm(forms.Form):
+    review_image_path = forms.FileField(
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        label="画像",
+        required=False,
+    )

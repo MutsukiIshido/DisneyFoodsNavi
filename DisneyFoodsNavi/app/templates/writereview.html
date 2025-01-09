@@ -6,17 +6,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}レビュー投稿{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #foodResults {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 {% block content %}
-    <h1>レビュー投稿画面</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" style="padding: 10px 20px; background-color: #3da9ec; color: white; border: none; cursor: pointer;">投稿する</button>
-    </form>
+    <div class="container mt-5">
+        <h1>レビュー投稿画面</h1>
 
-    <a href="{% url 'home' %}">ホーム画面へ</a>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- レビュー投稿フォーム -->
+            {{ review_form.as_p }}
+
+            <div class="mb-3">
+                <label for="id_food" class="form-label">商品名</label>
+                <!-- 隠しフィールド（選択された商品名を保持） -->
+                <input type="text" id="id_food" name="food" readonly class="form-control" placeholder="商品名を選択してください" required>
+                <!-- モーダル起動ボタン -->
+                <button type="button" class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#foodModal">
+                    商品名を選択
+                </button>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_store" class="form-label">利用した店舗</label>
+                {{ form.store }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_rating" class="form-label">評価 (5点満点)</label>
+                {{ form.rating }}
+            </div>
+
+            <div class="mb-3">
+                <label for="id_review" class="form-label">レビュー</label>
+                {{ form.comment }}
+            </div>
+
+            <!-- 画像アップロードフォーム -->
+            <div class="mb-3">
+                <label for="id_review_image_path" class="form-label">画像</label>
+                {{ images_form.as_p }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">投稿する</button>
+        </form>
+
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">ホーム画面へ</a>
+    </div>
+
+    <!-- 商品検索モーダル -->
+    <div class="modal fade" id="foodModal" tabindex="-1" aria-labelledby="foodModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="foodModalLabel">商品名を検索</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="foodSearch" class="form-control" placeholder="商品名を検索">
+                    <ul id="foodResults" class="list-group mt-3"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const foodSearchInput = document.getElementById('foodSearch');
+        const foodResults = document.getElementById('foodResults');
+        const foodField = document.getElementById('id_food');
+
+        foodSearchInput.addEventListener('input', function () {
+            const query = this.value.trim();
+            if (query) {
+                fetch(`/search-foods/?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        foodResults.innerHTML = '';
+                        data.forEach(food => {
+                            const li = document.createElement('li');
+                            li.className = 'list-group-item list-group-item-action';
+                            li.textContent = food.name;
+                            li.onclick = () => {
+                                foodField.value = food.name;
+                                const modal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
+                                modal.hide();
+                            };
+                            foodResults.appendChild(li);
+                        });
+                    });
+            } else {
+                foodResults.innerHTML = '';
+            }
+        });
+    });
+</script>
 </body>
 </html>
