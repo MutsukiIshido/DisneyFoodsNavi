@@ -65,7 +65,7 @@ class ReviewForm(forms.ModelForm):
         
 class ReviewImagesForm(forms.Form):
     review_image_path = forms.FileField(
-        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        widget=forms.FileInput(attrs={'multiple': True}),
         label="画像",
         required=False,
     )
