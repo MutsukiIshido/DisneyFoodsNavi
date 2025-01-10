@@ -63,17 +63,16 @@ class WriteReviewView(View):
         review_form = ReviewForm(request.POST)
         images_form = ReviewImagesForm(request.POST, request.FILES)
         
-        if review_form.is_valid:
+        if review_form.is_valid():
             # レビューを保存
             review = review_form.save(commit=False)
             review.user = request.user # ログインユーザーを紐付け
             review.save()
             
             # 複数画像を保存
-            images = request.FILES.getlist('review_image_path')
-            for image in images:
-                ReviewImages.objects.create(review=review, review_image_path=image)
-                
+            if images_form.is_valid():
+                images_form.save(review=review)  # ReviewImagesFormのsaveメソッドを呼び出す
+            
             return redirect("home")
         
         return render(request, "writeview.html", {

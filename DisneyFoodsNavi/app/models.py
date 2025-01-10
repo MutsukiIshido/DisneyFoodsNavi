@@ -180,7 +180,7 @@ class ReviewImages(models.Model):
     review_image_path = models.ImageField(upload_to='review_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, related_name='images', on_delete=models.CASCADE)
 
     class Meta:
         db_table = "review_images"
