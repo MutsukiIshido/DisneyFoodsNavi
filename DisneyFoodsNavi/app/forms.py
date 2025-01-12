@@ -50,7 +50,7 @@ class ReviewForm(forms.ModelForm):
         choices=Review.SCORE_CHOICES,
         widget=forms.RadioSelect,
         initial=3,
-        label="評価"
+        label="評価(5点満点)"
     )
     
     comment = forms.CharField(

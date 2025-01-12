@@ -32,25 +32,10 @@
                 <label for="id_food" class="form-label">商品名</label>
                 <!-- 隠しフィールド（選択された商品名を保持） -->
                 <input type="text" id="id_food" name="food" readonly class="form-control" placeholder="商品名を選択してください" required>
-                <!-- モーダル起動ボタン -->
-                <button type="button" class="btn btn-outline-primary mt-2" data-bs-toggle="modal" data-bs-target="#foodModal">
+                <!-- 子ウィンドウ起動ボタン -->
+                <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
                     商品名を選択
                 </button>
-            </div>
-
-            <div class="mb-3">
-                <label for="id_store" class="form-label">利用した店舗</label>
-                {{ form.store }}
-            </div>
-
-            <div class="mb-3">
-                <label for="id_rating" class="form-label">評価 (5点満点)</label>
-                {{ form.rating }}
-            </div>
-
-            <div class="mb-3">
-                <label for="id_review" class="form-label">レビュー</label>
-                {{ form.comment }}
             </div>
 
             <!-- 画像アップロードフォーム -->
@@ -82,39 +67,10 @@
     </div>
 {% endblock %}
 
+{% load static %}
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const foodSearchInput = document.getElementById('foodSearch');
-        const foodResults = document.getElementById('foodResults');
-        const foodField = document.getElementById('id_food');
-
-        foodSearchInput.addEventListener('input', function () {
-            const query = this.value.trim();
-            if (query) {
-                fetch(`/search-foods/?q=${query}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        foodResults.innerHTML = '';
-                        data.forEach(food => {
-                            const li = document.createElement('li');
-                            li.className = 'list-group-item list-group-item-action';
-                            li.textContent = food.name;
-                            li.onclick = () => {
-                                foodField.value = food.name;
-                                const modal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
-                                modal.hide();
-                            };
-                            foodResults.appendChild(li);
-                        });
-                    });
-            } else {
-                foodResults.innerHTML = '';
-            }
-        });
-    });
-</script>
 </body>
 </html>

@@ -75,7 +75,7 @@ class WriteReviewView(View):
             
             return redirect("home")
         
-        return render(request, "writeview.html", {
+        return render(request, "writereview.html", {
             "review_form": review_form,
             "images_form": images_form     
         })
@@ -128,11 +128,12 @@ class MyReviewView(View):
     def get(self, request):
         return render(request, "myreview.html")
 
-def search_foods(request):
-    query = request.GET.get('q', '').strip()
-    if query:
-        foods = Food.objects.filter(foods_name__icontains=query).values('id', 'foods_name')
-        results = [{'id': food['id'], 'name': food['foods_name']} for food in foods]
-    else:
-        results = []
-    return JsonResponse(results, safe=False)
+class FoodSearchView(View):
+    def get(self, request):
+        query = request.GET.get('q', '').strip()
+        if query:
+            foods = Food.objects.filter(foods_name__icontains=query).values('id', 'foods_name')
+            results = [{'id': food['id'], 'name': food['foods_name']} for food in foods]
+        else:
+            results = []
+        return JsonResponse(results, safe=False)
