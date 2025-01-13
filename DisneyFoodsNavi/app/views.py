@@ -83,7 +83,8 @@ class WriteReviewView(View):
     
 class ReadingReviewView(View):
     def get(self, request):
-        return render(request, "readingreview.html")
+        reviews = Review.objects.all() # DBから全レビューを取得
+        return render(request, 'readingreview.html', {'reviews': reviews})
     
 
 class FavoriteView(View):

@@ -10,6 +10,17 @@
 <body>
 {% block content %}
     <h1>レビュー閲覧画面</h1>
+    <div>商品名：</div>
+    <div>レビュー平均点</div>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <div>{{ review.user }}</div>
+                <div>評価： {{ review.rating }} / 5</div>
+                <p>{{ review.comment }}</p>
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
 </body>

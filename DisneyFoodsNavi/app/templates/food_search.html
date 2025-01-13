@@ -1,9 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品検索</title>
+    <title>{% block title %}商品検索{% endblock %}</title>
+    {% block head %}
     <style>
         #foodResults {
             max-height: 200px;
@@ -11,17 +15,22 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-    </style>
+    </style>      
+    {% endblock  %}
 </head>
 <body>
-    <div class="container mt-3">
+{% block content %}
+      <div class="container mt-3">
         <h1>商品名を検索</h1>
         <input type="text" id="foodsearch" class="form-control" placeholder="商品名を検索">
         <ul id="foodResults" class="list-group mt-3"></ul>
         <button class="btn btn-secondary mt-3" onclick="window.close()">閉じる</button>
     
     </div>
-    <script>
+{% endblock %}
+
+{% block scripts %}
+  <script>
         document.addEventListener('DOMContentLoaded', () =>{
             const foodSearchInput = document.getElementById('foodsearch');
             const foodResults = document.getElementById('foodResults');
@@ -29,10 +38,10 @@
             foodSearchInput.addEventListener('input', function() {
                 const query = this.value.trim();
                 if (query) {
-                    fetch(`/search-foods/?q=${query}`)
+                    fetch(`/food-search/?q=${query}`)
                         .then(response => response.json())
                         .then(data => {
-                            foodaaResult.innerHTML = '';
+                            foodResults.innerHTML = '';
                             data.forEach(food => {
                                 const li = document.createElement('li');
                                 li.className = 'list-group-item list-group-item-action';
@@ -50,5 +59,7 @@
             });
         });
     </script>
+{% endblock %}
+
 </body>
 </html>
