@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -18,6 +19,13 @@
                 <div>{{ review.user }}</div>
                 <div>評価： {{ review.rating }} / 5</div>
                 <p>{{ review.comment }}</p>
+
+                <!-- レビューに関連する画像の表示 -->
+                <div>
+                    {% for image in review.images.all %}
+                        <img src="{{ images.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
+                    {% endfor %}
+                </div>
             </li>
         {% endfor %}
     </ul>

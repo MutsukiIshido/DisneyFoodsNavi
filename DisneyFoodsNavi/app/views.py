@@ -83,7 +83,7 @@ class WriteReviewView(View):
     
 class ReadingReviewView(View):
     def get(self, request):
-        reviews = Review.objects.all() # DBから全レビューを取得
+        reviews = Review.objects.prefetch_related('images').all() # DBから全レビューを取得、一緒に画像も取得
         return render(request, 'readingreview.html', {'reviews': reviews})
     
 

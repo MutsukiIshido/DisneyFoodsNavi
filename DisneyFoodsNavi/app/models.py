@@ -177,7 +177,7 @@ class Review(models.Model):
    
     
 class ReviewImages(models.Model):
-    review_image_path = models.ImageField(upload_to='review_images/')
+    review_image_path = models.ImageField(upload_to='review_images/', blank=True, null=True) # blank=True, null=Trueとは画像は必須ではないこと示す
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     review = models.ForeignKey(Review, related_name='images', on_delete=models.CASCADE)
