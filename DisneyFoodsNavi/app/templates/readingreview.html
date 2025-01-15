@@ -23,7 +23,7 @@
                 <!-- レビューに関連する画像の表示 -->
                 <div>
                     {% for image in review.images.all %}
-                        <img src="{{ images.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
+                        <img src="{{ image.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
                     {% endfor %}
                 </div>
             </li>
