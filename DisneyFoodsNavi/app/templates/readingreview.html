@@ -21,6 +21,7 @@
                 <p>{{ review.comment }}</p>
 
                 <!-- 詳細画面へのリンク -->
+                 <div>Review ID: {{ review.pk }}</div> <!-- IDを出力-->
                  <a href="{% url 'review_detail' review.pk %}">もっと見る</a>
 
                 <!-- レビューに関連する画像の表示 -->

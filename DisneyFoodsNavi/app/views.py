@@ -142,6 +142,8 @@ class FoodSearchView(View):
 
 class ReviewDetailView(View):
     def get(self, request, pk):
+        print(f"Received pk: {pk} (type: {type(pk)})") # URLから渡されたpkを確認
         # `select_related`を使用して関連オブジェクトを取得
         review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk) # レビューを取得
+        print(f"Retrieved review ID: {review.pk} (type: {type(review.pk)})") # DBから取得したreview.pkを確認
         return render(request, 'review_detail.html', {'review': review})
