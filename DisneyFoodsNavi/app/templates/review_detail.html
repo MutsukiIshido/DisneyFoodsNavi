@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}レビュー詳細{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h1>レビュー詳細</h1>
+    <div>
+        <h2>商品名： {{ review.food.foods_name }}</h2>
+        <p>投稿者： {{ review.user.nickname }}</p>
+        <p>評価： {{ review.rating }}</p>
+        <p>コメント： {{ review.comment }}</p>
+        <p>店舗： {{ review.store.store_name }}</p>
+        <p>投稿日： {{ review.created_at }}</p>
+    </div>
+    
+    <!-- レビューに関する画像を表示 -->
+    <div>
+        <h3>画像</h3>
+        {% for image in review.images.all %}
+            <img src="{{ image.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
+        {% empty %}
+            <p>画像はありません</p>
+        {% endfor %}
+    </div>
+
+    <a href="{% url 'readingreview' %}">レビュー一覧に戻る</a>
+    {% endblock  %}
+    
+</body>
+</html>

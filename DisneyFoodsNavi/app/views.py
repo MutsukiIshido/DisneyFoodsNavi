@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
 from django.contrib.auth import login
@@ -138,3 +138,10 @@ class FoodSearchView(View):
         else:
             results = []
         return JsonResponse(results, safe=False)
+    
+
+class ReviewDetailView(View):
+    def get(self, request, pk):
+        # `select_related`を使用して関連オブジェクトを取得
+        review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk) # レビューを取得
+        return render(request, 'review_detail.html', {'review': review})

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView
+from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -34,4 +34,5 @@ urlpatterns = [
     path('myreview/', MyReviewView.as_view(), name="myreview"),
     path('search-foods/', FoodSearchView.as_view(), name='search_foods'),
     path('food-search/', FoodSearchView.as_view(), name='food-search'),    
+    path('review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'), # レビュー詳細画面
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
