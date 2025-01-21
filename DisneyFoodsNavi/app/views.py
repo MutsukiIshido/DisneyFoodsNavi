@@ -143,7 +143,14 @@ class FoodSearchView(View):
 class ReviewDetailView(View):
     def get(self, request, pk):
         print(f"Received pk: {pk} (type: {type(pk)})") # URLから渡されたpkを確認
+        try:
+            pk = int(pk) # URLから渡されたpkを整数型に変換
+            print(f"Converted pk: {pk} (type: {type(pk)})") # 型変換後のpkを確認
+        except ValueError:
+            print("Invalid pk value") # 無効なpk値が渡された場合のログ
+            return JsonResponse({'error': 'Invalid pk value'}, status=400)
+       
         # `select_related`を使用して関連オブジェクトを取得
         review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk) # レビューを取得
-        print(f"Retrieved review ID: {review.pk} (type: {type(review.pk)})") # DBから取得したreview.pkを確認
+        print(f"Retrieved review: {review}") # 取得したレビューの情報を確認
         return render(request, 'review_detail.html', {'review': review})

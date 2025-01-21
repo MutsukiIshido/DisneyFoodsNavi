@@ -159,6 +159,7 @@ class Review(models.Model):
         (4, '★★★★'),
         (5, '★★★★★'),
     ]
+    id = models.AutoField(primary_key=True)
     comment = models.TextField()
     rating = models.PositiveSmallIntegerField(verbose_name='レビュースコア', choices=SCORE_CHOICES, default=3)
     created_at = models.DateTimeField(auto_now_add=True)
