@@ -64,7 +64,6 @@ class FoodCategory(models.Model):
         (6, 'アルコールドリンク'),
     ]
     
-    # food = models.ForeignKey(Food, on_delete=models.PROTECT)
     kind = models.IntegerField(choices=KIND_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
@@ -72,11 +71,9 @@ class FoodCategory(models.Model):
     class Meta:
         db_table = "food_categories"
         
-    def __str__(self):
-        return f"{self.food} - {dict(self.KIND_CHOICES).get(self.kind, '不明')}"
-
-
-
+    # def __str__(self):
+    #     return self.kind
+        
 class Food(models.Model):
     foods_name = models.CharField(max_length=64)
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, default=0)
