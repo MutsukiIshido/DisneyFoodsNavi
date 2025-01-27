@@ -3,7 +3,7 @@ from django.views import View
 from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages
+from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages, Favorite
 from django.db.models import Avg, F
 from django.http import JsonResponse
 from itertools import groupby
@@ -91,8 +91,13 @@ class ReadingReviewView(View):
 
 class FavoriteView(View):
     def get(self, request):
-        return render(request, "favorite.html")
-
+        if not request.user.is_authenticated:
+            return redirect('login') # ログインしていない場合はログイン画面にリダイレクト
+        
+        # ログイン中のユーザーのお気に入りを取得
+        favorites = Favorite.objects.filter(user=request.user).select_related('food')
+        return render(request, 'favorite.html', {'favorites': favorites})
+        
     
 class RankingView(View):
     def get(self, request):
