@@ -10,28 +10,14 @@
 </head>
 <body>
 {% block content %}
-    <h1>総合ランキング</h1>
-
-
-    <h1>メインディッシュランキング</h1>
-    
-    
-    <h1>軽食ランキング</h1>
-    
-    
-    <h1>サイドメニューランキング</h1>
-    
-    
-    <h1>キッズメニューランキング</h1>
-    
-    
-    <h1>デザートランキング</h1>
-    
-    
-    <h1>ドリンクランキング</h1>
-    
-    
-    <h1>アルコールランキング</h1>
+    {% for category_name, foods in grouped_foods.items %}
+        <h2>カテゴリ： {{ category_name }}</h2>
+        <ul>
+            {% for food in foods %}
+                <li>{{ food.foods_name }} - 評価： {{ food.average_rating }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}

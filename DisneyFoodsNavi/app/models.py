@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.timezone import now
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, nickname, password=None, **extra_fields):
@@ -53,18 +54,18 @@ class User(AbstractUser):
 
 
 class FoodCategory(models.Model):
-    # kindの選択肢
-    KIND_CHOICES = [
-        (0, 'メインディッシュ'),
-        (1, '軽食'),
-        (2, 'サイド'),
-        (3, 'キッズメニュー'),
-        (4, 'デザート'),
-        (5, 'ドリンク'),
-        (6, 'アルコールドリンク'),
-    ]
+    # # kindの選択肢
+    # KIND_CHOICES = [
+    #     ('メインディッシュ'),
+    #     ('軽食'),
+    #     ('サイド'),
+    #     ('キッズメニュー'),
+    #     ('デザート'),
+    #     ('ドリンク'),
+    #     ('アルコールドリンク'),
+    # ]
     
-    kind = models.IntegerField(choices=KIND_CHOICES)
+    kind = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
     
@@ -76,12 +77,12 @@ class FoodCategory(models.Model):
         
 class Food(models.Model):
     foods_name = models.CharField(max_length=64)
-    category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, default=0)
+    category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE)
     price = models.IntegerField()
     foods_image_path = models.CharField(max_length=255)
     total_reviews = models.IntegerField()
     average_rating = models.DecimalField(max_digits=2, decimal_places=1)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:

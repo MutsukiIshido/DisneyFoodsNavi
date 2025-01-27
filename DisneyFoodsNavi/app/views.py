@@ -4,8 +4,10 @@ from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages
-from django.db.models import Avg
+from django.db.models import Avg, F
 from django.http import JsonResponse
+from itertools import groupby
+from operator import attrgetter
 
 
 class PortfolioView(View):
@@ -94,10 +96,16 @@ class FavoriteView(View):
     
 class RankingView(View):
     def get(self, request):
-        # 全てのフードを取得後、口コミ評価上位3つだけを1から順に並べる
+        # フードをカテゴリ別に並べて、評価順にソート
+        foods = Food.objects.all().select_related('category').order_by('category', '-average_rating')
         
-        return render(request, "ranking.html")    
-
+        # カテゴリごとにグループ化して上位3件を抽出
+        grouped_foods = {}
+        for category, items in groupby(foods, key=attrgetter('category')):
+            grouped_foods[category.kind] = list(items)[:3]
+        
+        return render(request, "ranking.html", {'grouped_foods': grouped_foods})
+    
     
 class MapView(View):
     def get(self, request):
