@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>{% block title %}ランキング{% endblock %}</title>
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
 {% block content %}
@@ -15,11 +17,24 @@
         <ul>
             {% for food in foods %}
                 <li>{{ food.foods_name }} - 評価： {{ food.average_rating }}</li>
+                <img src="{{ food.foods_image_path }}" alt="{{ food.foods_name }}" style="width: 100px;">
+
+                <!-- お気に入りボタン -->
+                <button
+                    class="favorite-button"
+                    data-food-id="{{ food.id }}">
+                    お気に入りに追加
+                </button>
             {% endfor %}
         </ul>
     {% endfor %}
 
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/favorite.js' %}" defer></script>
+{% endblock %}
+
 </body>
 </html>

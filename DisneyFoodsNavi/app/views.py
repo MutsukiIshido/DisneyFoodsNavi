@@ -3,11 +3,15 @@ from django.views import View
 from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages, Favorite
 from django.db.models import Avg, F
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from operator import attrgetter
+from django.utils.decorators import method_decorator
+
 
 
 class PortfolioView(View):
@@ -165,3 +169,29 @@ class ReviewDetailView(View):
         # `select_related`を使用して関連オブジェクトを取得
         review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk) # レビューを取得
         return render(request, 'review_detail.html', {'review': review})
+
+
+# お気に入りの登録・削除機能
+@method_decorator(login_required, name='dispatch')
+class FavoriteToggleView(View):
+    def post(self, request, food_id):
+        try:
+            food = Food.objects.get(id=food_id)
+            
+            # お気に入り登録
+            favorite, created = Favorite.objects.get_or_create(user=request.user, food=food)
+            if created:
+                message = 'お気に入りに追加しました'
+                status = 'added'
+            else:
+                favorite.delete()
+                message = 'お気に入りから削除しました'
+                status = 'removed'
+            return JsonResponse({'status': status, 'message': message}, status=200)
+        
+        except Food.DoesNotExist:
+            return JsonResponse({'error': '指定されたフードが見つかりません'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+        
+            
