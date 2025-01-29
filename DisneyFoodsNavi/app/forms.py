@@ -81,3 +81,19 @@ class ReviewImagesForm(forms.ModelForm):
         images = self.files.getlist('review_image_path')  # 複数ファイルを取得
         for image in images:
             ReviewImages.objects.create(review=review, review_image_path=image)
+            
+            
+# メールアドレスの変更フォーム
+class EmailChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }
+        
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("このメールアドレスはすでに使用されています。")
+        return email

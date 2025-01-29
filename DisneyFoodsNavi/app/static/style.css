@@ -49,3 +49,42 @@ main {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+/* ドロップダウンメニューのデザイン */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    display: none; /* 初期状態で非表示 */
+    position: absolite;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu li a:honer {
+    background-color: #f0f0f0;
+}

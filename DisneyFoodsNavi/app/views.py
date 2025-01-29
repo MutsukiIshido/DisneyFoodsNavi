@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm
+from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm, EmailChangeForm
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -200,4 +201,22 @@ class FavoriteToggleView(View):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
         
-            
+        
+# メールアドレス変更用ビュー
+class EmailChangeView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = EmailChangeForm(instance=request.user)
+        return render(request, 'emali_change.html', {'form': form})
+    
+    def post(self, request):
+        form = EmailChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "メールアドレスを変更しました。")
+            return redirect('home')
+        return render(request, 'email_change.html', {'form': form})
+
+# パスワード変更用ビュー
+class PasswordChangeView(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'password_change.html')
