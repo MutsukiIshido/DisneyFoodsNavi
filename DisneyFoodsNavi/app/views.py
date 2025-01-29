@@ -206,7 +206,7 @@ class FavoriteToggleView(View):
 class EmailChangeView(LoginRequiredMixin, View):
     def get(self, request):
         form = EmailChangeForm(instance=request.user)
-        return render(request, 'emali_change.html', {'form': form})
+        return render(request, 'email_change.html', {'form': form})
     
     def post(self, request):
         form = EmailChangeForm(request.POST, instance=request.user)

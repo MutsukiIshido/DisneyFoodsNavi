@@ -1,16 +1,16 @@
-document.adddEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownMenu = document.querySelector(".dropdown-menu");
 
     // 初期状態で非表示
-    dropdownMenu.computedStyleMap.display = "none";
+    dropdownMenu.style.display = "none";
 
     dropdownToggle.addEventListener("click", function (event) {
         event.preventDefault(); // リンクのデフォルト動作を防ぐ
-        if (dropdownMenu.computedStyleMap.display === "none") {
-            dropdownMenu.computedStyleMap.display = "block"; // 表示
+        if (dropdownMenu.style.display === "none") {
+            dropdownMenu.style.display = "block"; // 表示
         } else {
-            dropdownMenu.computedStyleMap.display = "none"; // 非表示
+            dropdownMenu.style.display = "none"; // 非表示
         }
     });
 
