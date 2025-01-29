@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm, EmailChangeForm
+from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages, Favorite
 from django.db.models import Avg, F
 from django.http import JsonResponse
@@ -12,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from operator import attrgetter
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
 
 
 
@@ -216,7 +218,14 @@ class EmailChangeView(LoginRequiredMixin, View):
             return redirect('home')
         return render(request, 'email_change.html', {'form': form})
 
-# パスワード変更用ビュー
-class PasswordChangeView(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'password_change.html')
+# パスワード変更用ビュー 
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = "password_change.html"
+    success_url = reverse_lazy('password_change_done')
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        update_session_auth_hash(self.request, form.user) # セッションのハッシュを更新
+        messages.success(self.request, "パスワードを変更しました。")
+        return response

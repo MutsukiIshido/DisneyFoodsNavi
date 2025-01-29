@@ -19,6 +19,7 @@ from django.urls import include, path
 from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import PasswordChangeDoneView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,4 +39,5 @@ urlpatterns = [
     path('favorite/toggle/<int:food_id>/', FavoriteToggleView.as_view(), name='favorite_toggle'),
     path('email_change/', EmailChangeView.as_view(), name='email_change'),    
     path('password_change/', PasswordChangeView.as_view(), name='password_change'),    
+    path('password_change/done/', PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

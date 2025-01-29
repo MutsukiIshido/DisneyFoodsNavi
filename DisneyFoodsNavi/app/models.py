@@ -183,3 +183,4 @@ class ReviewImages(models.Model):
 
     class Meta:
         db_table = "review_images"
+        

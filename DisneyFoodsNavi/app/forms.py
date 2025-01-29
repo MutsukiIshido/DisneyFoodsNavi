@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from app.models import User, Review, ReviewImages, Food, Store
 from django.contrib.auth import authenticate
 
@@ -97,3 +97,10 @@ class EmailChangeForm(forms.ModelForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError("このメールアドレスはすでに使用されています。")
         return email
+    
+    
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
