@@ -146,8 +146,14 @@ class MapView(View):
     
 class MyReviewView(View):
     def get(self, request):
-        return render(request, "myreview.html")
+        if not request.user.is_authenticated:
+            return redirect('login') # ログインしていない場合はログイン画面にリダイレクト
 
+        # ログイン中のユーザーのレビューを取得
+        reviews = Review.objects.filter(user=request.user).prefetch_related('images')
+        return render(request, 'myreview.html', {'reviews': reviews})
+
+        
 class FoodSearchView(View):
     def get(self, request):
         query = request.GET.get('q', '').strip()
