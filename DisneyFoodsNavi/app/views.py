@@ -167,7 +167,7 @@ class FoodSearchView(View):
             results = []
         return JsonResponse(results, safe=False)
     
-
+# レビュー詳細画面用ビュー
 class ReviewDetailView(View):
     def get(self, request, pk):
         try:

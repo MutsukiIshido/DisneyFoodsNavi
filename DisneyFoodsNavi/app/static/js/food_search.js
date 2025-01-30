@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     foodSearchInput.addEventListener('input', function () {
         const query = this.value.trim();
         if (query) {
-            fetch(`/search-foods/?q=${query}`)
+            fetch(`/food-search/?q=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     foodResults.innerHTML = '';

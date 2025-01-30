@@ -33,7 +33,6 @@ urlpatterns = [
     path('ranking/', RankingView.as_view(), name="ranking"),
     path('map/', MapView.as_view(), name="map"),
     path('myreview/', MyReviewView.as_view(), name="myreview"),
-    path('search-foods/', FoodSearchView.as_view(), name='search_foods'),
     path('food-search/', FoodSearchView.as_view(), name='food-search'),    
     path('review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'), # レビュー詳細画面
     path('favorite/toggle/<int:food_id>/', FavoriteToggleView.as_view(), name='favorite_toggle'),
