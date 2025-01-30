@@ -29,14 +29,28 @@
             {% csrf_token %}
 
             <!-- レビュー投稿フォーム -->
-            {{ review_form.as_p }}
+            <div class="mb-3">
+                <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
+                {{ review_form.store }}
+            </div>
+        
+            <div class="mb-3">
+                <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価(5点満点)</label>
+                {{ review_form.rating }}
+            </div>
+        
+            <div class="mb-3">
+                <label for="{{ review_form.comment.id_for_label }}" class="form-label">レビュー</label>
+                {{ review_form.comment }}
+            </div>
+        
 
             <div class="mb-3">
-                <label for="id_food" class="form-label">商品名</label>
+                <label for="id_food_display" class="form-label">商品名</label>
                 <!-- ユーザーが選択した商品名を表示するフィールド -->
-                <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" rredonly>
-                <!-- 実際にフォームに送信される　hidden　フィールド -->
-                <input type="hidden" id="id_food" name="food">
+                <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" readonly>
+                <!-- フォームに送信される隠しフィールド -->
+                {{ review_form.food }}
                 <!-- 子ウィンドウ起動ボタン -->
                 <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
                     商品名を選択
@@ -45,7 +59,7 @@
 
             <!-- 画像アップロードフォーム -->
             <div class="mb-3">
-                <label for="id_review_image_path" class="form-label">画像</label>
+                <label for="{{ images_form.review_image_path.id_for_label }}" class="form-label">画像</label>
                 {{ images_form.review_image_path }}
             </div>
 

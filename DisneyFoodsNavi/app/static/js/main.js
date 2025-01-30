@@ -59,15 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                 }
 
                                 // 商品名をセット
-                                foodField.value = food.name;// 隠しフィールドにセット
+                                foodField.value = food.id;// 隠しフィールドにセット
                                 foodDisplay.value = food.name; // ユーザー向けの表示用フィールドにセット
                                 
                                 console.log("🎯 設定後の foodField.value:", foodField.value);
                                 console.log("🎯 設定後の foodDisplay.value:", foodDisplay.value);
 
+                                console.log("🎯 foodField にセットした値:", foodField.value);
+
 
                                 // `input` イベントを発火させる
-                                foodField.dispatchEvent(new Event('input', { bubbles: true }));
+                                foodField.dispatchEvent(new Event('change', { bubbles: true }));
 
                                 // 0.5秒後の状態をチェック
                                 setTimeout(() => {
@@ -85,4 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+document.querySelector('form').addEventListener('submit', function(event) {
+    const foodField = document.getElementById('id_food');
+    console.log("🚀 送信直前の foodField.value:", foodField ? foodField.value : "⚠ foodField が見つかりません");
+});
+
+
+// document.querySelector('form').addEventListener('submit', function(event) {
+//     event.preventDefault();  // 🔴 フォームの送信を一時的にキャンセル
+//     console.log("🚀 フォーム送信がトリガーされました！");
+
+//     const foodField = document.getElementById('id_food');
+//     console.log("🚀 送信直前の foodField.value:", foodField ? foodField.value : "⚠ foodField が見つかりません");
+// });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("📌 food のすべての要素:", document.querySelectorAll("[name='food']"));
 });

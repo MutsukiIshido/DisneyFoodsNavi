@@ -69,10 +69,17 @@ class WriteReviewView(View):
         })
     
     def post(self, request):
+        # 🚀 受け取った POST データをログに出力（デバッグ用）
+        print("🚀 受け取ったデータ:", request.POST)  
+        print("📌 food の値:", request.POST.get('food'))  # `food` の値を確認
+        
         review_form = ReviewForm(request.POST)
         images_form = ReviewImagesForm(request.POST, request.FILES)
         
         if review_form.is_valid():
+            print("✅ フォームは正常です！")  # フォームが有効ならログ出力
+
+            
             # レビューを保存
             review = review_form.save(commit=False)
             review.user = request.user # ログインユーザーを紐付け
@@ -83,6 +90,9 @@ class WriteReviewView(View):
                 images_form.save(review=review)  # ReviewImagesFormのsaveメソッドを呼び出す
             
             return redirect("home")
+        
+        # ❌ フォームが無効だった場合、エラーをログ出力
+        print("❌ フォームのバリデーションエラー:", review_form.errors)
         
         return render(request, "writereview.html", {
             "review_form": review_form,
