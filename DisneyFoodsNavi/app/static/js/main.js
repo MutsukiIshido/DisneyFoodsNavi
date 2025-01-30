@@ -43,19 +43,41 @@ document.addEventListener('DOMContentLoaded', () => {
                             // 商品選択時の処理
                             foodResults.appendChild(li);
                             li.onclick = () => {
-                                console.log("クリックされた食品:", food.name);
+                                console.log("✅ クリックされた商品:", food.name);
 
-                                // 商品名をフォームフィールドにセット
-                                foodField.value = food.name;  
-                                console.log("設定後の foodField.value:", foodField.value);
+                                const foodField = document.getElementById('id_food');
+                                const foodDisplay = document.getElementById('food_display');
+                                console.log("🔍 foodField の要素:", foodField);
+
+                                if (!foodField) {
+                                    console.error("🚨 foodField (id_food) が見つかりません！");
+                                    return;
+                                }
+                                if (!foodDisplay) {
+                                    console.error("🚨 foodDisplay (food_display) が見つかりません！");
+                                    return;
+                                }
+
+                                // 商品名をセット
+                                foodField.value = food.name;// 隠しフィールドにセット
+                                foodDisplay.value = food.name; // ユーザー向けの表示用フィールドにセット
+                                
+                                console.log("🎯 設定後の foodField.value:", foodField.value);
+                                console.log("🎯 設定後の foodDisplay.value:", foodDisplay.value);
+
+
+                                // `input` イベントを発火させる
+                                foodField.dispatchEvent(new Event('input', { bubbles: true }));
+
+                                // 0.5秒後の状態をチェック
+                                setTimeout(() => {
+                                    console.log("⌛ 0.5秒後の foodField.value:", foodField.value);
+                                }, 500);
 
                                 // モーダルを閉じる
                                 const modal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
-                                modal.hide(); 
-
-                                console.log("モーダル閉じた後の foodField.value:", foodField.value);
+                                modal.hide();
                             };
-                            // foodResults.appendChild(li);
                         });
                     });
             } else {

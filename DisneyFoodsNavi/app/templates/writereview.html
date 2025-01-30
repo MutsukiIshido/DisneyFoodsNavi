@@ -33,8 +33,10 @@
 
             <div class="mb-3">
                 <label for="id_food" class="form-label">商品名</label>
-                <!-- 隠しフィールド（選択された商品名を保持） -->
-                <input type="text" id="id_food" name="food" class="form-control" placeholder="商品名を選択してください" required>
+                <!-- ユーザーが選択した商品名を表示するフィールド -->
+                <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" rredonly>
+                <!-- 実際にフォームに送信される　hidden　フィールド -->
+                <input type="hidden" id="id_food" name="food">
                 <!-- 子ウィンドウ起動ボタン -->
                 <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
                     商品名を選択
