@@ -164,15 +164,20 @@ class MapView(View):
                         "price": foodstore.food.price if foodstore.food else "不明"
                     })
                     
-        print("JSON Store data:", store_data)  # ログ確認用
+        print("", store_data)  # ログ確認用
+
         
         # コンテキストデータを設定
         context = {
-            'stores': json.dumps(store_data, ensure_ascii=False) if store_data else "[]",   # 空のリストを返す
+            'stores': store_data,
             'category': category,
             'area': area,
         }
         return render(request, 'map.html', context)
+    
+        # ビュー内でデータの確認
+        print("JSON Store data:", store_data)  # サーバーコンソールに表示
+
 
 
     

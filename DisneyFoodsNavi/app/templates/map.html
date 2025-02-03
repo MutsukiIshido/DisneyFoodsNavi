@@ -3,32 +3,20 @@
 
 
 {% block title %}マップ（検索結果）{% endblock %}
+
 {% block head %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     {{ block.super }}  <!-- base.htmlのheadブロックを引き継ぐ -->
 {% endblock%}
-
-<script>
-    var stores = JSON.parse('{{ stores|escapejs }}');    // `escapejs`でエスケープ処理
-    console.log("Stores Data:", stores);
-</script>
-
 
 {% block content %}
     <h1>マップ（検索結果）画面</h1>
     
     <div id="map" style="height: 500px; width: 100%;"></div>
 
-    <!-- JSOnデータを手動で埋め込む -->
-    <script type="application/json" id="stores-data">
-        {{ stores|escapejs }}
-    </script>
+    <!-- JSOnデータを埋め込み -->
+    {{ stores|json_script:"stores-data" }}
 
-    <!-- Djangoのデータを安全に埋め込む
-    <script type="application/json" id="stores-data">
-        {{ stores|json_script:"stores-data" }}
-    </script> -->
-    
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <script>
@@ -51,33 +39,51 @@
                 map.invalidateSize();
             }, 500);
 
+            // デバッグ用ログ
+            console.log(document.getElementById("stores-data").textContent);
 
-            // Djangoからのデータをパース（エラーがないか確認）
-            try {
-                var stores = JSON.parse(document.getElementById("stores-data").textContent);
-                console.log("Stores:", stores);
+            // 店舗データをパース
+            var storesDataElement = document.getElementById("stores-data");
 
-                // 店舗データが適切に取得できているか確認
-                if (Array.isArray(stores)) {
-                    stores.forEach(function(store) {
-                        if (store.latitude && store.longitude) {
-                            L.marker([store.latitude, store.longitude]).addTo(map)
-                                .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
-                        } else {
-                            console.log("Invalid store location:", store);
+            if (!storesDataElement) {
+                console.error("stores-data element not found");
+            } else{
+                try {
+                    var storesJson = storesDataElement.textContent.trim();
+                    console.log("Raw stores JSON:", storesJson);  // JSONの中身を確認
+
+                    if (!storesJson) {
+                        console.warn("stores-data is empty.");
+                    } else {
+                        var stores = JSON.parse(storesJson);
+                        console.log("Parsed stores:", stores);  // ここで型を確認
+
+                        if (!Array.isArray(stores)) {
+                            throw new Error("Parsed stores is not an array");
                         }
-                    });
-                } else {
-                    console.error("Store data is not an array:", stores);
+
+                        // マーカーを追加
+                        stores.forEach(function(store) {
+                            if (store.latitude && store.longitude) {
+                                L.marker([store.latitude, store.longitude])
+                                    .addTo(map)
+                                    .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
+                            } else {
+                                console.log("Invalid store location:", store);
+                            }
+                        });
+
+                        // 店舗数を表示
+                        document.getElementById("store-count").textContent = stores.length;
+                    }
+                } catch (error) {
+                    console.error("JSON parse error:", error);
                 }
-            } catch (error) {
-                console.error("JSON parse error:", error);
             }
         });
     </script>
 
-    <p>データ数: {{ stores|length }}</p>
-    <pre>{{ stores }}</pre>
+<p>データ数: {{ stores|length }}</p>
 
-    <a href="{% url 'home' %}">ホーム画面へ</a>
+<a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
