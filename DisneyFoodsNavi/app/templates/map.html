@@ -7,13 +7,58 @@
 {% block head %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     {{ block.super }}  <!-- base.htmlのheadブロックを引き継ぐ -->
+    <style>
+        /* マップとリストを横並びに配置 */
+        .map-container {
+            display: flex;
+            height: 80vh;  /* 画面の80％の高さ */
+        }
+
+        #map {
+            width: 50%;
+            height: 100%;
+        }
+
+        .store-list {
+            width: 50%;
+            height: 100%;
+            overflow-y: auto; /* スクロール可能にする */
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .store-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .store-item.active {
+            background-color: #ffeeba;   /* ピン選択時の強調表示 */
+        }
+    </style>
 {% endblock%}
 
 {% block content %}
     <h1>マップ（検索結果）画面</h1>
-    
-    <div id="map" style="height: 500px; width: 100%;"></div>
 
+    <!-- マップとリストを横並びに -->
+    <div class="map-container">
+        <!-- マップ部分 -->
+        <div id="map"></div>
+
+        <!-- 店舗一覧部分 -->
+        <div class="store-list" id="store-list">
+            {% for store in stores %}
+                <div class="store-item" id="store-{{ forloop.counter0 }}" data-index="{{ forloop.counter0 }}">
+                    <strong>{{ store.store_name }}</strong><br>
+                    {{ store.food_name }}<br>
+                    ⭐️{{ store.rating }} | ¥{{ store.price }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
     <!-- JSOnデータを埋め込み -->
     {{ stores|json_script:"stores-data" }}
 
@@ -21,6 +66,10 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            var storesDataElement = document.getElementById("stores-data");
+            var storesJson = storesDataElement.textContent.trim();
+            var stores = JSON.parse(storesJson);         
+                        
             // Leaflet.jsの地図を初期化
             var map = L.map('map', { zoomControl: true }).setView([35.6329, 139.8804], 15);
   
@@ -29,56 +78,40 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // // `map.on('load', ...)`を使ってマップの描画を修正
-            map.on('load', function() {
-                map.invalidateSize();
+            var markers = [];
+
+            // 店舗データを元にピンを追加
+            stores.forEach((store, index) => {
+                if (store.latitude && store.longitude) {
+                    var marker = L.marker([store.latitude, store.longitude])
+                        .addTo(map)
+                        .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
+
+                    markers.push({ marker: marker, index:index });
+
+                    // ピンがクリックされたら該当の店舗リストを選択・スクロール
+                    marker.on("click", function() {
+                        highlightStore(index);
+                    });
+                }
             });
 
-            // 地図初期化後、少し遅らせてサイズを再計算する方法
-            setTimeout(function() {
-                map.invalidateSize();
-            }, 500);
+            // 店舗リストをクリックしたときの挙動
+            document.querySelectorAll(".store-item").forEach((item, index) => {
+                item.addEventListener("click", function() {
+                    markers[index].marker.openPopup();  // ピンのポップアップを開く
+                    map.setView(markers[index].marker.getLatLng(), 17);  // マップを拡大
 
-            // デバッグ用ログ
-            console.log(document.getElementById("stores-data").textContent);
+                    highlightStore(index);  // 店舗リストのハイライト処理
+                });
+            });
 
-            // 店舗データをパース
-            var storesDataElement = document.getElementById("stores-data");
-
-            if (!storesDataElement) {
-                console.error("stores-data element not found");
-            } else{
-                try {
-                    var storesJson = storesDataElement.textContent.trim();
-                    console.log("Raw stores JSON:", storesJson);  // JSONの中身を確認
-
-                    if (!storesJson) {
-                        console.warn("stores-data is empty.");
-                    } else {
-                        var stores = JSON.parse(storesJson);
-                        console.log("Parsed stores:", stores);  // ここで型を確認
-
-                        if (!Array.isArray(stores)) {
-                            throw new Error("Parsed stores is not an array");
-                        }
-
-                        // マーカーを追加
-                        stores.forEach(function(store) {
-                            if (store.latitude && store.longitude) {
-                                L.marker([store.latitude, store.longitude])
-                                    .addTo(map)
-                                    .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
-                            } else {
-                                console.log("Invalid store location:", store);
-                            }
-                        });
-
-                        // 店舗数を表示
-                        document.getElementById("store-count").textContent = stores.length;
-                    }
-                } catch (error) {
-                    console.error("JSON parse error:", error);
-                }
+            // 指定した店舗リストをハイライトとスクロール
+            function highlightStore(index) {
+                document.querySelectorAll(".store-item").forEach(item => item.classList.remove("active"));
+                var selectedItem = document.getElementById(`store-${index}`);
+                selectedItem.classList.add("active");
+                selectedItem.scrollIntoView({ behavior: "smooth", block: "center" });
             }
         });
     </script>
