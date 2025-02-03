@@ -2,33 +2,82 @@
 {% load static %}
 
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}マップ（検索結果）{% endblock %}</title>
-</head>
-<body>
+{% block title %}マップ（検索結果）{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    {{ block.super }}  <!-- base.htmlのheadブロックを引き継ぐ -->
+{% endblock%}
+
+<script>
+    var stores = JSON.parse('{{ stores|escapejs }}');    // `escapejs`でエスケープ処理
+    console.log("Stores Data:", stores);
+</script>
+
+
 {% block content %}
     <h1>マップ（検索結果）画面</h1>
-    <p>カテゴリー： {{ category }}</p>
-    <p>エリア： {{ area }}</p>
-    <p>検索条件: カテゴリー={{ category }} エリア={{ area }}</p>
+    
+    <div id="map" style="height: 500px; width: 100%;"></div>
+
+    <!-- JSOnデータを手動で埋め込む -->
+    <script type="application/json" id="stores-data">
+        {{ stores|escapejs }}
+    </script>
+
+    <!-- Djangoのデータを安全に埋め込む
+    <script type="application/json" id="stores-data">
+        {{ stores|json_script:"stores-data" }}
+    </script> -->
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Leaflet.jsの地図を初期化
+            var map = L.map('map', { zoomControl: true }).setView([35.6329, 139.8804], 15);
+  
+            // OpenStreetMapを利用
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // // `map.on('load', ...)`を使ってマップの描画を修正
+            map.on('load', function() {
+                map.invalidateSize();
+            });
+
+            // 地図初期化後、少し遅らせてサイズを再計算する方法
+            setTimeout(function() {
+                map.invalidateSize();
+            }, 500);
+
+
+            // Djangoからのデータをパース（エラーがないか確認）
+            try {
+                var stores = JSON.parse(document.getElementById("stores-data").textContent);
+                console.log("Stores:", stores);
+
+                // 店舗データが適切に取得できているか確認
+                if (Array.isArray(stores)) {
+                    stores.forEach(function(store) {
+                        if (store.latitude && store.longitude) {
+                            L.marker([store.latitude, store.longitude]).addTo(map)
+                                .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
+                        } else {
+                            console.log("Invalid store location:", store);
+                        }
+                    });
+                } else {
+                    console.error("Store data is not an array:", stores);
+                }
+            } catch (error) {
+                console.error("JSON parse error:", error);
+            }
+        });
+    </script>
+
     <p>データ数: {{ stores|length }}</p>
-    <hr>
-    <ul>
-        {% for store in stores %}
-            <li>
-                店舗名: {{ store.store_name }}<br>
-                緯度: {{ store.latitude }}<br>
-                経度: {{ store.longitude }}<br>
-            </li>
-        {% empty %}
-            <p>該当する結果が見つかりませんでした。</p>
-        {% endfor %}
-    </ul>
+    <pre>{{ stores }}</pre>
+
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
-</body>
-</html>

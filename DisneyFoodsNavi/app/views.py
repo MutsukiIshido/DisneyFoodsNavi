@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm
@@ -129,7 +130,7 @@ class RankingView(View):
         return render(request, "ranking.html", {'grouped_foods': grouped_foods})
     
     
-class MapView(View):
+class MapView(View):    
     def get(self, request):
         # カテゴリとエリアを選択
         category = request.GET.get('category')
@@ -143,18 +144,36 @@ class MapView(View):
 
         # フィルタリング
         foods = Food.objects.filter(category__kind=category) if category else Food.objects.all()
-        stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods) if area else []
+        stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct() if area else Store.objects.all()
+        
+        # デバッグ用にデータをサーバーログに出力
+        print("Filtered Stores:", stores)
+        
+        # クエリセットを辞書リストに変換（JSONに変換しやすくする）
+        store_data = []
+        for store in stores:
+            food_items = FoodStore.objects.filter(store=store)  # ManyToManyFieldの場合
+            for foodstore in food_items:
+                if store.latitude and store.longitude:
+                    store_data.append({
+                        "store_name": store.store_name,
+                        "latitude": float(store.latitude),
+                        "longitude": float(store.longitude),
+                        "food_name": foodstore.food.foods_name if foodstore.food else "不明",
+                        "rating": float(foodstore.food.average_rating) if foodstore.food else "なし",
+                        "price": foodstore.food.price if foodstore.food else "不明"
+                    })
+                    
+        print("JSON Store data:", store_data)  # ログ確認用
         
         # コンテキストデータを設定
         context = {
-            'stores': stores,
+            'stores': json.dumps(store_data, ensure_ascii=False) if store_data else "[]",   # 空のリストを返す
             'category': category,
             'area': area,
         }
         return render(request, 'map.html', context)
-    
-    # def get(self, request):
-    #     return self.search_results(request)
+
 
     
 class MyReviewView(View):

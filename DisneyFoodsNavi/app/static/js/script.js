@@ -21,3 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("map").style.height = "500px";
+});
