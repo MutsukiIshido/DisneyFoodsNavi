@@ -36,27 +36,59 @@
         .store-item.active {
             background-color: #ffeeba;   /* ピン選択時の強調表示 */
         }
+
+        /* 検索フォーム */
+        .search-container {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background-color: #eee;
+        }
+
+        .search-container input,
+        .search-container select {
+            padding: 5px;
+        }
+
+        .search-container button {
+            padding: 5px, 10px;
+            cursor: pointer;
+        }
     </style>
 {% endblock%}
 
 {% block content %}
     <h1>マップ（検索結果）画面</h1>
 
-    <!-- マップとリストを横並びに -->
+    <!-- 検索フォーム -->
+    <div class="search-container">
+        <input type="text" id="food-name" placeholder="フード名を入力">
+        <select id="category">
+            <option value="">カテゴリを選択</option>
+            <option value="スイーツ">スイーツ</option>
+            <option value="ドリンク">ドリンク</option>
+            <option value="食事">食事</option>
+        </select>
+        <select id="price-range">
+            <option value="">価格帯を選択</option>
+            <option value="low">~500円</option>
+            <option value="mid">500円~1000円</option>
+            <option value="high">1000円以上</option>
+        </select>
+        <select id="area">
+            <option value="">エリアを選択</option>
+            <option value="アドベンチャー">~アドベンチャー</option>
+            <option value="ファンタジー">ファンタジー</option>
+        </select>
+        <button id="search-button">検索</button>
+    </div>
+
+    <!-- マップとリスト -->
     <div class="map-container">
         <!-- マップ部分 -->
         <div id="map"></div>
-
         <!-- 店舗一覧部分 -->
-        <div class="store-list" id="store-list">
-            {% for store in stores %}
-                <div class="store-item" id="store-{{ forloop.counter0 }}" data-index="{{ forloop.counter0 }}">
-                    <strong>{{ store.store_name }}</strong><br>
-                    {{ store.food_name }}<br>
-                    ⭐️{{ store.rating }} | ¥{{ store.price }}
-                </div>
-            {% endfor %}
-        </div>
+        <div class="store-list" id="store-list"></div>
     </div>
     
     <!-- JSOnデータを埋め込み -->
@@ -66,35 +98,87 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var storesDataElement = document.getElementById("stores-data");
-            var storesJson = storesDataElement.textContent.trim();
-            var stores = JSON.parse(storesJson);         
-                        
-            // Leaflet.jsの地図を初期化
-            var map = L.map('map', { zoomControl: true }).setView([35.6329, 139.8804], 15);
+            var storesJson = document.getElementById("stores-data").textContent.trim();
+            var stores = JSON.parse(storesJson);  
+            var map = L.map('map').setView([35.6329, 139.8804], 15);       
   
             // OpenStreetMapを利用
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
             var markers = [];
+            var storeList = document.getElementById("store-list");
 
-            // 店舗データを元にピンを追加
-            stores.forEach((store, index) => {
-                if (store.latitude && store.longitude) {
-                    var marker = L.marker([store.latitude, store.longitude])
-                        .addTo(map)
-                        .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
+            function updateMap(filteredStores) {
+                markers.forEach(m => map.removeLayer(m.marker));  // 既存のピンを削除
+                storeList.innerHTML = "";  // 既存のリストをクリア
+                markers = [];
 
-                    markers.push({ marker: marker, index:index });
+                filteredStores.forEach((store, index) => {
+                    if (store.latitude && store.longitude) {
+                        var marker = L.marker([store.latitude, store.longitude])
+                            .addTo(map)
+                            .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
+        
+                        markers.push({ marker: marker, index:index });
 
-                    // ピンがクリックされたら該当の店舗リストを選択・スクロール
-                    marker.on("click", function() {
-                        highlightStore(index);
-                    });
-                }
-            });
+                        // ピンがクリックされたら該当の店舗リストを選択・スクロール
+                        marker.on("click", function() {
+                            highlightStore(index);
+                        });
+
+                        var storeItem = document.createElement("div");
+                        storeItem.classList.add("store-item");
+                        storeItem.id = "store-" + index;
+                        storeItem.dataset.index = index;
+                        storeItem.innerHTML = `<strong>${store.store_name}</strong><br>${store.food_name}<br>⭐️${store.rating} | ¥${store.price}`;
+                        storeItem.addEventListener("click", function() {
+                            marker.openPopup();
+                            map.setView(marker.getLatLng(), 17);
+                            highlightStore(index);
+                        });
+
+                        storeList.appendChild(storeItem);
+                    }
+                });
+            }
+
+            function highlightStore(index) {
+                document.querySelectorAll(".store-item").forEach(item => item.classList.remove("active"));
+                var selectedItem = document.getElementById("store-" + index);
+                selectedItem.classList.add("active");
+                selectedItem.scrollIntoView({ behavior: "smooth", block: "center"});
+            }
+
+            function filteredStores() {
+                var keyword = document.getElementById("food-name").value.toLowerCase();
+                var category = document.getElementById("category").value;
+                var priceRange = document.getElementById("price-range").value;
+                var area = document.getElementById("area").value;
+
+                var filteredStores =stores.filter(store => {
+                    var matchKeyword = keyword ? store.food_name.toLowerCase().includes(keyword) : true;
+                    var matchCategory = category ? store.category === category : true;
+                    var matchPrice = true;
+                    if (priceRange === "low") {
+                        matchPrice = store.price <= 500;
+                    } else if (priceRange === "mid") {
+                        matchPrice = store.price > 500 && store.price <= 1000;
+                    } else if (priceRange === "high") {
+                        matchPrice = store.price > 1000;
+                    }
+                    var matchArea = area ? store.area === area : true;
+                    return matchKeyword && matchCategory && matchPrice && matchArea;
+                });
+
+                updateMap(filteredStores);
+            }
+
+            document.getElementById("search-button").addEventListener("click", filteredStores);
+
+            updateMap(stores);
+
 
             // 店舗リストをクリックしたときの挙動
             document.querySelectorAll(".store-item").forEach((item, index) => {
@@ -115,8 +199,5 @@
             }
         });
     </script>
-
-<p>データ数: {{ stores|length }}</p>
-
 <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
