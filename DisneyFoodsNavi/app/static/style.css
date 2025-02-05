@@ -1,9 +1,14 @@
 /* myapp/static/styles.css */
+* {
+    box-sizing: content-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     height: 500px;
+    padding-top: 60px;
 }
 
 html {
@@ -22,7 +27,9 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    height: 60px;  /* ヘッダーの高さを適宜調整 */
+    z-index: 1000; /* 他の要素より全面に表示 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 影を追加して視認性アップ */
 }
 
 header .logo h1 {
@@ -51,7 +58,8 @@ header nav ul li a:hover {
 }
 
 main {
-    height: 100%;
+    margin-top: 80px; /* ヘッダーの高さ分だけ下げる */
+    height: 40%;
     padding: 20px;
 }
 
@@ -111,4 +119,25 @@ main {
     margin: auto;
     display: block;
     z-index: 1;
+}
+
+
+.breadcrumb {
+    margin-top: 20px;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 5px 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    position: relative;
+    z-index: 10;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
 }
