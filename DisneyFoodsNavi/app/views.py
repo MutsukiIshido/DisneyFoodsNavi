@@ -163,7 +163,7 @@ class MapView(View):
                         "category": foodstore.food.category.kind if foodstore else None,  # カテゴリ情報を追加
                         "price": foodstore.food.price if foodstore.food else "不明",
                         "area": store.area.area_name if store.area else None,  # エリア情報を追加
-                        "rating": float(foodstore.food.average_rating) if foodstore.food else "なし"
+                        "rating": float(foodstore.food.average_rating) if foodstore.food else "0"
                     })
                     
         print("", store_data)  # ログ確認用

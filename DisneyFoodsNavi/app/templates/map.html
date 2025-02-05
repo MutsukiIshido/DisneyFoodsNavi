@@ -37,6 +37,11 @@
             background-color: #ffeeba;   /* ピン選択時の強調表示 */
         }
 
+        .rating-stars {
+            font-size: 14px;
+            color: #FFD700;
+        }
+
         /* 検索フォーム */
         .search-container {
             display: flex;
@@ -165,7 +170,9 @@
                         storeItem.classList.add("store-item");
                         storeItem.id = "store-" + index;
                         storeItem.dataset.index = index;
-                        storeItem.innerHTML = `<strong>${store.store_name}</strong><br>${store.food_name}<br>⭐️${store.rating} | ¥${store.price}`;
+                        storeItem.innerHTML = `<strong>${store.store_name}</strong><br>
+                            ${store.food_name}<br>
+                            <span class="rating-stars">${store.rating} ${"⭐️".repeat(Math.round(store.rating))}</span> | ¥${store.price}`;
                         storeItem.addEventListener("click", function() {
                             marker.openPopup();
                             map.setView(marker.getLatLng(), 17);
