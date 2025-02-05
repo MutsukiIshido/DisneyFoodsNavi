@@ -143,7 +143,7 @@ class MapView(View):
             category = None # 不正な値の場合は　None を設定
 
         # フィルタリング
-        foods = Food.objects.filter(category__kind=category) if category else Food.objects.all()
+        foods = Food.objects.filter(category__id=category) if category else Food.objects.all()
         stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct() if area else Store.objects.all()
         
         # デバッグ用にデータをサーバーログに出力
@@ -160,8 +160,10 @@ class MapView(View):
                         "latitude": float(store.latitude),
                         "longitude": float(store.longitude),
                         "food_name": foodstore.food.foods_name if foodstore.food else "不明",
-                        "rating": float(foodstore.food.average_rating) if foodstore.food else "なし",
-                        "price": foodstore.food.price if foodstore.food else "不明"
+                        "category": foodstore.food.category.kind if foodstore else None,  # カテゴリ情報を追加
+                        "price": foodstore.food.price if foodstore.food else "不明",
+                        "area": store.area.area_name if store.area else None,  # エリア情報を追加
+                        "rating": float(foodstore.food.average_rating) if foodstore.food else "なし"
                     })
                     
         print("", store_data)  # ログ確認用

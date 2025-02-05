@@ -65,9 +65,13 @@
         <input type="text" id="food-name" placeholder="フード名を入力">
         <select id="category">
             <option value="">カテゴリを選択</option>
-            <option value="スイーツ">スイーツ</option>
+            <option value="メインディッシュ">メインディッシュ</option>
+            <option value="軽食">軽食</option>
+            <option value="キッズメニュー">キッズメニュー</option>
+            <option value="デザート">デザート</option>
             <option value="ドリンク">ドリンク</option>
-            <option value="食事">食事</option>
+            <option value="アルコールドリンク">アルコールドリンク</option>
+
         </select>
         <select id="price-range">
             <option value="">価格帯を選択</option>
@@ -77,8 +81,21 @@
         </select>
         <select id="area">
             <option value="">エリアを選択</option>
-            <option value="アドベンチャー">~アドベンチャー</option>
-            <option value="ファンタジー">ファンタジー</option>
+            <option value="ワールドバザール">ワールドバザール</option>
+            <option value="アドベンチャーランド">アドベンチャーランド</option>
+            <option value="ウエスタンランド">ウエスタンランド</option>
+            <option value="クリッターカントリー">クリッターカントリー</option>
+            <option value="ファンタジーランド">ファンタジーランド</option>
+            <option value="トゥーンタウン">トゥーンタウン</option>
+            <option value="トゥモローランド">トゥモローランド</option>
+            <option value="メディテレニアンハーバー">メディテレニアンハーバー</option>
+            <option value="アメリカンウォーターフロント">アメリカンウォーターフロント</option>
+            <option value="ポートディスカバリー">ポートディスカバリー</option>
+            <option value="ロストリバーデルタ">ロストリバーデルタ</option>
+            <option value="ファンタジースプリングス">ファンタジースプリングス</option>
+            <option value="アラビアンコースト">アラビアンコースト</option>
+            <option value="マーメイドラグーン">マーメイドラグーン</option>
+            <option value="ミステリアスアイランド">ミステリアスアイランド</option>
         </select>
         <button id="search-button">検索</button>
     </div>
@@ -98,8 +115,24 @@
     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var storesJson = document.getElementById("stores-data").textContent.trim();
-            var stores = JSON.parse(storesJson);  
+            var storesDataElement = document.getElementById("stores-data");
+
+            if (!storesDataElement) {
+                console.error("stores-data 要素が見つかりません！");
+                return;  // エラー時は処理を中断
+            }
+
+            try {
+                var storesJson = storesDataElement.textContent.trim();
+                var stores = JSON.parse(storesJson);
+           
+                console.log("stores データ:", stores);  // デバッグ出力
+            } catch (error) {
+                console.error("JSON パースエラー:", error);
+                return;
+            }
+
+            // --- 以下のコードは stores が正しく取得できた後に実行 ---
             var map = L.map('map').setView([35.6329, 139.8804], 15);       
   
             // OpenStreetMapを利用
@@ -152,14 +185,16 @@
             }
 
             function filteredStores() {
-                var keyword = document.getElementById("food-name").value.toLowerCase();
-                var category = document.getElementById("category").value;
+                var keyword = document.getElementById("food-name").value.toLowerCase().trim();
+                var category = document.getElementById("category").value.trim();
                 var priceRange = document.getElementById("price-range").value;
-                var area = document.getElementById("area").value;
+                var area = document.getElementById("area").value.trim();
 
                 var filteredStores =stores.filter(store => {
-                    var matchKeyword = keyword ? store.food_name.toLowerCase().includes(keyword) : true;
-                    var matchCategory = category ? store.category === category : true;
+                    console.log("Cheking store:", store);  // デバッグ用
+
+                    var matchKeyword = !keyword || (store.food_name && store.food_name.toLowerCase().includes(keyword));
+                    var matchCategory = !category || (store.category && store.category.trim() === category);
                     var matchPrice = true;
                     if (priceRange === "low") {
                         matchPrice = store.price <= 500;
@@ -168,9 +203,14 @@
                     } else if (priceRange === "high") {
                         matchPrice = store.price > 1000;
                     }
-                    var matchArea = area ? store.area === area : true;
+                    var matchArea = !area || (store.area && store.area.trim() === area);
+
+                    console.log("Category match:", matchCategory, "Area match:", matchArea);  // デバッグ用
+
                     return matchKeyword && matchCategory && matchPrice && matchArea;
                 });
+
+                console.log("Filtered Stores:", filteredStores);
 
                 updateMap(filteredStores);
             }

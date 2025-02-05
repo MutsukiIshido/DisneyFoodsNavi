@@ -53,27 +53,14 @@ class User(AbstractUser):
         db_table = "users"
 
 
-class FoodCategory(models.Model):
-    # # kindの選択肢
-    # KIND_CHOICES = [
-    #     ('メインディッシュ'),
-    #     ('軽食'),
-    #     ('サイド'),
-    #     ('キッズメニュー'),
-    #     ('デザート'),
-    #     ('ドリンク'),
-    #     ('アルコールドリンク'),
-    # ]
-    
+class FoodCategory(models.Model):    
     kind = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True) 
     
     class Meta:
         db_table = "food_categories"
-        
-    # def __str__(self):
-    #     return self.kind
+
         
 class Food(models.Model):
     foods_name = models.CharField(max_length=64)
