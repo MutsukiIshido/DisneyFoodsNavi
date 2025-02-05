@@ -49,9 +49,11 @@
     
     <main>
         <nav class="breadcrumb">
-            <a href="{% url 'home' %}">ホーム</a>
             {% for crumb in breadcrumbs %}
-                &gt; <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+                {% if not forloop.first %}
+                &gt; 
+                {% endif %}
+                <a href="{{ crumb.url }}">{{ crumb.name }}</a>
             {% endfor %}
         </nav>
 

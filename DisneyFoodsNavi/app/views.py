@@ -210,10 +210,31 @@ class ReviewDetailView(View):
             pk = int(pk) # URLから渡されたpkを整数型に変換
         except ValueError:
             return JsonResponse({'error': 'Invalid pk value'}, status=400)
-       
-        # `select_related`を使用して関連オブジェクトを取得
-        review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk) # レビューを取得
-        return render(request, 'review_detail.html', {'review': review})
+        
+        # レビューを取得
+        review = get_object_or_404(Review.objects.select_related('food', 'store'), pk=pk)
+        
+        # パンくずリストを修正
+        breadcrumbs = []
+        breadcrumbs.append({"name": "ホーム", "url": "/"})
+        
+        # 遷移元URL(HTTP_REFERER)を取得
+        referer = request.META.get('HTTP_REFERER', '')
+        
+        # 遷移元がレビュー一覧またはマイレビューの場合、対応するパンくずを追加
+        if 'readingreview' in referer:
+            breadcrumbs.append({"name": "レビュー一覧", "url": "/readingreview/"})
+        elif 'myreview' in referer:
+            breadcrumbs.append({"name": "マイレビュー", "url": "/myreview/"})
+            
+        # 現在のページ（レビュー詳細）を追加
+        breadcrumbs.append({"name": "レビュー詳細", "url": "request.path"})
+        
+        # パンくずリストとレビューをテンプレートに渡してレンダリング        
+        return render(request, 'review_detail.html', {
+            'breadcrumbs': breadcrumbs,
+            'review': review
+        })
 
 
 # お気に入りの登録・削除機能
