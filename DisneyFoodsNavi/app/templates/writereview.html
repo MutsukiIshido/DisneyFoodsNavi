@@ -23,28 +23,10 @@
 <body>
 {% block content %}
     <div class="container mt-5">
-        <h1>レビュー投稿画面</h1>
-
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!-- レビュー投稿フォーム -->
-            <div class="mb-3">
-                <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
-                {{ review_form.store }}
-            </div>
-        
-            <div class="mb-3">
-                <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価(5点満点)</label>
-                {{ review_form.rating }}
-            </div>
-        
-            <div class="mb-3">
-                <label for="{{ review_form.comment.id_for_label }}" class="form-label">レビュー</label>
-                {{ review_form.comment }}
-            </div>
-        
-
             <div class="mb-3">
                 <label for="id_food_display" class="form-label">商品名</label>
                 <!-- ユーザーが選択した商品名を表示するフィールド -->
@@ -57,12 +39,36 @@
                 </button>
             </div>
 
-            <!-- 画像アップロードフォーム -->
+            <!-- 利用した店舗 -->
             <div class="mb-3">
-                <label for="{{ images_form.review_image_path.id_for_label }}" class="form-label">画像</label>
-                {{ images_form.review_image_path }}
+                <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
+                {{ review_form.store }}
             </div>
 
+            <!-- 評価 -->
+            <div class="mb-3">
+                <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価(5点満点)</label>
+                {{ review_form.rating }}
+            </div>
+        
+            <!-- 画像アップロードフォーム -->
+            <div class="mb-3">
+                <label for="id_review_image_path">画像</label>
+                {{ images_formset.management_form }}  <!-- フォームセットの管理フォーム -->                 
+                
+                {% for form in images_formset %}
+                    <div class="image-upload">
+                        {{ form.review_image_path }}
+                    </div>
+                {%  endfor %}
+            </div>
+
+            <!-- レビュー -->
+            <div class="mb-3">
+                <label for="{{ review_form.comment.id_for_label }}" class="form-label">レビュー（400文字以内）</label>
+                {{ review_form.comment }}
+            </div>
+        
             <button type="submit" class="btn btn-primary">投稿する</button>
         </form>
 
@@ -89,6 +95,71 @@
 {% block scripts %}
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const imageInput = document.querySelector("#id_review_image_path");
+    const imagePreviewContainer = document.getElementById("imagePreviewContainer");
+    
+    if(imageInput) {
+        imageInput.addEventListener("change", function(event) {
+            // 選択されたファイルを取得
+            const files = event.target.files;
+
+            // `files`が存在しない、または空なら処理を終了
+            if (!files || files.length === 0) return;
+
+            // ファイルごとに処理
+            Array.from(files).forEach((file, index) => {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // 画像表示用のdivを作成
+                    const previewDiv = document.createElement("div");
+                    previewDiv.style.position = "relative";
+                    previewDiv.style.display = "inline-block";
+                    previewDiv.style.margin = "5px";
+
+                    // 画像要素
+                    const image = document.createElement("img");
+                    image.src = e.target.result;
+                    image.style.width ="80px";
+                    image.style.height = "80px";
+                    image.style.objectFit = "contain";
+
+                    // 削除ボタン
+                    const removeButton = document.createElement("button");
+                    removeButton.innerText = "x";
+                    removeButton.style.position = "absolute";
+                    removeButton.style.top = "-5px";
+                    removeButton.style.right = "-5px";
+                    removeButton.style.background = "red";
+                    removeButton.style.color = "white";
+                    removeButton.style.border = "none";
+                    removeButton.style.borderRadius = "50%";
+                    removeButton.style.width = "20px";
+                    removeButton.style.height = "20px";
+                    removeButton.style.fontSize = "14px";
+                    removeButton.style.cursor = "pointer";
+
+                    // 削除ボタンのクリックで画像を削除
+                    removeButton.addEventListener("click", function() {
+                        previewDiv.remove();  // 画像を削除
+                    });
+
+                    // 要素を追加
+                    previewDiv.appendChild(image);
+                    previewDiv.appendChild(removeButton);
+                    imagePreviewContainer.appendChild(previewDiv);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    }
+});
+</script>
+
 <script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
 

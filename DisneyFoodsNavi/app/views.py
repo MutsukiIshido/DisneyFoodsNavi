@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm
+from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesFormSet, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -63,41 +63,42 @@ class HomeView(View):
 class WriteReviewView(View):
     def get(self, request):
         review_form = ReviewForm()
-        images_form = ReviewImagesForm()
+        images_formset = ReviewImagesFormSet(queryset=ReviewImages.objects.none())
         return render(request, "writereview.html", {
             "review_form": review_form,
-            "images_form": images_form
+            "images_formset": images_formset
         })
     
     def post(self, request):
-        # 🚀 受け取った POST データをログに出力（デバッグ用）
         print("🚀 受け取ったデータ:", request.POST)  
-        print("📌 food の値:", request.POST.get('food'))  # `food` の値を確認
         
         review_form = ReviewForm(request.POST)
-        images_form = ReviewImagesForm(request.POST, request.FILES)
         
         if review_form.is_valid():
-            print("✅ フォームは正常です！")  # フォームが有効ならログ出力
+            print("✅ フォームは正常です！")
 
-            
             # レビューを保存
             review = review_form.save(commit=False)
             review.user = request.user # ログインユーザーを紐付け
             review.save()
             
-            # 複数画像を保存
-            if images_form.is_valid():
-                images_form.save(review=review)  # ReviewImagesFormのsaveメソッドを呼び出す
+            # 画像フォームセットを処理
+            images_formset = ReviewImagesFormSet(request.POST, request.FILES, queryset=ReviewImages.objects.none())
             
+            if images_formset.is_valid():
+                for form in images_formset:
+                    if form.cleaned_data.get("review_image_path"):
+                        image = form.save(commit=False)
+                        image.review = review
+                        image.save()
+                        
             return redirect("home")
         
-        # ❌ フォームが無効だった場合、エラーをログ出力
         print("❌ フォームのバリデーションエラー:", review_form.errors)
         
         return render(request, "writereview.html", {
             "review_form": review_form,
-            "images_form": images_form     
+            "images_form": ReviewImagesForm()  # フォームをリセット
         })
 
     

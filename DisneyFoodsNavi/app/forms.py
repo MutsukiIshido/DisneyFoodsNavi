@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from app.models import User, Review, ReviewImages, Food, Store
 from django.contrib.auth import authenticate
+from django.forms import modelformset_factory
+
 
 
 class SignupForm(UserCreationForm):
@@ -33,31 +35,7 @@ class LoginForm(forms.Form):
         return self.cleaned_data
     
     
-class ReviewForm(forms.ModelForm):
-    # food = forms.ModelChoiceField(
-    #     queryset=Food.objects.all(),
-    #     widget=forms.HiddenInput(), # 商品名を非表示フィールドに変更
-    #     label="商品名"
-    # )
-    
-    # store = forms.ModelChoiceField(
-    #     queryset=Store.objects.all(),
-    #     widget=forms.Select(attrs={'class': 'form-select'}),
-    #     label="利用した店舗"
-    # )
-    
-    # rating = forms.ChoiceField(
-    #     choices=Review.SCORE_CHOICES,
-    #     widget=forms.RadioSelect,
-    #     initial=3,
-    #     label="評価(5点満点)"
-    # )
-    
-    # comment = forms.CharField(
-    #     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-    #     label="レビュー"
-    # )
-    
+class ReviewForm(forms.ModelForm):    
     class Meta:
         model = Review
         fields = ['food', 'store', 'rating', 'comment']
@@ -67,24 +45,12 @@ class ReviewForm(forms.ModelForm):
         
         
 class ReviewImagesForm(forms.ModelForm):
-    review_image_path = forms.FileField(
-        widget=forms.ClearableFileInput(attrs={'allow_multiple_selected': True}),
-        label="画像",
-        required=False,
-    )
-    
     class Meta:
-        model = ReviewImages  # モデルを指定
-        fields = ['review_image_path']  # 使用するフィールドを指定（必要に応じて変更）
-  
-    def save(self, review):
-        """
-        渡されたreviewインスタンスと関連付けて画像を保存します。
-        """
-        images = self.files.getlist('review_image_path')  # 複数ファイルを取得
-        for image in images:
-            ReviewImages.objects.create(review=review, review_image_path=image)
-            
+        model = ReviewImages
+        fields = ["review_image_path"]
+
+#　フォームセットを作成（最大５枚の画像をアップロード可能
+ReviewImagesFormSet = modelformset_factory(ReviewImages, form=ReviewImagesForm, extra=5, can_delete=True) 
             
 # メールアドレスの変更フォーム
 class EmailChangeForm(forms.ModelForm):
