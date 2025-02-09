@@ -112,6 +112,9 @@ class Store(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     area = models.OneToOneField(Area, on_delete=models.CASCADE,  related_name="stores")
     
+    def __str__(self):
+        return self.store_name
+    
     class Meta:
         db_table = "stores"
 

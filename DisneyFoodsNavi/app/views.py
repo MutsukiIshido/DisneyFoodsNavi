@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesFormSet, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm
+from app.forms import SignupForm, LoginForm, ReviewForm, ReviewImagesFormSet, ReviewImagesForm, EmailChangeForm, CustomPasswordChangeForm, modelformset_factory
 from django.contrib import messages
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -100,6 +100,8 @@ class WriteReviewView(View):
             "review_form": review_form,
             "images_form": ReviewImagesForm()  # フォームをリセット
         })
+
+
 
     
 class ReadingReviewView(View):

@@ -141,3 +141,191 @@ main {
 .breadcrumb a:hover {
     text-decoration: underline;
 }
+
+.image-upload img {
+    width: 100px;  /* サムネイルの幅 */
+    height: 100px; /* サムネイルの高さ */
+    object-fit: cover; /* 画像を枠にフィットさせる */
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.preview-container {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 220px; /* 必要に応じて調整 */
+}
+
+.upload-box {
+    width: 100px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.plus-icon {
+    font-size: 24px;
+    color: #ccc;
+    position: absolute;
+}
+
+.upload-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    display: none;
+}
+
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* レビュー投稿ページのコメント入力エリア */
+textarea {
+    width: 100%;  /* 横幅を親要素いっぱいに */
+    height: 150px; /* 高さを150pxに */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical; /* ユーザーが高さを変更できる */
+}
+
+.comment-container {
+    width: 100%; /* 全体の幅を統一 */
+}
+
+.comment-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 高さを中央揃え */
+    width: 100%;
+}
+.char-limit {
+    font-size: 14px;
+    color: gray;
+    white-space: nowrap; /* 改行を防ぐ */
+}
+
+/* ミッキーボタンの基本スタイル */
+.mickey-btn {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 50%; /* 丸い形にする */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white; /* 文字色を白に */
+    font-size: 14px; /* 文字サイズ */
+    font-weight: bold; /* 文字を太字に */
+    overflow: visible;
+    z-index: 1000;
+  }
+  
+  /* ミッキーの耳 */
+  .mickey-ear {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 50%;
+    top: -15px;
+  }
+  
+  .left-ear {
+    width: 60px;
+    height: 60px;
+    top: -5px;
+    left: -20px; /* 左耳 */
+  }
+  
+  .right-ear {
+    width: 60px;
+    height: 60px;
+    top: -5px;
+    right: -60px; /* 右耳 */
+  }
+  
+  /* ミッキーの頭 */
+  .mickey-head {
+    width: 120px;
+    height: 120px;
+    top: 30px;
+    left: 10px;
+    background-color: black;
+    border-radius: 50%; /* 丸い形 */
+    position: absolute;
+  }
+  
+/* 文字を中央に配置する */
+.btn-text {
+    position: relative;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%); /* 完全に中央にする */
+    z-index: 1; /* ミッキーの耳の上にテキストを表示 */
+    font-size: 16px; /* 文字のサイズ */
+    font-weight: bold; /* 文字を太字 */
+    color: white; /* 文字色を白に設定 */
+  }
+
+  /* ミッキーボタンと重ならないよう調整 */
+  .home-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* ボタンの背景色（青） */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; /* 角を丸くする */
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    top: 180px;
+}
