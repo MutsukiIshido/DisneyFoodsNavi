@@ -1,35 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}お気に入り一覧{% endblock %}</title>
-</head>
-<body>
 {% block content %}
     <h1>お気に入り画面</h1>
     {% if favorites %}
-        <ul>
+        <div class="favorites-grid">
             {% for favorite in favorites %}
-                <li style="margin-bottom: 20px;">
+                <div class="favorite-item">
                     <!-- フードの画像 -->
-                    <img src="{{ favorite.food.foods_image_path }}" alt="{{ favorite.food.foods_name }}" style="width: 150px; height: auto;">
+                    <img src="{{ favorite.food.foods_image_path }}" alt="{{ favorite.food.foods_name }}" class="food-image">
 
                     <!-- フード情報 -->
-                    <div>
-                        <strong>名前:</strong> {{ favorite.food.foods_name }}<br>
-                        <strong>価格:</strong> {{ favorite.food.price }} 円
+                    <div class="food-info">
+                        <strong>{{ favorite.food.foods_name }}</strong><br>
+                        <span>{{ favorite.food.price }} 円</span>
                     </div>
-                </li>
-            {% endfor %}            
-        </ul>
+                </div>
+            {% endfor %}
+        </div>
     {% else %}
         <p>お気に入りに登録されたフードはありません。</p>
     {% endif %}
-    <a href="{% url 'home' %}">ホーム画面へ</a>
+    <a href="{% url 'home' %}" class="home-btn">ホーム画面へ</a>
 {% endblock %}
-</body>
-</html>
