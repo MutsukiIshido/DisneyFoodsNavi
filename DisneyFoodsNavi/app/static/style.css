@@ -364,3 +364,94 @@ textarea {
     display: flex;
     flex-direction: column;
 }
+
+/* ランキング画面 */
+/* カテゴリタイトルのスタイル */
+.category-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* カテゴリごとに横並びのレイアウト */
+.ranking-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+/* 各フードアイテムのスタイル */
+.ranking-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    width: 150px;
+    position: relative;
+}
+
+/* 王冠アイコンと順位のラベル */
+.rank-label {
+    position: absolute;
+    top: -30px;  /* 枠外に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 順位の王冠画像 */
+.rank-label img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+/* 画像のスタイル */
+.food-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* フード名のスタイル */
+.food-name {
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* 評価のスタイル */
+.food-rating {
+    font-size: 14px;
+    color: #555;
+    margin-top: 3px;
+}
+
+/* お気に入りボタンのスタイル */
+.favorite-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.favorite-button:hover {
+    background-color: #ff9900;
+}
