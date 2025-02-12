@@ -1,38 +1,48 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}レビュー閲覧{% endblock %}</title>
-</head>
-<body>
+{% block title %}レビュー一覧{% endblock %}
+
 {% block content %}
-    <h1>レビュー閲覧画面</h1>
-    <div>商品名：</div>
-    <div>レビュー平均点</div>
-    <ul>
-        {% for review in reviews %}
-            <li>
-                <div>{{ review.user }}</div>
-                <div>評価： {{ review.rating }} / 5</div>
-                <p>{{ review.comment }}</p>
+    <h1>レビュー一覧</h1>
 
-                <!-- 詳細画面へのリンク -->
-                 <a href="{% url 'review_detail' review.pk %}">もっと見る</a>
+    <div>商品名：{{ food.name }}</div>
+    <div>レビュー平均点：{{ average_rating|floatformat:1 }} / 5</div>
 
-                <!-- レビューに関連する画像の表示 -->
-                <div>
-                    {% for image in review.images.all %}
-                        <img src="{{ image.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
-                    {% endfor %}
+    {% if reviews %}
+        <div class="review-list">
+            {% for review in reviews %}
+                <div class="review-box">
+                    <div class="review-content">
+                        <div class="review-header">
+                            <span class="review-user">👤{{ review.user.nickname }}さん</span>
+                        </div>
+                        <p class="review-rating">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                ★
+                                {% else %}
+                                ☆
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p class="review-comment">{{ review.comment }}</p>
+                        <a href="{% url 'review_detail' review.pk %}" class="more-link">もっと見る</a>
+                    </div>
+
+                    {% if review.images.all %}
+                        <div class="review-images">
+                            {% for image in review.images.all|slice:":4" %}
+                                <img src="{{ image.review_image_path.url }}" alt="レビュー画像" class="thumbnail">
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            </li>
-        {% endfor %}
-    </ul>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>レビューはまだありません。</p>
+    {% endif %}
+
     <a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}
-</body>
-</html>

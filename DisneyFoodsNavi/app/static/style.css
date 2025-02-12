@@ -466,18 +466,29 @@ textarea {
 
 .review-box {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     border: 2px solid black !important;
     padding: 15px;
     margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
     background-color: #f9f9f9;
+    position: relative;
+}
+
+.review-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .review-content {
     flex: 1;
+    padding-right: 10px;
+    position: relative;
 }
 
 .review-date {
@@ -488,6 +499,7 @@ textarea {
 .review-rating {
     font-size: 18px;
     color: #FFD700;
+    margin-top: 25px;
 }
 
 .review-comment {
@@ -516,6 +528,7 @@ textarea {
 .review-images {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
     gap: 5px;
     max-width: 100%;
 }
@@ -526,5 +539,20 @@ textarea {
     object-fit: cover;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+/* 画面が狭い場合は横1列に */
+@media (max-width: 600px) {
+    .review-box {
+        flex-direction: column;
+    }
+    .review-images {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+    .thumbnail {
+        width: 100%;
+        height: auto;
+    }
 }
 
