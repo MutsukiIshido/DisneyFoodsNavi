@@ -455,3 +455,76 @@ textarea {
 .favorite-button:hover {
     background-color: #ff9900;
 }
+
+
+/* マイレビュー一覧 */
+.review-list {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.review-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black !important;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.review-content {
+    flex: 1;
+}
+
+.review-date {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.review-rating {
+    font-size: 18px;
+    color: #FFD700;
+}
+
+.review-comment {
+    margin: 10px 0;
+}
+
+.more-link {
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.more-link:hover {
+    text-decoration: underline;
+}
+
+.review-image img {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+.review-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    max-width: 100%;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
