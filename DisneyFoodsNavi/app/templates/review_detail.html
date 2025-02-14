@@ -29,8 +29,11 @@
         {% endfor %}
     </div>
 
-    <a href="{% url 'readingreview' %}">レビュー一覧に戻る</a>
+    {% if request.META.HTTP_REFERER and '/myreview/' in request.META.HTTP_REFERER %}
+        <a href="{% url 'myreview' %}">マイレビューに戻る</a>
+    {% else %}
+        <a href="{% url 'readingreview' %}">レビュー一覧に戻る</a>
+    {% endif %}
     {% endblock  %}
-    
 </body>
 </html>

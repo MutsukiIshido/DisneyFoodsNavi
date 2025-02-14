@@ -14,7 +14,7 @@ from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from operator import attrgetter
 from django.utils.decorators import method_decorator
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 
 
@@ -219,7 +219,7 @@ class ReviewDetailView(View):
         
         # パンくずリストを修正
         breadcrumbs = []
-        breadcrumbs.append({"name": "ホーム", "url": "/"})
+        breadcrumbs.append({"name": "ホーム", "url": reverse('home')})
         
         # 遷移元URL(HTTP_REFERER)を取得
         referer = request.META.get('HTTP_REFERER', '')
