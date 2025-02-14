@@ -13,22 +13,48 @@
     {% endblock %}
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <div class="logo">
             <h1><a href="{% url 'home' %}">DisneyFoodsNavi</a></h1>
         </div>
-        <nav>
+        <nav class="nav-container">
             <ul>
-                <li><a href="{% url 'writereview' %}">レビュー投稿</a></li>
-                <li><a href="{% url 'readingreview' %}">レビュー閲覧</a></li>
-                <li><a href="{% url 'ranking' %}">ランキング</a></li>
-                <li><a href="{% url 'map' %}">マップ</a></li>
-                <li><a href="{% url 'favorite' %}">お気に入り</a></li>
-                <li><a href="{% url 'myreview' %}">マイレビュー</a></li>
+                <li><a href="{% url 'writereview' %}" class="nav-item">
+                    <img src="{% static 'images/ennpitu.png' %}" alt="レビュー投稿">
+                    <span>レビュー投稿</span>
+                </a></li>
+                
+                <li><a href="{% url 'readingreview' %}" class="nav-item">
+                    <img src="{% static 'images/eturann.png' %}" alt="レビュー閲覧">
+                    <span>レビュー閲覧</span>
+                </a></li>
+                
+                <li><a href="{% url 'ranking' %}" class="nav-item">
+                    <img src="{% static 'images/gold.png' %}" alt="ランキング">
+                    <span>ランキング</span>
+                </a></li>
+                
+                <li><a href="{% url 'map' %}" class="nav-item">
+                    <img src="{% static 'images/pin.png' %}" alt="マップ">
+                    <span>マップ</span>
+                </a></li>
+
+                <li><a href="{% url 'favorite' %}" class="nav-item">
+                    <img src="{% static 'images/heart.png' %}" alt="お気に入り">
+                    <span>お気に入り</span>
+                </a></li>
+
+                <li><a href="{% url 'myreview' %}" class="nav-item">
+                    <img src="{% static 'images/syokki_spoon.png' %}" alt="マイレビュー">
+                    <span>マイレビュー</span>
+                </a></li>
 
                 <!-- アカウント設定（ドロップダウンメニュー） -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">アカウント設定 ▼</a>
+                    <a href="#" class="nav-item dropdown-toggle">
+                        <img src="{% static 'images/haguruma_gear1_silver.png' %}" alt="アカウント設定">
+                        <span>アカウント設定 ▼</span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'email_change' %}">メールアドレス変更</a></li>
                         <li><a href="{% url 'password_change' %}">パスワード変更</a></li>
@@ -42,7 +68,7 @@
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
-        <div class="message {{ message.tags }}"{{ message }}></div>
+        <div class="message {{ message.tags }}">{{ message }}</div>
         {% endfor %}
     </div>
     {% endif %}
@@ -61,7 +87,7 @@
     </main>
 
 {% block scripts %}
-<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
 </body>
 </html>

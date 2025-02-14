@@ -1,29 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}DisneyFoodsNavi{% endblock %}</title>
-    <style>
-        button:hover { /* ホバー時に背景色を変更 */
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+{% block title %}DisneyFoodsNavi{% endblock %}
+
 {% block content %}
-    <h1>ホーム</h1><br>
-    <br>
-    <h2 style="text-align: left;">検索する</h2><br>
+<div class="search-box">
+    <h2>検索する</h2>
+    
     <form id="searchForm" method="GET" action="{% url 'map' %}">
         {% csrf_token %}
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="category" style="display: block; margin-bottom: 8px;">カテゴリー：</label>
-            <select name="category" id="category"
-            style="padding: 8px; width: 30%; margin-top: 5px;">
+
+        <div class="form-group">
+            <label for="category">カテゴリー：</label>
+            <select name="category" id="category">
                 <option value="0">メインディッシュ</option>
                 <option value="1">軽食</option>
                 <option value="2">サイドメニュー</option>
@@ -34,10 +23,9 @@
             </select>
         </div>
 
-        <div class="form-group" style="margin-bottom: 20px;">
-            <label for="category" style="display: block; margin-bottom: 8px;">エリア：</label>
-            <select name="area" id="area"
-            style="padding: 8px; width: 30%; margin-top: 5px;">
+        <div class="form-group">
+            <label for="area">エリア：</label>
+            <select name="area" id="area">
                 <option value="ワールドバザール">ワールドバザール</option>
                 <option value="アドベンチャーランド">アドベンチャーランド</option>
                 <option value="ウエスタンランド">ウエスタンランド</option>
@@ -56,26 +44,28 @@
             </select>
         </div>
 
-        <button id="searchButton"
-        type="submit"
-        style="padding: 10px 20px;
-        background-color: #3a835e;
-        color: white;
-        border: none;
-        cursor: pointer;">検索する🔍</button>
+        <div class="form-group">
+            <label for="price_range">価格帯：</label>
+            <select name="price_range" id="price_range">
+                <option value="0">〜500円</option>
+                <option value="1">500円〜1,000円</option>
+                <option value="2">1,000円〜1,500円</option>
+                <option value="3">1,500円〜2,000円</option>
+                <option value="4">2,000円以上</option>
+            </select>
+        </div>
+
+        <button id="searchButton" type="submit">検索する🔍</button>
     </form>
+</div>
 
-    <div id="searchResults" style="margin-top: 20px;"></div>
+<div id="searchResults"></div>
 
-    <script src="{% static 'script.js' %}"></script>
-
-    <a href="{% url 'login' %}">ログイン画面へ</a><br>
-    <br>
-    <a href="{% url 'writereview' %}">レビューを投稿する</a><br>
-    <a href="{% url 'readingreview' %}">レビューを見る</a><br>
-    <a href="{% url 'favorite' %}">お気に入り一覧</a><br>
-    <a href="{% url 'ranking' %}">ランキングを見る</a><br>
-    <a href="{% url 'map' %}">マップ（検索結果）画面へ</a><br>
+<div class="link-container">
+    <a href="{% url 'writereview' %}" class="link-box">口コミを書く！</a>
+    <a href="{% url 'readingreview' %}" class="link-box">みんなの口コミを見る</a>
+    <a href="{% url 'favorite' %}" class="link-box">私のお気に入り</a>
+    <a href="{% url 'ranking' %}" class="link-box">ランキング</a>
+    <a href="{% url 'map' %}" class="link-box">マップから探す</a>
+</div>
 {% endblock %}
-</body>
-</html>

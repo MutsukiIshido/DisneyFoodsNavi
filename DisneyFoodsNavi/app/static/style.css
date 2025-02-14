@@ -1,4 +1,3 @@
-/* myapp/static/styles.css */
 * {
     box-sizing: content-box;
 }
@@ -17,50 +16,115 @@ html {
 }
 
 header {
-    background-color: #ffe556;
-    color: #ff9933;
+    background-color: #d9944675;
+    color: #070707;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 20px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;  /* ヘッダーの高さを適宜調整 */
-    z-index: 1000; /* 他の要素より全面に表示 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* 影を追加して視認性アップ */
+    height: 80px;  /* ヘッダーの高さを適宜調整 */
+    z-index: 1000; /* 他の要素より前面に表示 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 影を追加 */
+    overflow: hidden;
+}
+
+
+/* ヘッダー全体 */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px; /* 高さを少し拡張 */
+    padding: 10px 20px;
+    background-color: #f5e1b8; /* 背景色 */
+    background-size: cover;
+    overflow: visible !important;
 }
 
 header .logo h1 {
     margin: 0;
 }
 
-header nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+/* ナビゲーションコンテナ */
+.nav-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
 }
 
-header nav ul li {
-    margin: 0 10px;
+.nav-container ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
-header nav ul li a {
-    color: #ff9933;
+/* 各リンクボタン */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    font-size: 16px;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-bottom: 5px;
+    gap: 5px;
+}
+
+/* アイコン画像 */
+.nav-item img {
+    display: block;
+    width: 30px; /* アイコンのサイズ（変更可） */
+    height: 30px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* ホバー時のエフェクト */
+.nav-item:hover {
+    transform: scale(1.1); /* 拡大 */
+    color: #ff6600;
+}
+
+/* スマホ対応（横並びが厳しい場合は折り返し） */
+@media screen and (max-width: 600px) {
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-item {
+        width: 30%;
+    }
+
+    .nav-item img {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 main {
-    margin-top: 80px; /* ヘッダーの高さ分だけ下げる */
-    height: 40%;
-    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 30px; /* ヘッダーの高さ分だけ下げる */
 }
 
 #foodResults {
@@ -72,6 +136,65 @@ main {
     z-index: 9999; /* 他の要素より全面に表示 */
     position: absolute;
 }
+
+button {
+    padding: 10px 20px;
+    background-color: #d2935c9a;
+    color: #81400c;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #81400c;
+    color: white;
+}
+
+/* リンクボタンのコンテナ */
+.link-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* リンクボタンのデザイン */
+.link-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18%;
+    height: 80px;
+    text-align: center;
+    background-color: #ffe4b5;
+    color: #4c4b4b;
+    border: 2px solid #ff99338a;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.link-box:hover {
+    background-color: #ffcc66;
+}
+
+/* 画面サイズが小さい場合は縦並びにする */
+@media screen and (max-width: 600px) {
+    .link-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .link-box {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+}
+
 
 /* ドロップダウンメニューのデザイン */
 .dropdown {
@@ -87,29 +210,36 @@ main {
 }
 
 .dropdown-menu {
-    display: none; /* 初期状態で非表示 */
+    display: none;
     position: absolute;
     background-color: white;
-    min-width: 150px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .dropdown-menu li {
-    list-style: none;
+    padding: 10px;
+    text-align: left;
 }
 
 .dropdown-menu li a {
     display: block;
-    padding: 10px;
     text-decoration: none;
     color: black;
+    padding: 5px 15px;
 }
 
 .dropdown-menu li a:honer {
     background-color: #f0f0f0;
+}
+
+/* JavaScriptで追加するクラス */
+.dropdown-menu.show {
+    display: block;
 }
 
 #map {
@@ -118,7 +248,7 @@ main {
     max-width: 800px;
     margin: auto;
     display: block;
-    z-index: 1;
+    z-index: 10;
 }
 
 
@@ -141,6 +271,32 @@ main {
 .breadcrumb a:hover {
     text-decoration: underline;
 }
+
+/* 検索フォームを枠で囲む */
+.search-box {
+    border: 2px solid #c6902d6e;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #dfd9c286;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* 検索フォームの項目を整える */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
 
 .image-upload img {
     width: 100px;  /* サムネイルの幅 */
