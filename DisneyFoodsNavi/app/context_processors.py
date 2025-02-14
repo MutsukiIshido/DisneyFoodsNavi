@@ -1,14 +1,9 @@
-from django.urls import reverse
-
 def breadcrumbs_context(request):
     breadcrumbs = []
-
-    # Djangoのreverse()を使って絶対URLを取得
-    home_url = request.build_absolute_uri(reverse('home'))  # ←ここを修正
-
-    # ホームを最初に追加（すでにある場合は追加しない）
+    
+    # ホームを最初に追加
     if not breadcrumbs or breadcrumbs[0]["name"] != "ホーム":
-        breadcrumbs.append({"name": "ホーム", "url": home_url})  # `request.build_absolute_uri(reverse('home'))` を使う
+        breadcrumbs.append({"name": "ホーム", "url": "/home/"})
 
     # 現在のページを追加
     if request.path == "/map/":
@@ -17,18 +12,18 @@ def breadcrumbs_context(request):
         breadcrumbs.append({"name": "レビュー投稿", "url": request.path})
     elif request.path == "/readingreview/":
         breadcrumbs.append({"name": "レビュー閲覧", "url": request.path})
-    elif request.path.startswith("/review/"):  # レビュー詳細ページ
-        breadcrumbs.append({"name": "レビュー詳細", "url": request.path})
-    elif request.path == "/ranking/":
-        breadcrumbs.append({"name": "ランキング", "url": request.path})
-    elif request.path == "/favorite/":
-        breadcrumbs.append({"name": "お気に入り一覧", "url": request.path})
-    elif request.path == "/email_change/":
-        breadcrumbs.append({"name": "メールアドレス変更", "url": request.path})
-    elif request.path == "/password_change/":
-        breadcrumbs.append({"name": "パスワード変更", "url": request.path})
+    elif request.path == "/myreview/":
+        breadcrumbs.append({"name": "マイレビュー一覧", "url": request.path})
+    elif request.path.startswith("/review/"):  # レビュー詳細ページ用
+        referer = request.META.get('HTTP_REFERER', '')
 
-    # デバッグログを出力
-    print("Breadcrumbs:", breadcrumbs)
+        # 遷移元がマイレビューなら「マイレビュー一覧」を追加
+        if "myreview" in referer:
+            breadcrumbs.append({"name": "マイレビュー一覧", "url": "/myreview/"})
+        elif "readingreview" in referer:
+            breadcrumbs.append({"name": "レビュー一覧", "url": "/readingreview/"})
+
+        # 最後にレビュー詳細を追加
+        breadcrumbs.append({"name": "レビュー詳細", "url": request.path})
 
     return {"breadcrumbs": breadcrumbs}

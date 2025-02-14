@@ -193,8 +193,16 @@ class MyReviewView(View):
 
         # ログイン中のユーザーのレビューを取得
         reviews = Review.objects.filter(user=request.user).prefetch_related('images')
-        return render(request, 'myreview.html', {'reviews': reviews})
 
+        breadcrumbs = [
+            {"name": "ホーム", "url": "/home/"},
+            {"name": "マイレビュー一覧", "url": "/myreview/"}
+            ]
+
+        return render(request, 'myreview.html', {
+            'reviews': reviews,
+            'breadcrumbs': breadcrumbs
+        })
         
 class FoodSearchView(View):
     def get(self, request):
