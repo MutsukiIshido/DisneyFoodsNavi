@@ -6,9 +6,6 @@
 {% block content %}
     <h1>レビュー一覧</h1>
 
-    <div>商品名：{{ food.name }}</div>
-    <div>レビュー平均点：{{ average_rating|floatformat:1 }} / 5</div>
-
     {% if reviews %}
         <div class="review-list">
             {% for review in reviews %}

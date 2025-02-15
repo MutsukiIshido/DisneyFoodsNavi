@@ -1,34 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('JavaScriptが読み込まれました');
 
+    // **🔹 ドロップダウンメニュー制御**
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownMenu = document.querySelector(".dropdown-menu");
 
-    if (!dropdownToggle || !dropdownMenu) return; // 要素がない場合はスクリプトを終了
+    if (!dropdownToggle || !dropdownMenu) return;
 
-    // **ページロード時にドロップダウンを非表示にする**
     dropdownMenu.style.display = "none";
 
-    // 🔹 クリックイベントで開閉
     dropdownToggle.addEventListener("click", function (event) {
-        event.preventDefault(); // リンクのデフォルト動作を防ぐ
-
-        // **現在の表示状態をトグルする**
-        if (dropdownMenu.style.display === "none" || dropdownMenu.style.display === "") {
-            dropdownMenu.style.display = "block"; // 表示
-        } else {
-            dropdownMenu.style.display = "none"; // 非表示
-        }
+        event.preventDefault();
+        dropdownMenu.style.display = (dropdownMenu.style.display === "none") ? "block" : "none";
     });
 
-    // 🔹 メニューの外をクリックしたら閉じる
     document.addEventListener("click", function (event) {
         if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
             dropdownMenu.style.display = "none";
         }
     });
 
-    // 🔹 フォームのリセットチェック
+    // **🔹 フォームのリセットチェック**
     const form = document.querySelector("form");
     if (form) {
         form.addEventListener("reset", () => {
@@ -36,63 +28,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 🔹 商品検索ボタン処理
+    // **🔹 商品検索モーダル**
     const openFoodSearchButton = document.getElementById('openFoodSearch');
     if (openFoodSearchButton) {
         openFoodSearchButton.addEventListener('click', function(event) {
             event.preventDefault();
-            console.log('商品検索ボタンがクリックされました');
-
-            // モーダルを表示
             const modal = new bootstrap.Modal(document.getElementById('foodModal'));
             modal.show();
-        })
+        });
     }
 
-    // 🔹 検索機能の処理
-    const foodSearchInput = document.getElementById('foodSearch');
-    const foodResults = document.getElementById('foodResults');
-    const foodField = document.getElementById('id_food');
+    // **🔹 画像モーダルの初期設定**
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+    const closeBtn = document.querySelector(".close");
 
-    if (foodSearchInput) {
-        foodSearchInput.addEventListener('input', function() {
-            const query = this.value.trim();
-            if (query) {
-                fetch(`/food-search/?q=${query}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        foodResults.innerHTML = '';
-                        data.forEach(food => {
-                            const li = document.createElement('li');
-                            li.className = 'list-group-item list-group-item-action';
-                            li.textContent = food.name;
-                            foodResults.appendChild(li);
-                            li.onclick = () => {
-                                console.log("✅ クリックされた商品:", food.name);
+    if (modal && modalImg && closeBtn) {
+        // **ページロード時にモーダルを非表示にする**
+        modal.style.display = "none";
 
-                                const foodField = document.getElementById('id_food');
-                                const foodDisplay = document.getElementById('food_display');
+        // **画像をクリックでモーダルを開く**
+        document.querySelectorAll(".review-thumbnail").forEach(img => {
+            img.addEventListener("click", function(event) {
+                event.stopPropagation();  // **クリックイベントの伝播を防ぐ**
+                modal.style.display = "flex"; // `flex` を適用し中央表示
+                modalImg.src = this.src;
+            });
+        });
 
-                                if (!foodField || !foodDisplay) {
-                                    console.error("🚨 必要な要素が見つかりません！");
-                                    return;
-                                }
+        // **モーダルを閉じる**
+        closeBtn.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
 
-                                // 商品名をセット
-                                foodField.value = food.id;
-                                foodDisplay.value = food.name;
-
-                                foodField.dispatchEvent(new Event('change', { bubbles: true }));
-
-                                // モーダルを閉じる
-                                const modal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
-                                modal.hide();
-                            };
-                        });
-                    });
-            } else {
-                foodResults.innerHTML = '';
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
             }
         });
     }
+
 });

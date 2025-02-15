@@ -30,15 +30,17 @@ class SignupView(View):
             "form":form
         })
     def post(self, request):
-        print(request.POST)
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            # 🔹 ユーザーがどのバックエンドを使用しているか指定
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+
             login(request, user)
+
             return redirect("home")
-        return render(request, "signup.html", context={
-            "form":form
-        })
+        return render(request, "signup.html", {"form": form})
 
 
 class LoginView(View):

@@ -1,39 +1,62 @@
 {% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}レビュー詳細{% endblock %}</title>
-</head>
-<body>
-    {% block content %}
+{% block title %}レビュー詳細{% endblock %}
+
+{% block content %}
     <h1>レビュー詳細</h1>
-    <div>
-        <h2>商品名： {{ review.food.foods_name }}</h2>
-        <p>投稿者： {{ review.user.nickname }}</p>
-        <p>評価： {{ review.rating }}</p>
-        <p>コメント： {{ review.comment }}</p>
-        <p>店舗： {{ review.store.store_name }}</p>
-        <p>投稿日： {{ review.created_at }}</p>
-    </div>
-    
-    <!-- レビューに関する画像を表示 -->
-    <div>
-        <h3>画像</h3>
-        {% for image in review.images.all %}
-            <img src="{{ image.review_image_path.url }}" alt="レビュー画像" style="max-width: 300px;">
-        {% empty %}
-            <p>画像はありません</p>
-        {% endfor %}
+
+    <div class="review-container">
+        <div class="review-header">
+            <span class="review-user">👤 {{ review.user.nickname }} さん</span>
+            <span class="review-rating">
+                {{ review.rating }} 
+                {% for i in "12345" %}
+                    {% if forloop.counter <= review.rating %}
+                        ★
+                    {% else %}
+                        ☆
+                    {% endif %}
+                {% endfor %}
+            </span>
+        </div>
+
+        <div class="review-info">
+            <p>商品名： {{ review.food.foods_name }}</p>
+            <p>ジャンル： {{ review.food.category.kind }}</p>
+            <p>パーク： {{ review.store.area.area_name }}</p>
+            <p>利用した店舗： {{ review.store.store_name }}</p>
+            <p>投稿日： {{ review.created_at }}</p>
+        </div>
+
+        <div class="review-comment">
+            <p>{{ review.comment }}</p>
+        </div>
+
+        <!-- 🔹 画像一覧（クリックで拡大表示） -->
+        <div class="review-images">
+            {% for image in review.images.all|slice:":4" %}
+                <img src="{{ image.review_image_path.url }}" alt="レビュー画像" class="review-thumbnail">
+            {% endfor %}
+            {% if review.images.all|length > 4 %}
+                <div class="more-images">
+                    <a href="#" onclick="showAllImages(event, '{{ review.id }}')">
+                        他{{ review.images.all|length|add:"-4" }}件
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 戻るボタン -->
+        {% if request.META.HTTP_REFERER and '/myreview/' in request.META.HTTP_REFERER %}
+            <a href="{% url 'myreview' %}" class="back-link">マイレビューに戻る</a>
+        {% else %}
+            <a href="{% url 'readingreview' %}" class="back-link">レビュー一覧に戻る</a>
+        {% endif %}
     </div>
 
-    {% if request.META.HTTP_REFERER and '/myreview/' in request.META.HTTP_REFERER %}
-        <a href="{% url 'myreview' %}">マイレビューに戻る</a>
-    {% else %}
-        <a href="{% url 'readingreview' %}">レビュー一覧に戻る</a>
-    {% endif %}
-    {% endblock  %}
-</body>
-</html>
+    <!-- 🔹 画像拡大用のモーダル -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+{% endblock %}
