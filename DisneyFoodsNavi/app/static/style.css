@@ -280,7 +280,8 @@ header .logo h1 {
 main {
     max-width: 800px;
     margin: auto;
-    margin-top: 30px; /* ヘッダーの高さ分だけ下げる */
+    margin-top: 120px; /* ヘッダーの高さ分だけ下げる */
+    padding: 20px;
 }
 
 #foodResults {
@@ -409,14 +410,16 @@ button:hover {
 
 
 .breadcrumb {
-    margin-top: 20px;
-    font-size: 14px;
-    margin: 10px 0;
-    padding: 5px 10px;
+    position: fixed;
+    top: 80px; /* ヘッダーの下に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
     background: #f8f9fa;
     border-radius: 5px;
-    position: relative;
-    z-index: 10;
+    z-index: 900; /* ヘッダーより前面に表示 */
 }
 
 .breadcrumb a {

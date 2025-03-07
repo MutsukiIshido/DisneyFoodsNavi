@@ -62,7 +62,10 @@ class HomeView(View):
         return render(request, "home.html")
 
 
-class WriteReviewView(View):
+class WriteReviewView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = None
+    
     def get(self, request):
         review_form = ReviewForm()
         images_formset = ReviewImagesFormSet(queryset=ReviewImages.objects.none())
@@ -112,11 +115,11 @@ class ReadingReviewView(View):
         return render(request, 'readingreview.html', {'reviews': reviews})
     
 
-class FavoriteView(View):
-    def get(self, request):
-        if not request.user.is_authenticated:
-            return redirect('login') # ログインしていない場合はログイン画面にリダイレクト
-        
+class FavoriteView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = None
+    
+    def get(self, request):        
         # ログイン中のユーザーのお気に入りを取得
         favorites = Favorite.objects.filter(user=request.user).select_related('food')
         return render(request, 'favorite.html', {'favorites': favorites})
@@ -188,11 +191,11 @@ class MapView(View):
 
 
     
-class MyReviewView(View):
+class MyReviewView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = None
+    
     def get(self, request):
-        if not request.user.is_authenticated:
-            return redirect('login') # ログインしていない場合はログイン画面にリダイレクト
-
         # ログイン中のユーザーのレビューを取得
         reviews = Review.objects.filter(user=request.user).prefetch_related('images')
 

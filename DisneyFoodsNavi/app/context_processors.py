@@ -10,6 +10,10 @@ def breadcrumbs_context(request):
         breadcrumbs.append({"name": "マップ（検索結果）", "url": request.path})
     elif request.path == "/writereview/":
         breadcrumbs.append({"name": "レビュー投稿", "url": request.path})
+    elif request.path == "/ranking/":
+        breadcrumbs.append({"name": "ランキング", "url": request.path})
+    elif request.path == "/favorite/":
+        breadcrumbs.append({"name": "お気に入り", "url": request.path})
     elif request.path == "/readingreview/":
         breadcrumbs.append({"name": "レビュー閲覧", "url": request.path})
     elif request.path == "/myreview/":

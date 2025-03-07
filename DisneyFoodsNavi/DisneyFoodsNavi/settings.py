@@ -149,3 +149,9 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
+
+# ログインが必要なページに未ログインのユーザーがアクセスした場合のリダイレクト先
+LOGIN_URL = '/login/'
+
+LOGOUT_REDIRECT_URL = '/home/'
+

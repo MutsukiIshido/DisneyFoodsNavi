@@ -19,7 +19,7 @@ from django.urls import include, path
 from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import PasswordChangeDoneView
+from django.contrib.auth.views import PasswordChangeDoneView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,4 +39,5 @@ urlpatterns = [
     path('email_change/', EmailChangeView.as_view(), name='email_change'),    
     path('password_change/', PasswordChangeView.as_view(), name='password_change'),    
     path('password_change/done/', PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),    
+    path('logout/', LogoutView.as_view(), name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

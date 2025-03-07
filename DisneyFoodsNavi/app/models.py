@@ -96,38 +96,38 @@ class Area(models.Model):
 
 class Store(models.Model):
     store_name = models.CharField(max_length=24)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name="stores")
     latitude = models.DecimalField(
         max_digits=9,
         decimal_places=6,
-        validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)],
-        help_text="Latitude: a value between -90.0 and 90.0"
+        validators=[MinValueValidator(-90.0), MaxValueValidator(90.0)]
     )
     longitude = models.DecimalField(
         max_digits=9,
         decimal_places=6,
-        validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)],
-        help_text="Longitude: a value between -180.0 and 180.0"
+        validators=[MinValueValidator(-180.0), MaxValueValidator(180.0)]
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    area = models.OneToOneField(Area, on_delete=models.CASCADE,  related_name="stores")
-    
-    def __str__(self):
-        return self.store_name
-    
+
     class Meta:
         db_table = "stores"
 
+    def __str__(self):
+        return self.store_name
 
 class FoodStore(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
         db_table = "food_stores"
-            
+        unique_together = ('food', 'store')  # 同じフードとストアの組み合わせを重複させない
+
+    def __str__(self):
+        return f"{self.food.foods_name} - {self.store.store_name}"            
         
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
