@@ -5,12 +5,12 @@ from django.db import migrations
 
 
 def load_fixture(apps, schema_editor):
-    call_command('loaddata', 'app/fixture/app_data', app_label='app')
+    pass
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app', '0012_alter_store_area_alter_store_latitude_and_more'),
+        ('app', '0001_initial'),
     ]
 
     operations = [

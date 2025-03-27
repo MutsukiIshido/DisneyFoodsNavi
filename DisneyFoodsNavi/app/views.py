@@ -140,54 +140,54 @@ class RankingView(View):
     
 class MapView(View):    
     def get(self, request):
-        # カテゴリとエリアを選択
-        category = request.GET.get('category')
+        category_id = request.GET.get('category')
         area = request.GET.get('area')
-        
-        # カテゴリが数字かチェック
-        try:
-            category = int(category) if category else None
-        except ValueError:
-            category = None # 不正な値の場合は　None を設定
+        price_range = request.GET.get('price_range')
 
-        # フィルタリング
-        foods = Food.objects.filter(category__id=category) if category else Food.objects.all()
-        stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct() if area else Store.objects.all()
-        
-        # デバッグ用にデータをサーバーログに出力
-        print("Filtered Stores:", stores)
-        
-        # クエリセットを辞書リストに変換（JSONに変換しやすくする）
+        category_name = None
+        foods = Food.objects.all()
+
+        # カテゴリID指定あり
+        if category_id:
+            try:
+                category_obj = FoodCategory.objects.get(id=int(category_id))
+                category_name = category_obj.kind
+                foods = foods.filter(category=category_obj)  # ← IDでフィルタ！
+            except (FoodCategory.DoesNotExist, ValueError):
+                pass
+
+        # ストアのフィルタ
+        if area:
+            stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct()
+        else:
+            stores = Store.objects.filter(foodstore__food__in=foods).distinct()
+
         store_data = []
         for store in stores:
-            food_items = FoodStore.objects.filter(store=store)  # ManyToManyFieldの場合
+            food_items = FoodStore.objects.filter(store=store)
             for foodstore in food_items:
-                if store.latitude and store.longitude:
+                food = foodstore.food
+                if store.latitude and store.longitude and food:
                     store_data.append({
                         "store_name": store.store_name,
                         "latitude": float(store.latitude),
                         "longitude": float(store.longitude),
-                        "food_name": foodstore.food.foods_name if foodstore.food else "不明",
-                        "category": foodstore.food.category.kind if foodstore else None,  # カテゴリ情報を追加
-                        "price": foodstore.food.price if foodstore.food else "不明",
-                        "area": store.area.area_name if store.area else None,  # エリア情報を追加
-                        "rating": float(foodstore.food.average_rating) if foodstore.food else "0"
+                        "food_name": food.foods_name,
+                        "category": food.category.kind,
+                        "category_id": str(food.category.id),  # JSで使う用
+                        "price": food.price,
+                        "area": store.area.area_name,
+                        "rating": float(food.average_rating)
                     })
-                    
-        print("", store_data)  # ログ確認用
 
-        
-        # コンテキストデータを設定
         context = {
             'stores': store_data,
-            'category': category,
+            'category': str(category_id) if category_id else "",  # 数値で渡す
+            'category_name': category_name,  # 選択表示用に渡しておく
             'area': area,
+            'price_range': str(price_range) if price_range else "",
         }
         return render(request, 'map.html', context)
-    
-        # ビュー内でデータの確認
-        print("JSON Store data:", store_data)  # サーバーコンソールに表示
-
 
 
     

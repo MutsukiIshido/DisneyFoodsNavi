@@ -1,0 +1,4801 @@
+[
+{
+  "model": "app.foodcategory",
+  "pk": 10,
+  "fields": {
+    "kind": "メインディッシュ",
+    "created_at": "2025-01-23T13:35:30.753Z",
+    "updated_at": "2025-01-23T13:35:30.753Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 11,
+  "fields": {
+    "kind": "軽食",
+    "created_at": "2025-01-23T13:35:38.199Z",
+    "updated_at": "2025-01-23T13:35:38.199Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 12,
+  "fields": {
+    "kind": "サイド",
+    "created_at": "2025-01-23T13:35:43.127Z",
+    "updated_at": "2025-01-23T13:35:43.127Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 13,
+  "fields": {
+    "kind": "キッズメニュー",
+    "created_at": "2025-01-23T13:35:49.529Z",
+    "updated_at": "2025-01-23T13:35:49.529Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 14,
+  "fields": {
+    "kind": "デザート",
+    "created_at": "2025-01-23T13:35:53.845Z",
+    "updated_at": "2025-01-23T13:35:53.845Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 15,
+  "fields": {
+    "kind": "ドリンク",
+    "created_at": "2025-01-23T13:35:58.444Z",
+    "updated_at": "2025-01-23T13:35:58.444Z"
+  }
+},
+{
+  "model": "app.foodcategory",
+  "pk": 16,
+  "fields": {
+    "kind": "アルコールドリンク",
+    "created_at": "2025-01-23T13:36:04.483Z",
+    "updated_at": "2025-01-23T13:36:04.483Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 14,
+  "fields": {
+    "foods_name": "スウィーツ・ポップ・ワールドサンデー（ストロベリーゼリー）",
+    "category": 14,
+    "price": 850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3690_1.0_1_p48O0awc.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:19:37Z",
+    "updated_at": "2025-03-18T04:20:15.690Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 15,
+  "fields": {
+    "foods_name": "ミニーマウスのカチューシャクッキー",
+    "category": 14,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3687_1.2_1_02YRX05n.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:20:15Z",
+    "updated_at": "2025-03-18T04:20:46.650Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 16,
+  "fields": {
+    "foods_name": "ホットチョコレート＆ストロベリー",
+    "category": 15,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3618_1.0_1_PCn7q966.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:20:46Z",
+    "updated_at": "2025-03-18T04:21:18.783Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 17,
+  "fields": {
+    "foods_name": "プラントベースセット",
+    "category": 10,
+    "price": 2600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3625_1.1_1_9WcqjkIy.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:21:18Z",
+    "updated_at": "2025-03-18T04:21:49.357Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 18,
+  "fields": {
+    "foods_name": "エルダーフラワー風味のゼリーとマチュドニア",
+    "category": 14,
+    "price": 750,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3186_1.1_1_41q3QdQ1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:21:49Z",
+    "updated_at": "2025-03-18T04:22:13.839Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 19,
+  "fields": {
+    "foods_name": "ティラミス",
+    "category": 14,
+    "price": 750,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3187_1.0_1_69Y3680U.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:22:13Z",
+    "updated_at": "2025-03-18T04:22:43.326Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 20,
+  "fields": {
+    "foods_name": "ミッキーワッフル",
+    "category": 14,
+    "price": 800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3722_1.0_1_9lg872s7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:22:43Z",
+    "updated_at": "2025-03-18T04:23:21.118Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 21,
+  "fields": {
+    "foods_name": "ストロベリームース",
+    "category": 14,
+    "price": 550,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3691_1.0_1_06t8aa07.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:23:21Z",
+    "updated_at": "2025-03-18T04:23:52.207Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 22,
+  "fields": {
+    "foods_name": "ラズベリーホイップサンド",
+    "category": 14,
+    "price": 550,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3702_1.0_1_150A158L.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:23:52Z",
+    "updated_at": "2025-03-18T04:24:25.289Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 24,
+  "fields": {
+    "foods_name": "ステーキプレート",
+    "category": 10,
+    "price": 2980,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3650_1.1_1_xu77FZ44.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:24:48Z",
+    "updated_at": "2025-03-18T04:25:12.867Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 25,
+  "fields": {
+    "foods_name": "フルーツティーカクテル（カシスリキュール＆ベリー）",
+    "category": 16,
+    "price": 980,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3475_1.1_1_10Y24427.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:25:12Z",
+    "updated_at": "2025-03-18T04:25:48.916Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 26,
+  "fields": {
+    "foods_name": "ホットドッグ",
+    "category": 11,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1368_1.14_1_I3w547DL.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:25:48Z",
+    "updated_at": "2025-03-18T04:26:17.822Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 27,
+  "fields": {
+    "foods_name": "フレンチフライポテト",
+    "category": 12,
+    "price": 280,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1278_1.8_1_Rl1u4bUx.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:26:17Z",
+    "updated_at": "2025-03-18T04:26:38.195Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 28,
+  "fields": {
+    "foods_name": "天麩羅膳",
+    "category": 10,
+    "price": 2400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3356_1.0_1_i29ajzh6.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:26:38Z",
+    "updated_at": "2025-03-18T04:26:58.532Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 29,
+  "fields": {
+    "foods_name": "ロースかつ膳",
+    "category": 10,
+    "price": 2400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3358_1.0_1_23fBO8pW.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:26:58Z",
+    "updated_at": "2025-03-18T04:27:22.982Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 30,
+  "fields": {
+    "foods_name": "ポップコーン（キャラメル味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:27:23Z",
+    "updated_at": "2025-03-18T04:27:45.369Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 31,
+  "fields": {
+    "foods_name": "ティラミスカクテル（コーヒーリキュール＆ミルク）",
+    "category": 16,
+    "price": 830,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3721_1.0_1_05161ID8.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:27:45Z",
+    "updated_at": "2025-03-18T04:28:14.027Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 33,
+  "fields": {
+    "foods_name": "ブッフェ",
+    "category": 10,
+    "price": 5000,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3922_1.0_1_47P7I78H.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:28:35Z",
+    "updated_at": "2025-03-18T04:29:00.666Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 35,
+  "fields": {
+    "foods_name": "いなりソーセージドッグ",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3740_1.0_1_39vh10H0.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:29:53Z",
+    "updated_at": "2025-03-18T04:30:18.980Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 36,
+  "fields": {
+    "foods_name": "テリヤキチキンレッグ",
+    "category": 12,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/16_1.7_1_zwD5rLdh.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:30:19Z",
+    "updated_at": "2025-03-18T04:30:39.879Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 37,
+  "fields": {
+    "foods_name": "スウィーツ・ポップ・ワールドサンデー（オレンジゼリー）",
+    "category": 14,
+    "price": 850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3696_1.0_1_15rU8v9T.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:30:39Z",
+    "updated_at": "2025-03-18T04:31:01.310Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 39,
+  "fields": {
+    "foods_name": "ブラックペッパーポーク麺",
+    "category": 10,
+    "price": 1300,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1268_1.5_1_4G599az4.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:31:21Z",
+    "updated_at": "2025-03-18T04:31:49.774Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 40,
+  "fields": {
+    "foods_name": "チキンと海老の白湯麺",
+    "category": 10,
+    "price": 1300,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2078_1.4_1_d93K8536.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:31:49Z",
+    "updated_at": "2025-03-18T04:32:12.320Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 41,
+  "fields": {
+    "foods_name": "クリームブリュレ風チュロス（ストロベリー）",
+    "category": 14,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3717_1.0_1_085nG10T.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:32:12Z",
+    "updated_at": "2025-03-18T04:32:33.198Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 42,
+  "fields": {
+    "foods_name": "シェフのおすすめコース",
+    "category": 10,
+    "price": 7000,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3061_1.4_1_Jf4l5cmi.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:32:33Z",
+    "updated_at": "2025-03-18T04:32:55.029Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 43,
+  "fields": {
+    "foods_name": "お子様セット",
+    "category": 13,
+    "price": 1900,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2937_1.0_1_Bi21F8kO.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:32:55Z",
+    "updated_at": "2025-03-18T04:33:19.306Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 44,
+  "fields": {
+    "foods_name": "ミッキーアイスバー（トロピカルフルーツ）",
+    "category": 14,
+    "price": 350,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1186_1.21_1_nVE0Ai61.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:33:19Z",
+    "updated_at": "2025-03-18T04:33:50.042Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 45,
+  "fields": {
+    "foods_name": "ミニーアイスバー（ピーチ＆ラズベリー）",
+    "category": 14,
+    "price": 350,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1187_1.16_1_m2s6y8a7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:33:50Z",
+    "updated_at": "2025-03-18T04:34:08.330Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 46,
+  "fields": {
+    "foods_name": "チップ＆デールまん（トマトチキン＆さつまいも）",
+    "category": 11,
+    "price": 750,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3314_1.5_1_536442U0.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:34:08Z",
+    "updated_at": "2025-03-18T04:34:28.683Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 47,
+  "fields": {
+    "foods_name": "「ミッキーのレインボー・ルアウ」メニュー",
+    "category": 10,
+    "price": 6500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2653_1.3_1_eCw0t6xF.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:34:28Z",
+    "updated_at": "2025-03-18T04:34:49.616Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 48,
+  "fields": {
+    "foods_name": "「ミッキーのレインボー・ルアウ」お子様メニュー",
+    "category": 13,
+    "price": 4500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2657_1.1_1_j5z90Rd3.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:34:49Z",
+    "updated_at": "2025-03-18T04:35:09.441Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 49,
+  "fields": {
+    "foods_name": "スペシャルドーナツ（チョコミント）",
+    "category": 14,
+    "price": 450,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3692_1.0_1_t63vyn95.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:35:09Z",
+    "updated_at": "2025-03-18T04:35:27.558Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 50,
+  "fields": {
+    "foods_name": "カリビアントレジャーティー",
+    "category": 15,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3619_1.0_1_21Hb6j37.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:35:27Z",
+    "updated_at": "2025-03-18T04:35:45.227Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 52,
+  "fields": {
+    "foods_name": "ポップコーン（しょうゆバター味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:36:09Z",
+    "updated_at": "2025-03-18T04:36:33.144Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 53,
+  "fields": {
+    "foods_name": "スモーキーターキーレッグ",
+    "category": 11,
+    "price": 900,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/128_1.9_1_2458L53J.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:36:33Z",
+    "updated_at": "2025-03-18T04:36:50.239Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 55,
+  "fields": {
+    "foods_name": "レモンチーズケーキドリンク",
+    "category": 15,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3628_1.1_1_T1r98874.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:37:13Z",
+    "updated_at": "2025-03-18T04:37:33.645Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 56,
+  "fields": {
+    "foods_name": "おにぎりサンド",
+    "category": 11,
+    "price": 710,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1349_1.15_1_74Ex63m1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:37:33Z",
+    "updated_at": "2025-03-18T04:37:57.997Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 57,
+  "fields": {
+    "foods_name": "「ザ・ダイヤモンド・バラエティマスター」メニュー",
+    "category": 10,
+    "price": 6500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2654_1.1_1_z426c9dW.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:37:58Z",
+    "updated_at": "2025-03-18T04:38:19.528Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 58,
+  "fields": {
+    "foods_name": "「ザ・ダイヤモンド・バラエティマスター」お子様メニュー",
+    "category": 13,
+    "price": 4500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2655_1.1_1_U678N97Z.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:38:19Z",
+    "updated_at": "2025-03-18T04:38:38.160Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 59,
+  "fields": {
+    "foods_name": "チキンカレー",
+    "category": 10,
+    "price": 900,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/256_1.2_1_k0duu8w7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:38:38Z",
+    "updated_at": "2025-03-18T04:38:55.363Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 60,
+  "fields": {
+    "foods_name": "ポークカツカレー",
+    "category": 10,
+    "price": 1100,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/255_1.2_1_6O4fO1J5.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:38:55Z",
+    "updated_at": "2025-03-18T04:39:12.776Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 62,
+  "fields": {
+    "foods_name": "ミックスサラダ（骨付きチキン）",
+    "category": 12,
+    "price": 950,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3200_1.0_1_48zz4H9g.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:39:32Z",
+    "updated_at": "2025-03-18T04:39:57.725Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 64,
+  "fields": {
+    "foods_name": "ポークライスロール",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1978_1.4_1_9aS11528.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:40:19Z",
+    "updated_at": "2025-03-18T04:40:45.396Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 65,
+  "fields": {
+    "foods_name": "ポップコーン（ブラックペッパー味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:40:45Z",
+    "updated_at": "2025-03-18T04:41:01.683Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 66,
+  "fields": {
+    "foods_name": "ポップコーン（カレー味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:41:01Z",
+    "updated_at": "2025-03-18T04:41:20.023Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 67,
+  "fields": {
+    "foods_name": "シーフードアソートプレート",
+    "category": 10,
+    "price": 1760,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2715_1.3_1_A2mnzSFL.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:41:20Z",
+    "updated_at": "2025-03-18T04:41:37.497Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 68,
+  "fields": {
+    "foods_name": "カップサラダ",
+    "category": 12,
+    "price": 360,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/397_1.3_1_34vbD76z.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:41:37Z",
+    "updated_at": "2025-03-18T04:41:55.626Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 69,
+  "fields": {
+    "foods_name": "スウィーツ・ポップ・ワールドサンデー（ライムゼリー）",
+    "category": 14,
+    "price": 850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3700_1.0_1_pF82wvs9.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:41:55Z",
+    "updated_at": "2025-03-18T04:42:16.546Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 70,
+  "fields": {
+    "foods_name": "ソフトクリーム",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/138_1.8_1_ulaTNJ38.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:42:16Z",
+    "updated_at": "2025-03-18T04:42:37.668Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 71,
+  "fields": {
+    "foods_name": "おすすめピザセット",
+    "category": 10,
+    "price": 960,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2247_1.4_1_v2t5oytZ.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:42:37Z",
+    "updated_at": "2025-03-18T04:42:58.902Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 72,
+  "fields": {
+    "foods_name": "ウォームハニーレモンドリンク",
+    "category": 15,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1552_1.7_1_5JFA4H9n.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:42:58Z",
+    "updated_at": "2025-03-18T04:43:18.179Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 73,
+  "fields": {
+    "foods_name": "ローストチキン",
+    "category": 10,
+    "price": 1780,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1230_1.2_1_90N47T13.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:43:18Z",
+    "updated_at": "2025-03-18T04:43:40.279Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 74,
+  "fields": {
+    "foods_name": "アンバースデーケーキ",
+    "category": 14,
+    "price": 2300,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1234_1.6_1_G8Bod3JV.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:43:40Z",
+    "updated_at": "2025-03-18T04:43:58.596Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 76,
+  "fields": {
+    "foods_name": "ホットキャラメルフレーバーティー",
+    "category": 15,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3622_1.2_1_d0WJ74C5.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:44:17Z",
+    "updated_at": "2025-03-18T04:44:34.081Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 77,
+  "fields": {
+    "foods_name": "キャラメルチーズホイップティー（アップル）",
+    "category": 15,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3723_1.0_1_u11ca7B1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:44:34Z",
+    "updated_at": "2025-03-18T04:44:51.638Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 78,
+  "fields": {
+    "foods_name": "ホットカクテル（アマレット、ココア、ナッツ）",
+    "category": 16,
+    "price": 830,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3683_1.0_1_852T74t2.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:44:51Z",
+    "updated_at": "2025-03-18T04:45:10.105Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 79,
+  "fields": {
+    "foods_name": "ティポトルタ",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3623_1.1_1_P973D973.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:45:10Z",
+    "updated_at": "2025-03-18T04:45:29.972Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 81,
+  "fields": {
+    "foods_name": "オムレットロール（バナナ＆ストロベリー）",
+    "category": 14,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3716_1.0_1_CH289d20.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:45:48Z",
+    "updated_at": "2025-03-18T04:46:11.910Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 82,
+  "fields": {
+    "foods_name": "ホットワイン（赤）",
+    "category": 16,
+    "price": 830,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1521_1.8_1_268jv3F1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:46:11Z",
+    "updated_at": "2025-03-18T04:46:32.433Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 83,
+  "fields": {
+    "foods_name": "クロックムッシュ",
+    "category": 10,
+    "price": 920,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3347_1.2_1_ks99qQ65.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:46:32Z",
+    "updated_at": "2025-03-18T04:46:50.580Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 84,
+  "fields": {
+    "foods_name": "ル・フウズ・チュロス（アップルキャラメル）",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1293_1.8_1_8A2NRrpp.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:46:50Z",
+    "updated_at": "2025-03-18T04:47:07.669Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 86,
+  "fields": {
+    "foods_name": "ポップコーン（コーンポタージュ味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:47:24Z",
+    "updated_at": "2025-03-18T04:47:45.396Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 87,
+  "fields": {
+    "foods_name": "ポップコーン（ハニー味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:47:45Z",
+    "updated_at": "2025-03-18T04:48:06.537Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 89,
+  "fields": {
+    "foods_name": "ポップコーン（ミルクチョコレート味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3314_1.5_1_536442U0.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:48:27Z",
+    "updated_at": "2025-03-18T04:48:46.738Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 91,
+  "fields": {
+    "foods_name": "グローブシェイプ・エッグチキンパオ",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1194_1.13_1_1OD98G6r.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:49:09Z",
+    "updated_at": "2025-03-18T04:49:34.483Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 93,
+  "fields": {
+    "foods_name": "スプリングロール（エッグ＆シュリンプ）",
+    "category": 11,
+    "price": 380,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1910_1.7_1_472202GH.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:49:52Z",
+    "updated_at": "2025-03-18T04:50:10.722Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 95,
+  "fields": {
+    "foods_name": "おすすめバーガーセット",
+    "category": 10,
+    "price": 1390,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3179_1.2_1_3cB8V12b.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:50:33Z",
+    "updated_at": "2025-03-18T04:50:52.556Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 96,
+  "fields": {
+    "foods_name": "チキンとトマトのカルツォーネ",
+    "category": 11,
+    "price": 620,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/292_1.8_1_2M2F36Lr.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:50:52Z",
+    "updated_at": "2025-03-18T04:51:12.694Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 97,
+  "fields": {
+    "foods_name": "ソフトサラミソーセージのピザ",
+    "category": 11,
+    "price": 740,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/294_1.8_1_0U3635vi.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:51:12Z",
+    "updated_at": "2025-03-18T04:51:45.976Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 98,
+  "fields": {
+    "foods_name": "BBポップコーン",
+    "category": 11,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2603_1.1_1_20M747Ux.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:51:46Z",
+    "updated_at": "2025-03-18T04:52:06.331Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 99,
+  "fields": {
+    "foods_name": "シェフのおすすめセット",
+    "category": 10,
+    "price": 1740,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2750_1.3_1_4zdU23NW.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:52:06Z",
+    "updated_at": "2025-03-18T04:52:25.509Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 100,
+  "fields": {
+    "foods_name": "キッズ・プラズマセット",
+    "category": 13,
+    "price": 940,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3244_1.0_1_43E89o82.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:52:25Z",
+    "updated_at": "2025-03-18T04:52:46.590Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 102,
+  "fields": {
+    "foods_name": "ポップコーン（ソルト味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:53:06Z",
+    "updated_at": "2025-03-18T04:53:23.731Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 103,
+  "fields": {
+    "foods_name": "シェフのおすすめセット",
+    "category": 10,
+    "price": 2980,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3673_1.0_1_53k4L606.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:53:23Z",
+    "updated_at": "2025-03-18T04:53:48.731Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 104,
+  "fields": {
+    "foods_name": "ローストチキン",
+    "category": 10,
+    "price": 1850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3026_1.1_1_5712A47w.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:53:48Z",
+    "updated_at": "2025-03-18T04:54:06.476Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 105,
+  "fields": {
+    "foods_name": "チョコチップ＆クルミのビスコッティ",
+    "category": 14,
+    "price": 200,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1415_1.4_1_cd98JO67.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:54:06Z",
+    "updated_at": "2025-03-18T04:54:26.159Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 106,
+  "fields": {
+    "foods_name": "ミッキーマカロン",
+    "category": 14,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3240_1.8_1_MmSyOa02.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:54:26Z",
+    "updated_at": "2025-03-18T04:54:45.709Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 107,
+  "fields": {
+    "foods_name": "スパゲッティ、シーフードのトマトクリームソース",
+    "category": 10,
+    "price": 1150,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3500_1.0_1_45750aN9.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:54:45Z",
+    "updated_at": "2025-03-18T04:55:04.625Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 108,
+  "fields": {
+    "foods_name": "リトルグリーンまん",
+    "category": 14,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1779_1.28_1_9Y15zQY0.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:55:04Z",
+    "updated_at": "2025-03-18T04:59:00.765Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 109,
+  "fields": {
+    "foods_name": "マゼラン",
+    "category": 10,
+    "price": 8000,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3688_1.1_1_b6v3W8l6.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T04:59:00Z",
+    "updated_at": "2025-03-18T05:00:34.799Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 110,
+  "fields": {
+    "foods_name": "リトルエクスプローラーズ・セット",
+    "category": 13,
+    "price": 3300,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3714_1.0_1_19Z5k2PV.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:00:34Z",
+    "updated_at": "2025-03-18T05:00:52.571Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 111,
+  "fields": {
+    "foods_name": "マイクメロンパン（クリーム入り）",
+    "category": 11,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2425_1.7_1_vgCH740C.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:00:52Z",
+    "updated_at": "2025-03-18T05:01:09.856Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 112,
+  "fields": {
+    "foods_name": "コーヒータピオカラテ",
+    "category": 15,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1954_1.5_1_867BTd2W.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:01:09Z",
+    "updated_at": "2025-03-18T05:01:28.342Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 113,
+  "fields": {
+    "foods_name": "シェフのおすすめセット",
+    "category": 10,
+    "price": 5800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3645_1.0_1_26B5d9KL.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:01:28Z",
+    "updated_at": "2025-03-18T05:01:47.627Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 114,
+  "fields": {
+    "foods_name": "スパークリングワイン・カクテル（マンダリンオレンジ）",
+    "category": 16,
+    "price": 1000,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3479_1.1_1_19965Czw.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:01:47Z",
+    "updated_at": "2025-03-18T05:02:07.979Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 116,
+  "fields": {
+    "foods_name": "ホットチョコレート",
+    "category": 15,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3019_1.0_1_6016307B.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:02:28Z",
+    "updated_at": "2025-03-18T05:02:50.232Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 118,
+  "fields": {
+    "foods_name": "スペシャルコース",
+    "category": 10,
+    "price": 8800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3798_1.1_1_409l9315.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:03:18Z",
+    "updated_at": "2025-03-18T05:03:34.300Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 119,
+  "fields": {
+    "foods_name": "リトルキャプテンズ・セット",
+    "category": 13,
+    "price": 2400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3316_1.0_1_q2m2Z9PI.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:03:34Z",
+    "updated_at": "2025-03-18T05:04:00.555Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 120,
+  "fields": {
+    "foods_name": "ケープコッド・ブックオフのファーストプライズセット",
+    "category": 10,
+    "price": 1440,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3508_1.2_1_0460i442.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:04:00Z",
+    "updated_at": "2025-03-18T05:04:27.715Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 121,
+  "fields": {
+    "foods_name": "ベーコンエッグバーガーセット",
+    "category": 10,
+    "price": 1440,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2090_1.13_1_Jjd094E8.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:04:27Z",
+    "updated_at": "2025-03-18T05:04:47.131Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 122,
+  "fields": {
+    "foods_name": "ダッフィークッキークリームサンド（キャラメルクリーム）",
+    "category": 14,
+    "price": 470,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3069_1.9_1_8CSvXiY5.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:04:47Z",
+    "updated_at": "2025-03-18T05:05:06.311Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 123,
+  "fields": {
+    "foods_name": "シェフのおすすめセット",
+    "category": 10,
+    "price": 1440,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3502_1.4_1_j11D99b3.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:05:06Z",
+    "updated_at": "2025-03-18T05:05:23.732Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 125,
+  "fields": {
+    "foods_name": "フルーツとクレープのパフェ（マカロン、パンナコッタ、洋梨のソルベ）",
+    "category": 14,
+    "price": 1800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3907_1.0_1_579I70Te.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:05:41Z",
+    "updated_at": "2025-03-18T05:05:57.753Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 126,
+  "fields": {
+    "foods_name": "アソーテッドスナック",
+    "category": 11,
+    "price": 1600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1919_1.3_1_267q7u6Q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:05:57Z",
+    "updated_at": "2025-03-18T05:06:19.965Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 128,
+  "fields": {
+    "foods_name": "ニュヨーク・デリのおすすめセット",
+    "category": 10,
+    "price": 1530,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3671_1.0_1_U40VDrZ1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:06:41Z",
+    "updated_at": "2025-03-18T05:07:01.364Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 130,
+  "fields": {
+    "foods_name": "骨付きソーセージ",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/392_1.11_1_027l5b7V.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:07:25Z",
+    "updated_at": "2025-03-18T05:07:51.104Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 131,
+  "fields": {
+    "foods_name": "ホットデニッシュサンド（エッグ＆生ハム）",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3679_1.0_1_9V5pb290.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:07:51Z",
+    "updated_at": "2025-03-18T05:08:14.521Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 132,
+  "fields": {
+    "foods_name": "ホットストロベリードリンク（チーズホイップトッピング）",
+    "category": 14,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3674_1.0_1_795qS1s8.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:08:14Z",
+    "updated_at": "2025-03-18T05:08:35.558Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 133,
+  "fields": {
+    "foods_name": "おでん",
+    "category": 11,
+    "price": 800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3742_1.2_1_0a26P4K7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:08:35Z",
+    "updated_at": "2025-03-18T05:08:53.524Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 134,
+  "fields": {
+    "foods_name": "天麩羅膳",
+    "category": 10,
+    "price": 3300,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2415_1.4_1_33LQ6X21.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:08:53Z",
+    "updated_at": "2025-03-18T05:09:16.072Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 135,
+  "fields": {
+    "foods_name": "スチームボート・セット",
+    "category": 13,
+    "price": 1800,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3288_1.0_1_Ui6xD98g.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:09:16Z",
+    "updated_at": "2025-03-18T05:09:41.333Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 137,
+  "fields": {
+    "foods_name": "ポップコーン（ガーリックシュリンプ味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:10:01Z",
+    "updated_at": "2025-03-18T05:10:22.313Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 139,
+  "fields": {
+    "foods_name": "ポップコーン（ローストビーフ味）",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1720_1.4_1_10q3788q.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:10:39Z",
+    "updated_at": "2025-03-18T05:11:01.770Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 140,
+  "fields": {
+    "foods_name": "うきわまん（エビ）",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/97_1.9_1_8b4804gy.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:11:01Z",
+    "updated_at": "2025-03-18T05:11:20.334Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 141,
+  "fields": {
+    "foods_name": "フライドピザ（チキン＆モッツァレッラ）",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/103_1.4_1_Pmk9sW64.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:11:20Z",
+    "updated_at": "2025-03-18T05:11:36.822Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 142,
+  "fields": {
+    "foods_name": "ホットストロベリードリンク",
+    "category": 15,
+    "price": 700,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3674_1.0_1_795qS1s8.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:11:36Z",
+    "updated_at": "2025-03-18T05:11:55.583Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 143,
+  "fields": {
+    "foods_name": "寿司ロール（シュリンプ＆チキンカツ）",
+    "category": 11,
+    "price": 550,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/131_1.4_1_58945dZ4.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:11:55Z",
+    "updated_at": "2025-03-18T05:12:13.348Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 144,
+  "fields": {
+    "foods_name": "シェフのおすすめセット",
+    "category": 10,
+    "price": 2740,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3647_1.0_1_44hW41fS.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:12:13Z",
+    "updated_at": "2025-03-18T05:12:33.770Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 145,
+  "fields": {
+    "foods_name": "ベジタブルとソーセージのスープ",
+    "category": 12,
+    "price": 440,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3649_1.0_1_X17k809n.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:12:33Z",
+    "updated_at": "2025-03-18T05:12:52.758Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 147,
+  "fields": {
+    "foods_name": "ユカタンソーセージドッグ",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/30_1.1_1_72bD41R2.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:13:14Z",
+    "updated_at": "2025-03-18T05:13:35.733Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 148,
+  "fields": {
+    "foods_name": "クリームブリュレ風チュロス（ミルクティー）",
+    "category": 14,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3882_1.1_1_AMb2G552.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:13:35Z",
+    "updated_at": "2025-03-18T05:13:53.638Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 149,
+  "fields": {
+    "foods_name": "ティポトルタ（チョコレート＆オレンジ）",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2522_1.5_1_3o03f8r2.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:13:53Z",
+    "updated_at": "2025-03-18T05:14:14.113Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 150,
+  "fields": {
+    "foods_name": "ダッフィーのスペシャルセット（ビーフ）",
+    "category": 10,
+    "price": 2380,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3629_1.2_1_x9Vm4976.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:14:14Z",
+    "updated_at": "2025-03-18T05:14:32.418Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 151,
+  "fields": {
+    "foods_name": "シュリンプフライ＆サルサ",
+    "category": 11,
+    "price": 650,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3844_1.1_1_3VQUGi0w.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:14:32Z",
+    "updated_at": "2025-03-18T05:14:51.402Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 152,
+  "fields": {
+    "foods_name": "キウイモヒート",
+    "category": 16,
+    "price": 780,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3802_1.1_1_149n097K.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T05:14:51Z",
+    "updated_at": "2025-03-18T14:13:11.265Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 154,
+  "fields": {
+    "foods_name": "アレンデールロイヤルセット（ビーフ）",
+    "category": 10,
+    "price": 3500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3041_1.2_1_UXpP5guC.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:13:30Z",
+    "updated_at": "2025-03-18T14:13:56.795Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 155,
+  "fields": {
+    "foods_name": "オーケンのフッフーブレッド（カルダモン＆ミート）",
+    "category": 11,
+    "price": 850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3112_1.0_1_2aK23838.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:13:56Z",
+    "updated_at": "2025-03-18T14:14:15.128Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 156,
+  "fields": {
+    "foods_name": "ダックリングドリームバーガー",
+    "category": 10,
+    "price": 900,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3056_1.1_1_750J41tc.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:14:15Z",
+    "updated_at": "2025-03-18T14:14:32.608Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 157,
+  "fields": {
+    "foods_name": "ロストキッズスナックボックス（バターカレーチキン）",
+    "category": 11,
+    "price": 900,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3128_1.0_1_5Iy6O4Ax.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:14:32Z",
+    "updated_at": "2025-03-18T14:14:49.396Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 158,
+  "fields": {
+    "foods_name": "ローストビーフポップコーン",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3209_1.0_1_1jOZw0fe.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:14:49Z",
+    "updated_at": "2025-03-18T14:15:11.281Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 159,
+  "fields": {
+    "foods_name": "チュロス（チャイシュガー）",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/2210_1.18_1_1N32a2ia.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:15:11Z",
+    "updated_at": "2025-03-18T14:15:41.386Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 160,
+  "fields": {
+    "foods_name": "ビーフカリー（中辛）",
+    "category": 10,
+    "price": 1100,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/410_1.0_1_J97Of4G1.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:15:41Z",
+    "updated_at": "2025-03-18T14:16:01.162Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 163,
+  "fields": {
+    "foods_name": "ソーセージとベーコンのピザ",
+    "category": 11,
+    "price": 850,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1189_1.11_1_06cKb901.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:16:35Z",
+    "updated_at": "2025-03-18T14:17:03.196Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 165,
+  "fields": {
+    "foods_name": "ホタテガーリックバターポップコーン",
+    "category": 11,
+    "price": 400,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/184_1.1_1_rEql8EU7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:17:28Z",
+    "updated_at": "2025-03-18T14:17:47.585Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 166,
+  "fields": {
+    "foods_name": "ヴォルケイニアセット",
+    "category": 16,
+    "price": 2180,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/3504_1.1_1_3I4o50s9.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:17:47Z",
+    "updated_at": "2025-03-18T14:18:08.198Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 168,
+  "fields": {
+    "foods_name": "ギョウザドッグ",
+    "category": 11,
+    "price": 600,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/101_1.1_1_1zK77ML7.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:18:28Z",
+    "updated_at": "2025-03-18T14:18:48.349Z"
+  }
+},
+{
+  "model": "app.food",
+  "pk": 169,
+  "fields": {
+    "foods_name": "デミグラス・チュロス（ポテト）",
+    "category": 14,
+    "price": 500,
+    "foods_image_path": "https://media1.tokyodisneyresort.jp/food_menu/image/1334_1.6_1_9qFE737Y.jpg",
+    "total_reviews": 1,
+    "average_rating": "1.0",
+    "created_at": "2025-03-18T14:18:48Z",
+    "updated_at": "2025-03-18T14:19:08.110Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 2,
+  "fields": {
+    "area_name": "ワールドバザール",
+    "park": 0,
+    "created_at": "2025-01-23T13:37:43.735Z",
+    "updated_at": "2025-01-23T13:37:43.735Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 3,
+  "fields": {
+    "area_name": "アドベンチャーランド",
+    "park": 0,
+    "created_at": "2025-01-23T13:37:58.732Z",
+    "updated_at": "2025-01-23T13:37:58.732Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 4,
+  "fields": {
+    "area_name": "ウエスタンランド",
+    "park": 0,
+    "created_at": "2025-01-23T13:38:08.229Z",
+    "updated_at": "2025-01-23T13:38:08.229Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 5,
+  "fields": {
+    "area_name": "クリッターカントリー",
+    "park": 0,
+    "created_at": "2025-01-23T13:38:19.560Z",
+    "updated_at": "2025-01-23T13:38:19.560Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 6,
+  "fields": {
+    "area_name": "ファンタジーランド",
+    "park": 0,
+    "created_at": "2025-01-23T13:38:28.074Z",
+    "updated_at": "2025-01-23T13:38:28.074Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 7,
+  "fields": {
+    "area_name": "トゥーンタウン",
+    "park": 0,
+    "created_at": "2025-01-23T13:38:36.828Z",
+    "updated_at": "2025-01-23T13:38:36.829Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 8,
+  "fields": {
+    "area_name": "トゥモローランド",
+    "park": 0,
+    "created_at": "2025-01-23T13:38:50.464Z",
+    "updated_at": "2025-01-23T13:38:50.464Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 9,
+  "fields": {
+    "area_name": "メディテレニアンアンハーバー",
+    "park": 1,
+    "created_at": "2025-01-23T13:40:17.908Z",
+    "updated_at": "2025-01-23T13:41:09.077Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 10,
+  "fields": {
+    "area_name": "アメリカンウォーターフロント",
+    "park": 1,
+    "created_at": "2025-01-23T13:41:35.882Z",
+    "updated_at": "2025-01-23T13:41:35.882Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 11,
+  "fields": {
+    "area_name": "ポートディスカバリー",
+    "park": 1,
+    "created_at": "2025-01-23T13:41:47.277Z",
+    "updated_at": "2025-01-23T13:41:47.277Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 12,
+  "fields": {
+    "area_name": "ロストリバーデルタ",
+    "park": 1,
+    "created_at": "2025-01-23T13:41:56.475Z",
+    "updated_at": "2025-01-23T13:41:56.475Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 13,
+  "fields": {
+    "area_name": "ファンタジースプリングス",
+    "park": 1,
+    "created_at": "2025-01-23T13:42:15.039Z",
+    "updated_at": "2025-01-23T13:42:15.039Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 14,
+  "fields": {
+    "area_name": "アラビアンコースト",
+    "park": 1,
+    "created_at": "2025-01-23T13:42:25.895Z",
+    "updated_at": "2025-01-23T13:42:25.895Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 15,
+  "fields": {
+    "area_name": "マーメイドラグーン",
+    "park": 1,
+    "created_at": "2025-01-23T13:42:33.133Z",
+    "updated_at": "2025-01-23T13:42:33.133Z"
+  }
+},
+{
+  "model": "app.area",
+  "pk": 16,
+  "fields": {
+    "area_name": "ミステリアスアイランド",
+    "park": 1,
+    "created_at": "2025-01-23T13:42:43.690Z",
+    "updated_at": "2025-01-23T13:42:43.690Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 9,
+  "fields": {
+    "store_name": "アイスクリームコーン",
+    "area": 2,
+    "latitude": "35.634570",
+    "longitude": "139.879640",
+    "created_at": "2025-02-03T04:27:25.980Z",
+    "updated_at": "2025-02-03T04:27:25.980Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 11,
+  "fields": {
+    "store_name": "イーストサイド・カフェ",
+    "area": 2,
+    "latitude": "35.635080",
+    "longitude": "139.879980",
+    "created_at": "2025-02-19T01:53:53.804Z",
+    "updated_at": "2025-02-19T01:53:53.804Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 12,
+  "fields": {
+    "store_name": "グレートアメリカン・ワッフルカンパニー",
+    "area": 2,
+    "latitude": "35.635190",
+    "longitude": "139.880370",
+    "created_at": "2025-02-19T02:39:07.429Z",
+    "updated_at": "2025-02-19T02:39:07.429Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 13,
+  "fields": {
+    "store_name": "スウィートハート・カフェ",
+    "area": 2,
+    "latitude": "35.634420",
+    "longitude": "139.879280",
+    "created_at": "2025-02-19T02:45:26.654Z",
+    "updated_at": "2025-02-19T02:45:26.654Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 14,
+  "fields": {
+    "store_name": "センターストリート・コーヒーハウス",
+    "area": 2,
+    "latitude": "35.634840",
+    "longitude": "139.878980",
+    "created_at": "2025-02-19T02:46:20.815Z",
+    "updated_at": "2025-02-19T02:46:20.815Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 15,
+  "fields": {
+    "store_name": "リフレッシュメントコーナー",
+    "area": 2,
+    "latitude": "35.634530",
+    "longitude": "139.879500",
+    "created_at": "2025-02-19T02:47:00.414Z",
+    "updated_at": "2025-02-19T02:47:00.414Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 16,
+  "fields": {
+    "store_name": "れすとらん北斎",
+    "area": 2,
+    "latitude": "35.634970",
+    "longitude": "139.879520",
+    "created_at": "2025-02-19T02:47:41.613Z",
+    "updated_at": "2025-02-19T02:47:41.613Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 17,
+  "fields": {
+    "store_name": "ポップコーンワゴン（スウィートハート・カフェ前）",
+    "area": 2,
+    "latitude": "35.634400",
+    "longitude": "139.879700",
+    "created_at": "2025-02-19T02:48:59.213Z",
+    "updated_at": "2025-02-19T02:48:59.213Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 18,
+  "fields": {
+    "store_name": "カフェ・オーリンズ",
+    "area": 2,
+    "latitude": "35.635220",
+    "longitude": "139.880900",
+    "created_at": "2025-02-19T02:49:38.195Z",
+    "updated_at": "2025-02-19T02:49:38.195Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 19,
+  "fields": {
+    "store_name": "クリスタルパレス・レストラン",
+    "area": 2,
+    "latitude": "35.634110",
+    "longitude": "139.880750",
+    "created_at": "2025-02-19T02:50:42.428Z",
+    "updated_at": "2025-02-19T02:50:42.428Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 20,
+  "fields": {
+    "store_name": "ザ・ガゼーボ",
+    "area": 2,
+    "latitude": "35.634840",
+    "longitude": "139.881010",
+    "created_at": "2025-02-19T02:51:24.133Z",
+    "updated_at": "2025-02-19T02:51:24.133Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 21,
+  "fields": {
+    "store_name": "スキッパーズ・ギャレー",
+    "area": 3,
+    "latitude": "35.634150",
+    "longitude": "139.882410",
+    "created_at": "2025-02-19T02:52:00.132Z",
+    "updated_at": "2025-02-19T02:53:08.925Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 22,
+  "fields": {
+    "store_name": "スクウィーザーズ・トロピカル・ジュースバー",
+    "area": 3,
+    "latitude": "35.634500",
+    "longitude": "139.882150",
+    "created_at": "2025-02-19T02:53:01.067Z",
+    "updated_at": "2025-02-19T02:53:01.067Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 23,
+  "fields": {
+    "store_name": "チャイナボイジャー",
+    "area": 3,
+    "latitude": "35.634330",
+    "longitude": "139.881480",
+    "created_at": "2025-02-19T02:54:16.569Z",
+    "updated_at": "2025-02-19T02:54:16.569Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 24,
+  "fields": {
+    "store_name": "パークサイドワゴン",
+    "area": 3,
+    "latitude": "35.634850",
+    "longitude": "139.880150",
+    "created_at": "2025-02-19T02:54:56.075Z",
+    "updated_at": "2025-02-19T02:54:56.075Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 25,
+  "fields": {
+    "store_name": "ブルーバイユー・レストラン",
+    "area": 3,
+    "latitude": "35.635170",
+    "longitude": "139.881190",
+    "created_at": "2025-02-19T02:55:42.346Z",
+    "updated_at": "2025-02-19T02:55:42.346Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 26,
+  "fields": {
+    "store_name": "フレッシュフルーツオアシス",
+    "area": 3,
+    "latitude": "35.634010",
+    "longitude": "139.881850",
+    "created_at": "2025-02-19T02:56:30.775Z",
+    "updated_at": "2025-02-19T02:56:30.775Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 27,
+  "fields": {
+    "store_name": "ボイラールーム・バイツ",
+    "area": 3,
+    "latitude": "35.634630",
+    "longitude": "139.881370",
+    "created_at": "2025-02-19T02:57:18.389Z",
+    "updated_at": "2025-02-19T02:57:18.390Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 28,
+  "fields": {
+    "store_name": "ポリネシアンテラス・レストラン",
+    "area": 3,
+    "latitude": "35.633790",
+    "longitude": "139.882940",
+    "created_at": "2025-02-19T02:57:59.571Z",
+    "updated_at": "2025-02-19T02:57:59.571Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 29,
+  "fields": {
+    "store_name": "ロイヤルストリート・ベランダ",
+    "area": 3,
+    "latitude": "35.635130",
+    "longitude": "139.881040",
+    "created_at": "2025-02-19T02:58:55.129Z",
+    "updated_at": "2025-02-19T02:58:55.129Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 30,
+  "fields": {
+    "store_name": "ポップコーンワゴン（カフェ・オーリンズ前）",
+    "area": 3,
+    "latitude": "35.634700",
+    "longitude": "139.880910",
+    "created_at": "2025-02-19T02:59:48.528Z",
+    "updated_at": "2025-02-19T02:59:48.528Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 31,
+  "fields": {
+    "store_name": "ポップコーンワゴン（ザ・ガゼーボ横）",
+    "area": 3,
+    "latitude": "35.634670",
+    "longitude": "139.880680",
+    "created_at": "2025-02-19T03:00:38.879Z",
+    "updated_at": "2025-02-19T03:00:38.879Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 32,
+  "fields": {
+    "store_name": "カウボーイ・クックハウス",
+    "area": 4,
+    "latitude": "35.632840",
+    "longitude": "139.882800",
+    "created_at": "2025-02-19T03:16:48.105Z",
+    "updated_at": "2025-02-19T03:16:48.105Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 33,
+  "fields": {
+    "store_name": "キャンプ・ウッドチャック・キッチン",
+    "area": 4,
+    "latitude": "35.632660",
+    "longitude": "139.884100",
+    "created_at": "2025-02-19T03:17:32.377Z",
+    "updated_at": "2025-02-19T03:17:32.377Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 34,
+  "fields": {
+    "store_name": "ザ・ダイヤモンド・ホースシュー",
+    "area": 4,
+    "latitude": "35.632490",
+    "longitude": "139.881580",
+    "created_at": "2025-02-19T03:18:11.911Z",
+    "updated_at": "2025-02-19T03:18:11.911Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 35,
+  "fields": {
+    "store_name": "ハングリーベア・レストラン",
+    "area": 4,
+    "latitude": "35.633440",
+    "longitude": "139.883220",
+    "created_at": "2025-02-19T03:18:59.485Z",
+    "updated_at": "2025-02-19T03:18:59.485Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 36,
+  "fields": {
+    "store_name": "プラザパビリオン・レストラン",
+    "area": 4,
+    "latitude": "35.633420",
+    "longitude": "139.881230",
+    "created_at": "2025-02-19T03:19:52.747Z",
+    "updated_at": "2025-02-19T03:19:52.747Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 37,
+  "fields": {
+    "store_name": "ペコスビル・カフェ",
+    "area": 4,
+    "latitude": "35.633230",
+    "longitude": "139.881850",
+    "created_at": "2025-02-19T03:20:35.366Z",
+    "updated_at": "2025-02-19T03:20:35.366Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 38,
+  "fields": {
+    "store_name": "ポップコーンワゴン（カウボーイ・クックハウス前）",
+    "area": 4,
+    "latitude": "35.632890",
+    "longitude": "139.882870",
+    "created_at": "2025-02-19T03:26:19.621Z",
+    "updated_at": "2025-02-19T03:26:19.621Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 39,
+  "fields": {
+    "store_name": "ポップコーンワゴン（トレーディングポスト横）",
+    "area": 4,
+    "latitude": "35.633800",
+    "longitude": "139.881560",
+    "created_at": "2025-02-19T03:27:03.489Z",
+    "updated_at": "2025-02-19T03:27:03.489Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 40,
+  "fields": {
+    "store_name": "グランマ・サラのキッチン",
+    "area": 5,
+    "latitude": "35.631880",
+    "longitude": "139.882850",
+    "created_at": "2025-02-19T03:30:25.936Z",
+    "updated_at": "2025-02-19T03:30:25.936Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 41,
+  "fields": {
+    "store_name": "ラケッティのラクーンサルーン",
+    "area": 5,
+    "latitude": "35.631110",
+    "longitude": "139.883380",
+    "created_at": "2025-02-19T03:31:16.231Z",
+    "updated_at": "2025-02-19T03:31:16.231Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 42,
+  "fields": {
+    "store_name": "キャプテンフックス・ギャレー",
+    "area": 6,
+    "latitude": "35.632460",
+    "longitude": "139.881840",
+    "created_at": "2025-02-19T03:32:29.928Z",
+    "updated_at": "2025-02-19T03:32:29.928Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 43,
+  "fields": {
+    "store_name": "クイーン・オブ・ハートのバンケットホール",
+    "area": 6,
+    "latitude": "35.631500",
+    "longitude": "139.881000",
+    "created_at": "2025-02-19T03:33:17.660Z",
+    "updated_at": "2025-02-19T03:33:17.660Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 44,
+  "fields": {
+    "store_name": "クレオズ",
+    "area": 6,
+    "latitude": "35.631840",
+    "longitude": "139.881140",
+    "created_at": "2025-02-19T03:33:55.522Z",
+    "updated_at": "2025-02-19T03:33:55.522Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 45,
+  "fields": {
+    "store_name": "トルバドールタバン",
+    "area": 6,
+    "latitude": "35.632560",
+    "longitude": "139.881950",
+    "created_at": "2025-02-19T03:34:31.962Z",
+    "updated_at": "2025-02-19T03:34:31.962Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 46,
+  "fields": {
+    "store_name": "ビレッジペイストリー",
+    "area": 6,
+    "latitude": "35.631660",
+    "longitude": "139.880710",
+    "created_at": "2025-02-19T03:35:16.323Z",
+    "updated_at": "2025-02-19T03:35:16.323Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 47,
+  "fields": {
+    "store_name": "マジカルマーケット",
+    "area": 6,
+    "latitude": "35.632350",
+    "longitude": "139.881680",
+    "created_at": "2025-02-19T03:35:53.940Z",
+    "updated_at": "2025-02-19T03:35:53.940Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 48,
+  "fields": {
+    "store_name": "ラ・タベルヌ・ド・ガストン",
+    "area": 6,
+    "latitude": "35.631510",
+    "longitude": "139.878950",
+    "created_at": "2025-02-19T03:36:49.469Z",
+    "updated_at": "2025-02-19T03:36:49.469Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 49,
+  "fields": {
+    "store_name": "ル・フウズ",
+    "area": 6,
+    "latitude": "35.632070",
+    "longitude": "139.878780",
+    "created_at": "2025-02-19T03:37:33.508Z",
+    "updated_at": "2025-02-19T03:37:33.508Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 50,
+  "fields": {
+    "store_name": "ル・プティポッパー",
+    "area": 6,
+    "latitude": "35.631960",
+    "longitude": "139.878440",
+    "created_at": "2025-02-19T03:38:20.663Z",
+    "updated_at": "2025-02-19T03:38:20.663Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 51,
+  "fields": {
+    "store_name": "ポップコーンワゴン（キャッスルカルーセル横）",
+    "area": 6,
+    "latitude": "35.632350",
+    "longitude": "139.881280",
+    "created_at": "2025-02-19T03:39:07.760Z",
+    "updated_at": "2025-02-19T03:39:07.760Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 52,
+  "fields": {
+    "store_name": "ポップコーンワゴン（プーさんのハニーハント前）",
+    "area": 6,
+    "latitude": "35.631950",
+    "longitude": "139.880180",
+    "created_at": "2025-02-19T03:39:58.586Z",
+    "updated_at": "2025-02-19T03:39:58.586Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 53,
+  "fields": {
+    "store_name": "トゥーンタウン・トリート",
+    "area": 7,
+    "latitude": "35.630970",
+    "longitude": "139.879660",
+    "created_at": "2025-02-20T01:20:48.962Z",
+    "updated_at": "2025-02-20T01:20:48.962Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 54,
+  "fields": {
+    "store_name": "トゥーンポップ",
+    "area": 7,
+    "latitude": "35.630870",
+    "longitude": "139.880040",
+    "created_at": "2025-02-20T01:21:30.349Z",
+    "updated_at": "2025-02-20T01:21:30.349Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 55,
+  "fields": {
+    "store_name": "ヒューイ・デューイ・ルーイのグッドタイムカフェ",
+    "area": 7,
+    "latitude": "35.630850",
+    "longitude": "139.879720",
+    "created_at": "2025-02-20T01:22:30.074Z",
+    "updated_at": "2025-02-20T01:22:30.074Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 56,
+  "fields": {
+    "store_name": "ポップ・ア・ロット・ポップコーン",
+    "area": 7,
+    "latitude": "35.631190",
+    "longitude": "139.879840",
+    "created_at": "2025-02-20T01:24:31.987Z",
+    "updated_at": "2025-02-20T01:24:31.987Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 57,
+  "fields": {
+    "store_name": "ミッキーのトレーラー",
+    "area": 7,
+    "latitude": "35.631000",
+    "longitude": "139.878870",
+    "created_at": "2025-02-20T01:25:18.340Z",
+    "updated_at": "2025-02-20T01:25:18.340Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 58,
+  "fields": {
+    "store_name": "ソフトランディング",
+    "area": 8,
+    "latitude": "35.634000",
+    "longitude": "139.878760",
+    "created_at": "2025-02-20T01:26:06.507Z",
+    "updated_at": "2025-02-20T01:26:06.507Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 59,
+  "fields": {
+    "store_name": "トゥモローランド・テラス",
+    "area": 8,
+    "latitude": "35.632540",
+    "longitude": "139.879390",
+    "created_at": "2025-02-20T01:27:03.573Z",
+    "updated_at": "2025-02-20T01:27:03.573Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 60,
+  "fields": {
+    "store_name": "パン・ギャラクティック・ピザ・ポート",
+    "area": 8,
+    "latitude": "35.633820",
+    "longitude": "139.878480",
+    "created_at": "2025-02-20T01:28:00.952Z",
+    "updated_at": "2025-02-20T01:28:00.952Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 61,
+  "fields": {
+    "store_name": "ビッグポップ",
+    "area": 8,
+    "latitude": "35.632230",
+    "longitude": "139.878770",
+    "created_at": "2025-02-20T01:28:35.251Z",
+    "updated_at": "2025-02-20T01:28:35.251Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 62,
+  "fields": {
+    "store_name": "プラズマ・レイズ・ダイナー",
+    "area": 8,
+    "latitude": "35.634160",
+    "longitude": "139.879430",
+    "created_at": "2025-02-20T01:29:21.297Z",
+    "updated_at": "2025-02-20T01:29:21.297Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 63,
+  "fields": {
+    "store_name": "ポッピングポッド",
+    "area": 8,
+    "latitude": "35.633800",
+    "longitude": "139.878500",
+    "created_at": "2025-02-20T01:30:57.266Z",
+    "updated_at": "2025-02-20T01:30:57.266Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 64,
+  "fields": {
+    "store_name": "ポップコーンワゴン（トレジャーコメット横）",
+    "area": 8,
+    "latitude": "35.633130",
+    "longitude": "139.878890",
+    "created_at": "2025-02-20T01:31:47.962Z",
+    "updated_at": "2025-02-20T01:31:47.962Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 65,
+  "fields": {
+    "store_name": "カフェ・ポルトフィーノ",
+    "area": 9,
+    "latitude": "35.627730",
+    "longitude": "139.887230",
+    "created_at": "2025-03-18T15:23:24.705Z",
+    "updated_at": "2025-03-18T15:23:24.705Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 66,
+  "fields": {
+    "store_name": "ゴンドリエ・スナック",
+    "area": 9,
+    "latitude": "35.626560",
+    "longitude": "139.887170",
+    "created_at": "2025-03-18T15:23:48.166Z",
+    "updated_at": "2025-03-18T15:23:48.166Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 67,
+  "fields": {
+    "store_name": "ザンビーニ・ブラザーズ・リストランテ",
+    "area": 9,
+    "latitude": "35.627890",
+    "longitude": "139.886160",
+    "created_at": "2025-03-18T15:24:09.496Z",
+    "updated_at": "2025-03-18T15:24:09.496Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 68,
+  "fields": {
+    "store_name": "マゼランズ",
+    "area": 9,
+    "latitude": "35.626270",
+    "longitude": "139.885360",
+    "created_at": "2025-03-18T15:24:29.882Z",
+    "updated_at": "2025-03-18T15:24:29.882Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 69,
+  "fields": {
+    "store_name": "マンマ・ビスコッティーズ・ベーカリー",
+    "area": 9,
+    "latitude": "35.627630",
+    "longitude": "139.887740",
+    "created_at": "2025-03-18T15:24:48.350Z",
+    "updated_at": "2025-03-18T15:24:48.350Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 70,
+  "fields": {
+    "store_name": "リストランテ・ディ・カナレット",
+    "area": 9,
+    "latitude": "35.626070",
+    "longitude": "139.887960",
+    "created_at": "2025-03-18T15:25:06.294Z",
+    "updated_at": "2025-03-18T15:25:06.294Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 71,
+  "fields": {
+    "store_name": "リフレスコス",
+    "area": 9,
+    "latitude": "35.626800",
+    "longitude": "139.885070",
+    "created_at": "2025-03-18T15:25:32.217Z",
+    "updated_at": "2025-03-18T15:25:32.217Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 72,
+  "fields": {
+    "store_name": "ポップコーンワゴン（ソアリン：ファンタスティック",
+    "area": 9,
+    "latitude": "35.627900",
+    "longitude": "139.885810",
+    "created_at": "2025-03-18T15:25:55.249Z",
+    "updated_at": "2025-03-18T15:25:55.249Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 73,
+  "fields": {
+    "store_name": "S.S.コロンビア・ダイニングルーム",
+    "area": 10,
+    "latitude": "35.624200",
+    "longitude": "139.887100",
+    "created_at": "2025-03-18T15:26:14.317Z",
+    "updated_at": "2025-03-18T15:26:14.317Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 74,
+  "fields": {
+    "store_name": "ケープコッド・クックオフ",
+    "area": 10,
+    "latitude": "35.625380",
+    "longitude": "139.884680",
+    "created_at": "2025-03-18T15:26:39.519Z",
+    "updated_at": "2025-03-19T16:16:04.719Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 75,
+  "fields": {
+    "store_name": "ケープコッド・コンフェクション",
+    "area": 10,
+    "latitude": "35.625150",
+    "longitude": "139.884920",
+    "created_at": "2025-03-18T15:26:56.932Z",
+    "updated_at": "2025-03-18T15:26:56.932Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 76,
+  "fields": {
+    "store_name": "ドックサイドダイナー",
+    "area": 10,
+    "latitude": "35.624590",
+    "longitude": "139.887730",
+    "created_at": "2025-03-18T15:27:16.444Z",
+    "updated_at": "2025-03-18T15:27:16.444Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 77,
+  "fields": {
+    "store_name": "テディ・ルーズヴェルト・ラウンジ",
+    "area": 10,
+    "latitude": "35.624350",
+    "longitude": "139.887030",
+    "created_at": "2025-03-18T15:27:35.293Z",
+    "updated_at": "2025-03-18T15:27:35.293Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 78,
+  "fields": {
+    "store_name": "デランシー・ケータリング",
+    "area": 10,
+    "latitude": "35.625880",
+    "longitude": "139.887960",
+    "created_at": "2025-03-18T15:27:57.115Z",
+    "updated_at": "2025-03-18T15:27:57.115Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 79,
+  "fields": {
+    "store_name": "ニューヨーク・デリ",
+    "area": 10,
+    "latitude": "35.625920",
+    "longitude": "139.888210",
+    "created_at": "2025-03-18T15:28:21.198Z",
+    "updated_at": "2025-03-18T15:28:21.198Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 80,
+  "fields": {
+    "store_name": "バーナクル・ビルズ",
+    "area": 10,
+    "latitude": "35.624580",
+    "longitude": "139.886800",
+    "created_at": "2025-03-18T15:28:40.134Z",
+    "updated_at": "2025-03-18T15:28:40.134Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 81,
+  "fields": {
+    "store_name": "ハドソンリバー・ハーベスト",
+    "area": 10,
+    "latitude": "35.624910",
+    "longitude": "139.887670",
+    "created_at": "2025-03-18T15:29:03.258Z",
+    "updated_at": "2025-03-18T15:29:03.258Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 82,
+  "fields": {
+    "store_name": "リバティ・ランディング・ダイナー",
+    "area": 10,
+    "latitude": "35.625170",
+    "longitude": "139.887360",
+    "created_at": "2025-03-18T15:29:19.177Z",
+    "updated_at": "2025-03-18T15:29:19.177Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 83,
+  "fields": {
+    "store_name": "レストラン櫻",
+    "area": 10,
+    "latitude": "35.625800",
+    "longitude": "139.887370",
+    "created_at": "2025-03-18T15:29:40.006Z",
+    "updated_at": "2025-03-18T15:29:40.006Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 84,
+  "fields": {
+    "store_name": "ポップコーンワゴン（ケープコッド・ブックオフ前）",
+    "area": 10,
+    "latitude": "35.625130",
+    "longitude": "139.885180",
+    "created_at": "2025-03-18T15:30:16.990Z",
+    "updated_at": "2025-03-18T15:30:16.990Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 85,
+  "fields": {
+    "store_name": "ポップコーンワゴン（ドックサイドステージ前）",
+    "area": 10,
+    "latitude": "35.624880",
+    "longitude": "139.887040",
+    "created_at": "2025-03-18T15:30:33.793Z",
+    "updated_at": "2025-03-18T15:30:33.793Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 86,
+  "fields": {
+    "store_name": "ポップコーンワゴン（リドアイル前）",
+    "area": 10,
+    "latitude": "35.626230",
+    "longitude": "139.887080",
+    "created_at": "2025-03-18T15:30:48.911Z",
+    "updated_at": "2025-03-18T15:30:48.911Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 87,
+  "fields": {
+    "store_name": "ポップコーンワゴン（リバティ・ランディング・ダイ",
+    "area": 10,
+    "latitude": "35.625070",
+    "longitude": "139.887380",
+    "created_at": "2025-03-18T16:05:54.653Z",
+    "updated_at": "2025-03-18T16:05:54.653Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 88,
+  "fields": {
+    "store_name": "シーサイドスナック",
+    "area": 11,
+    "latitude": "35.625170",
+    "longitude": "139.883820",
+    "created_at": "2025-03-18T16:06:18.513Z",
+    "updated_at": "2025-03-18T16:06:18.513Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 89,
+  "fields": {
+    "store_name": "ブリーズウェイ・バイツ",
+    "area": 11,
+    "latitude": "35.626410",
+    "longitude": "139.883080",
+    "created_at": "2025-03-18T16:06:41.310Z",
+    "updated_at": "2025-03-18T16:06:41.310Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 90,
+  "fields": {
+    "store_name": "ベイサイド・テイクアウト",
+    "area": 11,
+    "latitude": "35.626230",
+    "longitude": "139.883210",
+    "created_at": "2025-03-18T16:09:50.300Z",
+    "updated_at": "2025-03-18T16:09:50.300Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 91,
+  "fields": {
+    "store_name": "ホライズンベイ・レストラン",
+    "area": 11,
+    "latitude": "35.626300",
+    "longitude": "139.883470",
+    "created_at": "2025-03-18T16:10:09.532Z",
+    "updated_at": "2025-03-18T16:10:09.532Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 92,
+  "fields": {
+    "store_name": "ポップコーンワゴン（アクアトピア横）",
+    "area": 11,
+    "latitude": "35.625540",
+    "longitude": "139.884500",
+    "created_at": "2025-03-18T16:10:55.243Z",
+    "updated_at": "2025-03-18T16:10:55.243Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 93,
+  "fields": {
+    "store_name": "エクスペディション・イート",
+    "area": 12,
+    "latitude": "35.627280",
+    "longitude": "139.881520",
+    "created_at": "2025-03-18T16:11:29.494Z",
+    "updated_at": "2025-03-18T16:11:29.494Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 94,
+  "fields": {
+    "store_name": "トロピック・アルズ",
+    "area": 12,
+    "latitude": "35.628170",
+    "longitude": "139.882490",
+    "created_at": "2025-03-18T16:12:03.538Z",
+    "updated_at": "2025-03-18T16:12:03.538Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 95,
+  "fields": {
+    "store_name": "ミゲルズ・エルドラド・キャンティーナ",
+    "area": 12,
+    "latitude": "35.627180",
+    "longitude": "139.882290",
+    "created_at": "2025-03-18T16:12:26.567Z",
+    "updated_at": "2025-03-18T16:12:26.567Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 96,
+  "fields": {
+    "store_name": "ユカタン・ベースキャンプ・グリル",
+    "area": 12,
+    "latitude": "35.628110",
+    "longitude": "139.881370",
+    "created_at": "2025-03-18T16:13:00.732Z",
+    "updated_at": "2025-03-18T16:13:00.732Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 97,
+  "fields": {
+    "store_name": "ロストリバークックハウス",
+    "area": 12,
+    "latitude": "35.628260",
+    "longitude": "139.881600",
+    "created_at": "2025-03-18T16:13:27.651Z",
+    "updated_at": "2025-03-18T16:13:27.652Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 98,
+  "fields": {
+    "store_name": "ポップコーンワゴン（ハンガーステージ横）",
+    "area": 12,
+    "latitude": "35.626650",
+    "longitude": "139.881880",
+    "created_at": "2025-03-18T16:13:49.174Z",
+    "updated_at": "2025-03-18T16:13:49.174Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 99,
+  "fields": {
+    "store_name": "アレンデール・ロイヤルバンケット",
+    "area": 13,
+    "latitude": "35.629990",
+    "longitude": "139.878380",
+    "created_at": "2025-03-18T16:14:12.746Z",
+    "updated_at": "2025-03-18T16:14:12.746Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 100,
+  "fields": {
+    "store_name": "オーケンのオーケーフード",
+    "area": 13,
+    "latitude": "35.629930",
+    "longitude": "139.878070",
+    "created_at": "2025-03-18T16:14:37.650Z",
+    "updated_at": "2025-03-18T16:14:37.650Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 101,
+  "fields": {
+    "store_name": "スナグリーダックリング",
+    "area": 13,
+    "latitude": "35.629950",
+    "longitude": "139.878660",
+    "created_at": "2025-03-18T16:14:59.184Z",
+    "updated_at": "2025-03-18T16:14:59.184Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 102,
+  "fields": {
+    "store_name": "ルックアウト・クックアウト",
+    "area": 13,
+    "latitude": "35.629100",
+    "longitude": "139.878150",
+    "created_at": "2025-03-18T16:15:27.619Z",
+    "updated_at": "2025-03-18T16:15:27.619Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 103,
+  "fields": {
+    "store_name": "ポップコーンワゴン（フェアリー・ティンカーベルの",
+    "area": 13,
+    "latitude": "35.629590",
+    "longitude": "139.878040",
+    "created_at": "2025-03-18T16:15:52.349Z",
+    "updated_at": "2025-03-18T16:15:52.349Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 104,
+  "fields": {
+    "store_name": "オープンセサミ",
+    "area": 14,
+    "latitude": "35.636490",
+    "longitude": "139.881030",
+    "created_at": "2025-03-18T16:16:15.404Z",
+    "updated_at": "2025-03-18T16:16:15.404Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 105,
+  "fields": {
+    "store_name": "カスバ・フードコート",
+    "area": 14,
+    "latitude": "35.629130",
+    "longitude": "139.882590",
+    "created_at": "2025-03-18T16:16:41.201Z",
+    "updated_at": "2025-03-18T16:16:41.201Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 106,
+  "fields": {
+    "store_name": "サルタンズ・オアシス",
+    "area": 14,
+    "latitude": "35.629040",
+    "longitude": "139.882310",
+    "created_at": "2025-03-18T16:17:02.838Z",
+    "updated_at": "2025-03-18T16:17:02.838Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 107,
+  "fields": {
+    "store_name": "ポップコーンワゴン（アラビアンコースト前）",
+    "area": 14,
+    "latitude": "35.628590",
+    "longitude": "139.882950",
+    "created_at": "2025-03-18T16:17:25.257Z",
+    "updated_at": "2025-03-18T16:17:25.257Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 108,
+  "fields": {
+    "store_name": "セバスチャンのカリプソキッチン",
+    "area": 15,
+    "latitude": "35.627440",
+    "longitude": "139.882950",
+    "created_at": "2025-03-18T16:17:49.568Z",
+    "updated_at": "2025-03-18T16:17:49.568Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 109,
+  "fields": {
+    "store_name": "ポップコーンワゴン（シータートル・スーヴェニア前",
+    "area": 15,
+    "latitude": "35.628060",
+    "longitude": "139.884010",
+    "created_at": "2025-03-18T16:18:15.470Z",
+    "updated_at": "2025-03-18T16:18:15.470Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 110,
+  "fields": {
+    "store_name": "ポップコーンワゴン（スカットルのスクーター前）",
+    "area": 15,
+    "latitude": "35.627720",
+    "longitude": "139.882640",
+    "created_at": "2025-03-18T16:18:42.033Z",
+    "updated_at": "2025-03-18T16:18:42.033Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 111,
+  "fields": {
+    "store_name": "ヴォルケイニア・レストラン",
+    "area": 16,
+    "latitude": "35.627350",
+    "longitude": "139.884540",
+    "created_at": "2025-03-18T16:19:02.507Z",
+    "updated_at": "2025-03-18T16:19:02.507Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 112,
+  "fields": {
+    "store_name": "ノーチラスギャレー",
+    "area": 16,
+    "latitude": "35.627020",
+    "longitude": "139.884250",
+    "created_at": "2025-03-18T16:19:41.103Z",
+    "updated_at": "2025-03-18T16:19:41.103Z"
+  }
+},
+{
+  "model": "app.store",
+  "pk": 113,
+  "fields": {
+    "store_name": "リフレッシュメント・ステーション",
+    "area": 16,
+    "latitude": "35.627350",
+    "longitude": "139.883830",
+    "created_at": "2025-03-18T16:20:06.323Z",
+    "updated_at": "2025-03-18T16:20:06.323Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 22,
+  "fields": {
+    "food": 14,
+    "store": 9,
+    "created_at": "2025-03-19T15:36:38.866Z",
+    "updated_at": "2025-03-19T15:36:38.866Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 23,
+  "fields": {
+    "food": 15,
+    "store": 9,
+    "created_at": "2025-03-19T15:36:59.970Z",
+    "updated_at": "2025-03-19T15:36:59.970Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 24,
+  "fields": {
+    "food": 16,
+    "store": 9,
+    "created_at": "2025-03-19T15:37:08.565Z",
+    "updated_at": "2025-03-19T15:37:08.565Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 25,
+  "fields": {
+    "food": 17,
+    "store": 11,
+    "created_at": "2025-03-19T15:38:15.462Z",
+    "updated_at": "2025-03-19T15:38:15.462Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 26,
+  "fields": {
+    "food": 18,
+    "store": 11,
+    "created_at": "2025-03-19T15:38:32.678Z",
+    "updated_at": "2025-03-19T15:38:32.678Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 27,
+  "fields": {
+    "food": 19,
+    "store": 11,
+    "created_at": "2025-03-19T15:38:40.506Z",
+    "updated_at": "2025-03-19T15:38:40.506Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 28,
+  "fields": {
+    "food": 20,
+    "store": 12,
+    "created_at": "2025-03-19T15:38:50.898Z",
+    "updated_at": "2025-03-19T15:38:50.898Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 29,
+  "fields": {
+    "food": 21,
+    "store": 13,
+    "created_at": "2025-03-19T15:39:12.570Z",
+    "updated_at": "2025-03-19T15:39:12.570Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 30,
+  "fields": {
+    "food": 22,
+    "store": 13,
+    "created_at": "2025-03-19T15:39:27.131Z",
+    "updated_at": "2025-03-19T15:39:27.131Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 31,
+  "fields": {
+    "food": 15,
+    "store": 13,
+    "created_at": "2025-03-19T15:39:38.030Z",
+    "updated_at": "2025-03-19T15:39:38.030Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 32,
+  "fields": {
+    "food": 24,
+    "store": 14,
+    "created_at": "2025-03-19T15:40:01.821Z",
+    "updated_at": "2025-03-19T15:40:01.821Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 33,
+  "fields": {
+    "food": 25,
+    "store": 14,
+    "created_at": "2025-03-19T15:40:10.426Z",
+    "updated_at": "2025-03-19T15:40:10.426Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 34,
+  "fields": {
+    "food": 26,
+    "store": 15,
+    "created_at": "2025-03-19T15:40:30.505Z",
+    "updated_at": "2025-03-19T15:40:30.505Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 35,
+  "fields": {
+    "food": 27,
+    "store": 15,
+    "created_at": "2025-03-19T15:40:39.426Z",
+    "updated_at": "2025-03-19T15:40:39.426Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 36,
+  "fields": {
+    "food": 28,
+    "store": 16,
+    "created_at": "2025-03-19T15:40:59.261Z",
+    "updated_at": "2025-03-19T15:40:59.261Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 37,
+  "fields": {
+    "food": 29,
+    "store": 16,
+    "created_at": "2025-03-19T15:41:06.209Z",
+    "updated_at": "2025-03-19T15:41:06.209Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 38,
+  "fields": {
+    "food": 30,
+    "store": 17,
+    "created_at": "2025-03-19T15:41:46.051Z",
+    "updated_at": "2025-03-19T15:41:46.051Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 39,
+  "fields": {
+    "food": 31,
+    "store": 18,
+    "created_at": "2025-03-19T15:41:59.408Z",
+    "updated_at": "2025-03-19T15:41:59.408Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 40,
+  "fields": {
+    "food": 15,
+    "store": 18,
+    "created_at": "2025-03-19T15:42:10.107Z",
+    "updated_at": "2025-03-19T15:42:10.107Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 41,
+  "fields": {
+    "food": 33,
+    "store": 19,
+    "created_at": "2025-03-19T15:42:23.026Z",
+    "updated_at": "2025-03-19T15:42:23.026Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 42,
+  "fields": {
+    "food": 15,
+    "store": 20,
+    "created_at": "2025-03-19T15:42:43.975Z",
+    "updated_at": "2025-03-19T15:42:43.975Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 43,
+  "fields": {
+    "food": 35,
+    "store": 20,
+    "created_at": "2025-03-19T15:42:53.592Z",
+    "updated_at": "2025-03-19T15:42:53.592Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 44,
+  "fields": {
+    "food": 36,
+    "store": 21,
+    "created_at": "2025-03-19T15:43:05.020Z",
+    "updated_at": "2025-03-19T15:43:05.020Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 45,
+  "fields": {
+    "food": 37,
+    "store": 22,
+    "created_at": "2025-03-19T15:43:32.689Z",
+    "updated_at": "2025-03-19T15:43:32.690Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 46,
+  "fields": {
+    "food": 15,
+    "store": 22,
+    "created_at": "2025-03-19T15:43:43.938Z",
+    "updated_at": "2025-03-19T15:43:43.938Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 47,
+  "fields": {
+    "food": 39,
+    "store": 23,
+    "created_at": "2025-03-19T15:44:06.430Z",
+    "updated_at": "2025-03-19T15:44:06.430Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 48,
+  "fields": {
+    "food": 40,
+    "store": 23,
+    "created_at": "2025-03-19T15:44:15.921Z",
+    "updated_at": "2025-03-19T15:44:15.921Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 49,
+  "fields": {
+    "food": 41,
+    "store": 24,
+    "created_at": "2025-03-19T15:44:31.892Z",
+    "updated_at": "2025-03-19T15:44:31.892Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 50,
+  "fields": {
+    "food": 42,
+    "store": 25,
+    "created_at": "2025-03-19T15:44:51.037Z",
+    "updated_at": "2025-03-19T15:44:51.037Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 51,
+  "fields": {
+    "food": 43,
+    "store": 25,
+    "created_at": "2025-03-19T15:45:05.974Z",
+    "updated_at": "2025-03-19T15:45:05.975Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 52,
+  "fields": {
+    "food": 44,
+    "store": 26,
+    "created_at": "2025-03-19T15:45:26.925Z",
+    "updated_at": "2025-03-19T15:45:26.925Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 53,
+  "fields": {
+    "food": 45,
+    "store": 26,
+    "created_at": "2025-03-19T15:45:37.267Z",
+    "updated_at": "2025-03-19T15:45:37.267Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 54,
+  "fields": {
+    "food": 46,
+    "store": 27,
+    "created_at": "2025-03-19T15:47:07.001Z",
+    "updated_at": "2025-03-19T15:47:07.001Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 55,
+  "fields": {
+    "food": 47,
+    "store": 28,
+    "created_at": "2025-03-19T15:47:29.400Z",
+    "updated_at": "2025-03-19T15:47:29.400Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 56,
+  "fields": {
+    "food": 48,
+    "store": 28,
+    "created_at": "2025-03-19T15:47:45.503Z",
+    "updated_at": "2025-03-19T15:47:45.503Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 57,
+  "fields": {
+    "food": 49,
+    "store": 29,
+    "created_at": "2025-03-19T15:48:07.585Z",
+    "updated_at": "2025-03-19T15:48:07.585Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 58,
+  "fields": {
+    "food": 50,
+    "store": 29,
+    "created_at": "2025-03-19T15:48:19.417Z",
+    "updated_at": "2025-03-19T15:48:19.417Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 59,
+  "fields": {
+    "food": 30,
+    "store": 30,
+    "created_at": "2025-03-19T15:48:38.209Z",
+    "updated_at": "2025-03-19T15:48:38.209Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 60,
+  "fields": {
+    "food": 52,
+    "store": 31,
+    "created_at": "2025-03-19T15:48:54.368Z",
+    "updated_at": "2025-03-19T15:48:54.368Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 61,
+  "fields": {
+    "food": 53,
+    "store": 32,
+    "created_at": "2025-03-19T15:49:17.633Z",
+    "updated_at": "2025-03-19T15:49:17.633Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 62,
+  "fields": {
+    "food": 15,
+    "store": 33,
+    "created_at": "2025-03-19T15:49:25.797Z",
+    "updated_at": "2025-03-19T15:49:25.797Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 63,
+  "fields": {
+    "food": 55,
+    "store": 33,
+    "created_at": "2025-03-19T15:49:45.917Z",
+    "updated_at": "2025-03-19T15:49:45.917Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 64,
+  "fields": {
+    "food": 56,
+    "store": 33,
+    "created_at": "2025-03-19T15:50:00.927Z",
+    "updated_at": "2025-03-19T15:50:00.927Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 65,
+  "fields": {
+    "food": 57,
+    "store": 34,
+    "created_at": "2025-03-19T15:50:25.583Z",
+    "updated_at": "2025-03-19T15:50:25.583Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 66,
+  "fields": {
+    "food": 58,
+    "store": 34,
+    "created_at": "2025-03-19T15:50:42.311Z",
+    "updated_at": "2025-03-19T15:50:42.311Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 67,
+  "fields": {
+    "food": 59,
+    "store": 35,
+    "created_at": "2025-03-19T15:50:54.895Z",
+    "updated_at": "2025-03-19T15:50:54.895Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 68,
+  "fields": {
+    "food": 60,
+    "store": 35,
+    "created_at": "2025-03-19T15:51:07.375Z",
+    "updated_at": "2025-03-19T15:51:07.375Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 69,
+  "fields": {
+    "food": 15,
+    "store": 36,
+    "created_at": "2025-03-19T15:51:31.435Z",
+    "updated_at": "2025-03-19T15:51:31.435Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 70,
+  "fields": {
+    "food": 62,
+    "store": 36,
+    "created_at": "2025-03-19T15:51:49.943Z",
+    "updated_at": "2025-03-19T15:51:49.943Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 71,
+  "fields": {
+    "food": 41,
+    "store": 37,
+    "created_at": "2025-03-19T15:52:12.136Z",
+    "updated_at": "2025-03-19T15:52:12.136Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 72,
+  "fields": {
+    "food": 64,
+    "store": 37,
+    "created_at": "2025-03-19T15:52:23.209Z",
+    "updated_at": "2025-03-19T15:52:23.209Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 73,
+  "fields": {
+    "food": 65,
+    "store": 38,
+    "created_at": "2025-03-19T15:52:38.085Z",
+    "updated_at": "2025-03-19T15:52:38.085Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 74,
+  "fields": {
+    "food": 66,
+    "store": 39,
+    "created_at": "2025-03-19T15:52:50.408Z",
+    "updated_at": "2025-03-19T15:52:50.408Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 75,
+  "fields": {
+    "food": 67,
+    "store": 40,
+    "created_at": "2025-03-19T15:53:21.753Z",
+    "updated_at": "2025-03-19T15:53:21.753Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 76,
+  "fields": {
+    "food": 68,
+    "store": 40,
+    "created_at": "2025-03-19T15:53:52.996Z",
+    "updated_at": "2025-03-19T15:53:52.996Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 77,
+  "fields": {
+    "food": 69,
+    "store": 41,
+    "created_at": "2025-03-19T15:54:07.620Z",
+    "updated_at": "2025-03-19T15:54:07.620Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 78,
+  "fields": {
+    "food": 70,
+    "store": 41,
+    "created_at": "2025-03-19T15:54:19.244Z",
+    "updated_at": "2025-03-19T15:54:19.244Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 79,
+  "fields": {
+    "food": 71,
+    "store": 42,
+    "created_at": "2025-03-19T15:54:35.536Z",
+    "updated_at": "2025-03-19T15:54:35.536Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 80,
+  "fields": {
+    "food": 72,
+    "store": 42,
+    "created_at": "2025-03-19T15:54:49.181Z",
+    "updated_at": "2025-03-19T15:54:49.181Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 81,
+  "fields": {
+    "food": 73,
+    "store": 43,
+    "created_at": "2025-03-19T15:55:14.494Z",
+    "updated_at": "2025-03-19T15:55:14.494Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 82,
+  "fields": {
+    "food": 74,
+    "store": 43,
+    "created_at": "2025-03-19T15:55:26.381Z",
+    "updated_at": "2025-03-19T15:55:26.381Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 83,
+  "fields": {
+    "food": 49,
+    "store": 44,
+    "created_at": "2025-03-19T15:55:49.292Z",
+    "updated_at": "2025-03-19T15:55:49.292Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 84,
+  "fields": {
+    "food": 76,
+    "store": 44,
+    "created_at": "2025-03-19T15:56:04.045Z",
+    "updated_at": "2025-03-19T15:56:04.045Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 85,
+  "fields": {
+    "food": 77,
+    "store": 45,
+    "created_at": "2025-03-19T15:56:28.258Z",
+    "updated_at": "2025-03-19T15:56:28.258Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 86,
+  "fields": {
+    "food": 78,
+    "store": 45,
+    "created_at": "2025-03-19T15:56:43.298Z",
+    "updated_at": "2025-03-19T15:56:43.298Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 87,
+  "fields": {
+    "food": 79,
+    "store": 46,
+    "created_at": "2025-03-19T15:57:00.688Z",
+    "updated_at": "2025-03-19T15:57:00.688Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 88,
+  "fields": {
+    "food": 15,
+    "store": 47,
+    "created_at": "2025-03-19T15:57:12.413Z",
+    "updated_at": "2025-03-19T15:57:12.413Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 89,
+  "fields": {
+    "food": 81,
+    "store": 47,
+    "created_at": "2025-03-19T15:57:27.566Z",
+    "updated_at": "2025-03-19T15:57:27.566Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 90,
+  "fields": {
+    "food": 82,
+    "store": 48,
+    "created_at": "2025-03-19T15:57:46.217Z",
+    "updated_at": "2025-03-19T15:57:46.217Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 91,
+  "fields": {
+    "food": 83,
+    "store": 48,
+    "created_at": "2025-03-19T15:57:58.839Z",
+    "updated_at": "2025-03-19T15:57:58.839Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 92,
+  "fields": {
+    "food": 84,
+    "store": 49,
+    "created_at": "2025-03-19T15:58:39.225Z",
+    "updated_at": "2025-03-19T15:58:39.225Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 93,
+  "fields": {
+    "food": 30,
+    "store": 50,
+    "created_at": "2025-03-19T15:59:28.750Z",
+    "updated_at": "2025-03-19T15:59:28.750Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 94,
+  "fields": {
+    "food": 86,
+    "store": 51,
+    "created_at": "2025-03-19T15:59:41.984Z",
+    "updated_at": "2025-03-19T15:59:41.984Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 95,
+  "fields": {
+    "food": 87,
+    "store": 52,
+    "created_at": "2025-03-19T15:59:57.150Z",
+    "updated_at": "2025-03-19T15:59:57.150Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 96,
+  "fields": {
+    "food": 46,
+    "store": 53,
+    "created_at": "2025-03-19T16:00:12.442Z",
+    "updated_at": "2025-03-19T16:00:12.442Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 97,
+  "fields": {
+    "food": 89,
+    "store": 54,
+    "created_at": "2025-03-19T16:00:28.051Z",
+    "updated_at": "2025-03-19T16:00:28.051Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 98,
+  "fields": {
+    "food": 81,
+    "store": 55,
+    "created_at": "2025-03-19T16:00:59.724Z",
+    "updated_at": "2025-03-19T16:00:59.724Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 99,
+  "fields": {
+    "food": 91,
+    "store": 55,
+    "created_at": "2025-03-19T16:01:27.035Z",
+    "updated_at": "2025-03-19T16:01:27.035Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 100,
+  "fields": {
+    "food": 89,
+    "store": 56,
+    "created_at": "2025-03-19T16:01:49.884Z",
+    "updated_at": "2025-03-19T16:01:49.884Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 101,
+  "fields": {
+    "food": 93,
+    "store": 57,
+    "created_at": "2025-03-19T16:02:04.166Z",
+    "updated_at": "2025-03-19T16:02:04.166Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 102,
+  "fields": {
+    "food": 21,
+    "store": 59,
+    "created_at": "2025-03-19T16:02:25.898Z",
+    "updated_at": "2025-03-19T16:02:25.898Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 103,
+  "fields": {
+    "food": 95,
+    "store": 59,
+    "created_at": "2025-03-19T16:02:47.606Z",
+    "updated_at": "2025-03-19T16:02:47.606Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 104,
+  "fields": {
+    "food": 96,
+    "store": 60,
+    "created_at": "2025-03-19T16:03:18.816Z",
+    "updated_at": "2025-03-19T16:03:18.816Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 105,
+  "fields": {
+    "food": 97,
+    "store": 60,
+    "created_at": "2025-03-19T16:03:43.903Z",
+    "updated_at": "2025-03-19T16:03:43.903Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 106,
+  "fields": {
+    "food": 98,
+    "store": 61,
+    "created_at": "2025-03-19T16:03:59.800Z",
+    "updated_at": "2025-03-19T16:03:59.800Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 107,
+  "fields": {
+    "food": 99,
+    "store": 62,
+    "created_at": "2025-03-19T16:04:32.854Z",
+    "updated_at": "2025-03-19T16:04:32.854Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 108,
+  "fields": {
+    "food": 100,
+    "store": 62,
+    "created_at": "2025-03-19T16:05:04.271Z",
+    "updated_at": "2025-03-19T16:05:04.271Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 109,
+  "fields": {
+    "food": 30,
+    "store": 63,
+    "created_at": "2025-03-19T16:05:26.187Z",
+    "updated_at": "2025-03-19T16:05:26.187Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 110,
+  "fields": {
+    "food": 102,
+    "store": 64,
+    "created_at": "2025-03-19T16:05:43.315Z",
+    "updated_at": "2025-03-19T16:05:43.315Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 111,
+  "fields": {
+    "food": 103,
+    "store": 65,
+    "created_at": "2025-03-19T16:09:13.598Z",
+    "updated_at": "2025-03-19T16:09:13.598Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 112,
+  "fields": {
+    "food": 104,
+    "store": 65,
+    "created_at": "2025-03-19T16:09:30.025Z",
+    "updated_at": "2025-03-19T16:09:30.025Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 113,
+  "fields": {
+    "food": 105,
+    "store": 66,
+    "created_at": "2025-03-19T16:09:49.057Z",
+    "updated_at": "2025-03-19T16:09:49.057Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 114,
+  "fields": {
+    "food": 106,
+    "store": 66,
+    "created_at": "2025-03-19T16:10:07.122Z",
+    "updated_at": "2025-03-19T16:10:07.122Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 115,
+  "fields": {
+    "food": 107,
+    "store": 67,
+    "created_at": "2025-03-19T16:10:33.523Z",
+    "updated_at": "2025-03-19T16:10:33.523Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 116,
+  "fields": {
+    "food": 108,
+    "store": 67,
+    "created_at": "2025-03-19T16:10:53.024Z",
+    "updated_at": "2025-03-19T16:10:53.024Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 117,
+  "fields": {
+    "food": 109,
+    "store": 68,
+    "created_at": "2025-03-19T16:11:17.663Z",
+    "updated_at": "2025-03-19T16:11:17.663Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 118,
+  "fields": {
+    "food": 110,
+    "store": 68,
+    "created_at": "2025-03-19T16:11:37.442Z",
+    "updated_at": "2025-03-19T16:11:37.442Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 119,
+  "fields": {
+    "food": 111,
+    "store": 69,
+    "created_at": "2025-03-19T16:11:59.030Z",
+    "updated_at": "2025-03-19T16:11:59.030Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 120,
+  "fields": {
+    "food": 112,
+    "store": 69,
+    "created_at": "2025-03-19T16:12:19.606Z",
+    "updated_at": "2025-03-19T16:12:19.606Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 121,
+  "fields": {
+    "food": 113,
+    "store": 70,
+    "created_at": "2025-03-19T16:13:03.925Z",
+    "updated_at": "2025-03-19T16:13:03.925Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 122,
+  "fields": {
+    "food": 114,
+    "store": 70,
+    "created_at": "2025-03-19T16:13:24.796Z",
+    "updated_at": "2025-03-19T16:13:24.796Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 123,
+  "fields": {
+    "food": 53,
+    "store": 71,
+    "created_at": "2025-03-19T16:13:48.891Z",
+    "updated_at": "2025-03-19T16:13:48.891Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 124,
+  "fields": {
+    "food": 116,
+    "store": 71,
+    "created_at": "2025-03-19T16:14:08.695Z",
+    "updated_at": "2025-03-19T16:14:08.695Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 125,
+  "fields": {
+    "food": 65,
+    "store": 72,
+    "created_at": "2025-03-19T16:14:22.560Z",
+    "updated_at": "2025-03-19T16:14:22.560Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 126,
+  "fields": {
+    "food": 118,
+    "store": 73,
+    "created_at": "2025-03-19T16:14:35.824Z",
+    "updated_at": "2025-03-19T16:14:35.824Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 127,
+  "fields": {
+    "food": 119,
+    "store": 73,
+    "created_at": "2025-03-19T16:14:50.824Z",
+    "updated_at": "2025-03-19T16:14:50.824Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 128,
+  "fields": {
+    "food": 120,
+    "store": 74,
+    "created_at": "2025-03-19T16:16:31.745Z",
+    "updated_at": "2025-03-19T16:16:31.745Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 129,
+  "fields": {
+    "food": 121,
+    "store": 74,
+    "created_at": "2025-03-19T16:17:04.096Z",
+    "updated_at": "2025-03-19T16:17:04.096Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 130,
+  "fields": {
+    "food": 122,
+    "store": 75,
+    "created_at": "2025-03-19T16:17:22.846Z",
+    "updated_at": "2025-03-19T16:17:22.846Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 131,
+  "fields": {
+    "food": 123,
+    "store": 76,
+    "created_at": "2025-03-19T16:18:03.411Z",
+    "updated_at": "2025-03-19T16:18:03.411Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 132,
+  "fields": {
+    "food": 41,
+    "store": 76,
+    "created_at": "2025-03-19T16:18:21.713Z",
+    "updated_at": "2025-03-19T16:18:21.713Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 133,
+  "fields": {
+    "food": 125,
+    "store": 77,
+    "created_at": "2025-03-19T16:18:41.834Z",
+    "updated_at": "2025-03-19T16:18:41.834Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 134,
+  "fields": {
+    "food": 126,
+    "store": 77,
+    "created_at": "2025-03-19T16:19:07.127Z",
+    "updated_at": "2025-03-19T16:19:07.127Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 135,
+  "fields": {
+    "food": 26,
+    "store": 78,
+    "created_at": "2025-03-19T16:19:25.864Z",
+    "updated_at": "2025-03-19T16:19:25.864Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 136,
+  "fields": {
+    "food": 128,
+    "store": 79,
+    "created_at": "2025-03-19T16:20:03.589Z",
+    "updated_at": "2025-03-19T16:20:03.589Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 137,
+  "fields": {
+    "food": 82,
+    "store": 79,
+    "created_at": "2025-03-19T16:20:17.627Z",
+    "updated_at": "2025-03-19T16:20:17.627Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 138,
+  "fields": {
+    "food": 130,
+    "store": 80,
+    "created_at": "2025-03-19T16:20:44.170Z",
+    "updated_at": "2025-03-19T16:20:44.170Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 139,
+  "fields": {
+    "food": 131,
+    "store": 81,
+    "created_at": "2025-03-19T16:21:09.648Z",
+    "updated_at": "2025-03-19T16:21:09.648Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 140,
+  "fields": {
+    "food": 132,
+    "store": 81,
+    "created_at": "2025-03-19T16:21:26.133Z",
+    "updated_at": "2025-03-19T16:21:26.133Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 141,
+  "fields": {
+    "food": 133,
+    "store": 82,
+    "created_at": "2025-03-19T16:21:44.063Z",
+    "updated_at": "2025-03-19T16:21:44.063Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 142,
+  "fields": {
+    "food": 134,
+    "store": 83,
+    "created_at": "2025-03-19T16:22:00.395Z",
+    "updated_at": "2025-03-19T16:22:00.395Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 143,
+  "fields": {
+    "food": 135,
+    "store": 83,
+    "created_at": "2025-03-19T16:22:15.462Z",
+    "updated_at": "2025-03-19T16:22:15.462Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 144,
+  "fields": {
+    "food": 89,
+    "store": 84,
+    "created_at": "2025-03-19T16:22:51.506Z",
+    "updated_at": "2025-03-19T16:22:51.506Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 145,
+  "fields": {
+    "food": 137,
+    "store": 85,
+    "created_at": "2025-03-19T16:23:09.765Z",
+    "updated_at": "2025-03-19T16:23:09.765Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 146,
+  "fields": {
+    "food": 30,
+    "store": 86,
+    "created_at": "2025-03-19T16:23:19.399Z",
+    "updated_at": "2025-03-19T16:23:19.399Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 147,
+  "fields": {
+    "food": 139,
+    "store": 87,
+    "created_at": "2025-03-19T16:23:40.809Z",
+    "updated_at": "2025-03-19T16:23:40.809Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 148,
+  "fields": {
+    "food": 140,
+    "store": 88,
+    "created_at": "2025-03-19T16:23:57.517Z",
+    "updated_at": "2025-03-19T16:23:57.517Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 149,
+  "fields": {
+    "food": 141,
+    "store": 89,
+    "created_at": "2025-03-19T16:24:19.592Z",
+    "updated_at": "2025-03-19T16:24:19.592Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 150,
+  "fields": {
+    "food": 142,
+    "store": 90,
+    "created_at": "2025-03-19T16:24:51.670Z",
+    "updated_at": "2025-03-19T16:24:51.670Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 151,
+  "fields": {
+    "food": 143,
+    "store": 90,
+    "created_at": "2025-03-19T16:25:09.347Z",
+    "updated_at": "2025-03-19T16:25:09.347Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 152,
+  "fields": {
+    "food": 144,
+    "store": 91,
+    "created_at": "2025-03-19T16:25:38.208Z",
+    "updated_at": "2025-03-19T16:25:38.208Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 153,
+  "fields": {
+    "food": 145,
+    "store": 91,
+    "created_at": "2025-03-19T16:25:57.583Z",
+    "updated_at": "2025-03-19T16:25:57.583Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 154,
+  "fields": {
+    "food": 52,
+    "store": 92,
+    "created_at": "2025-03-19T16:26:12.285Z",
+    "updated_at": "2025-03-19T16:26:12.285Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 155,
+  "fields": {
+    "food": 147,
+    "store": 93,
+    "created_at": "2025-03-19T16:26:27.355Z",
+    "updated_at": "2025-03-19T16:26:27.355Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 156,
+  "fields": {
+    "food": 148,
+    "store": 94,
+    "created_at": "2025-03-19T16:26:46.428Z",
+    "updated_at": "2025-03-19T16:26:46.428Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 157,
+  "fields": {
+    "food": 149,
+    "store": 94,
+    "created_at": "2025-03-19T16:27:05.081Z",
+    "updated_at": "2025-03-19T16:27:05.081Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 158,
+  "fields": {
+    "food": 150,
+    "store": 95,
+    "created_at": "2025-03-19T16:40:01.445Z",
+    "updated_at": "2025-03-19T16:40:01.445Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 159,
+  "fields": {
+    "food": 151,
+    "store": 96,
+    "created_at": "2025-03-19T16:40:11.793Z",
+    "updated_at": "2025-03-19T16:40:11.793Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 160,
+  "fields": {
+    "food": 152,
+    "store": 97,
+    "created_at": "2025-03-19T16:40:22.711Z",
+    "updated_at": "2025-03-19T16:40:22.711Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 161,
+  "fields": {
+    "food": 102,
+    "store": 98,
+    "created_at": "2025-03-19T16:40:44.105Z",
+    "updated_at": "2025-03-19T16:40:44.105Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 162,
+  "fields": {
+    "food": 154,
+    "store": 99,
+    "created_at": "2025-03-19T16:40:56.407Z",
+    "updated_at": "2025-03-19T16:40:56.407Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 163,
+  "fields": {
+    "food": 155,
+    "store": 100,
+    "created_at": "2025-03-19T16:41:14.099Z",
+    "updated_at": "2025-03-19T16:41:14.099Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 164,
+  "fields": {
+    "food": 156,
+    "store": 101,
+    "created_at": "2025-03-19T16:41:40.103Z",
+    "updated_at": "2025-03-19T16:41:40.103Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 165,
+  "fields": {
+    "food": 157,
+    "store": 102,
+    "created_at": "2025-03-19T16:41:51.891Z",
+    "updated_at": "2025-03-19T16:41:51.891Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 166,
+  "fields": {
+    "food": 158,
+    "store": 103,
+    "created_at": "2025-03-19T16:42:08.999Z",
+    "updated_at": "2025-03-19T16:42:08.999Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 167,
+  "fields": {
+    "food": 159,
+    "store": 104,
+    "created_at": "2025-03-19T16:42:26.292Z",
+    "updated_at": "2025-03-19T16:42:26.292Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 168,
+  "fields": {
+    "food": 160,
+    "store": 105,
+    "created_at": "2025-03-19T16:42:38.060Z",
+    "updated_at": "2025-03-19T16:42:38.060Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 169,
+  "fields": {
+    "food": 16,
+    "store": 106,
+    "created_at": "2025-03-19T16:43:26.658Z",
+    "updated_at": "2025-03-19T16:43:26.658Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 170,
+  "fields": {
+    "food": 66,
+    "store": 107,
+    "created_at": "2025-03-19T16:43:45.843Z",
+    "updated_at": "2025-03-19T16:43:45.843Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 171,
+  "fields": {
+    "food": 163,
+    "store": 108,
+    "created_at": "2025-03-19T16:43:58.459Z",
+    "updated_at": "2025-03-19T16:43:58.459Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 172,
+  "fields": {
+    "food": 30,
+    "store": 109,
+    "created_at": "2025-03-19T16:44:08.556Z",
+    "updated_at": "2025-03-19T16:44:08.556Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 173,
+  "fields": {
+    "food": 165,
+    "store": 110,
+    "created_at": "2025-03-19T16:44:22.843Z",
+    "updated_at": "2025-03-19T16:44:22.843Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 174,
+  "fields": {
+    "food": 166,
+    "store": 111,
+    "created_at": "2025-03-19T16:44:36.811Z",
+    "updated_at": "2025-03-19T16:44:36.811Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 175,
+  "fields": {
+    "food": 82,
+    "store": 112,
+    "created_at": "2025-03-19T16:44:48.256Z",
+    "updated_at": "2025-03-19T16:44:48.256Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 176,
+  "fields": {
+    "food": 168,
+    "store": 112,
+    "created_at": "2025-03-19T16:44:58.257Z",
+    "updated_at": "2025-03-19T16:44:58.257Z"
+  }
+},
+{
+  "model": "app.foodstore",
+  "pk": 177,
+  "fields": {
+    "food": 169,
+    "store": 113,
+    "created_at": "2025-03-19T16:45:08.313Z",
+    "updated_at": "2025-03-19T16:45:08.313Z"
+  }
+}
+]
