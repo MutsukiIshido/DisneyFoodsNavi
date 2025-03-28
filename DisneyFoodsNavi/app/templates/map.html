@@ -66,51 +66,55 @@
     <h1>マップ（検索結果）画面</h1>
 
     <!-- 検索フォーム -->
-    <div class="search-container">
-        <input type="text" id="food-name" placeholder="フード名を入力">
-       <!-- カテゴリ -->
-        <select id="category" name="category">
-            <option value="">カテゴリを選択</option>
-            <option value="10" {% if category == "10" %}selected{% endif %}>メインディッシュ</option>
-            <option value="11" {% if category == "11" %}selected{% endif %}>軽食</option>
-            <option value="12" {% if category == "12" %}selected{% endif %}>サイドメニュー</option>
-            <option value="13" {% if category == "13" %}selected{% endif %}>キッズメニュー</option>
-            <option value="14" {% if category == "14" %}selected{% endif %}>デザート</option>
-            <option value="15" {% if category == "15" %}selected{% endif %}>ドリンク</option>
-            <option value="16" {% if category == "16" %}selected{% endif %}>アルコールドリンク</option>
-        </select>
+    <form id="search-form" method="get" action="{% url 'map' %}">
+        <div class="search-container">
+            <!-- キーワード -->
+            <input type="text" id="food-name" placeholder="フード名を入力">
+            
+            <!-- カテゴリ -->
+            <select id="category" name="category">
+                <option value="">カテゴリを選択</option>
+                <option value="10" {% if category == "10" %}selected{% endif %}>メインディッシュ</option>
+                <option value="11" {% if category == "11" %}selected{% endif %}>軽食</option>
+                <option value="12" {% if category == "12" %}selected{% endif %}>サイドメニュー</option>
+                <option value="13" {% if category == "13" %}selected{% endif %}>キッズメニュー</option>
+                <option value="14" {% if category == "14" %}selected{% endif %}>デザート</option>
+                <option value="15" {% if category == "15" %}selected{% endif %}>ドリンク</option>
+                <option value="16" {% if category == "16" %}selected{% endif %}>アルコールドリンク</option>
+            </select>
 
-        <!-- 価格帯 -->
-        <select id="price-range">
-            <option value="">価格帯を選択</option>
-            <option value="0" {% if price_range == "0" %}selected{% endif %}>~500円</option>
-           <option value="1" {% if price_range == "1" %}selected{% endif %}>500円~1000円</option>
-            <option value="2" {% if price_range == "2" %}selected{% endif %}>1000円~1500円</option>
-            <option value="3" {% if price_range == "3" %}selected{% endif %}>1500円~2000円</option>
-            <option value="4" {% if price_range == "4" %}selected{% endif %}>2000円以上</option>
-        </select>
+            <!-- 価格帯 -->
+            <select name="price_range" id="price-range">
+                <option value="">価格帯を選択</option>
+                <option value="0" {% if price_range == "0" %}selected{% endif %}>~500円</option>
+                <option value="1" {% if price_range == "1" %}selected{% endif %}>500円~1000円</option>
+                <option value="2" {% if price_range == "2" %}selected{% endif %}>1000円~1500円</option>
+                <option value="3" {% if price_range == "3" %}selected{% endif %}>1500円~2000円</option>
+                <option value="4" {% if price_range == "4" %}selected{% endif %}>2000円以上</option>
+            </select>
 
-        <!-- エリア -->
-        <select id="area">
-            <option value="">エリアを選択</option>
-            <option value="ワールドバザール" {% if area == "ワールドバザール" %} selected {% endif %}>ワールドバザール</option>
-            <option value="アドベンチャーランド" {% if area == "アドベンチャーランド" %} selected {% endif %}>アドベンチャーランド</option>
-            <option value="ウエスタンランド" {% if area == "ウエスタンランド" %} selected {% endif %}>ウエスタンランド</option>
-            <option value="クリッターカントリー" {% if area == "クリッターカントリー" %} selected {% endif %}>クリッターカントリー</option>
-            <option value="ファンタジーランド" {% if area == "ファンタジーランド" %} selected {% endif %}>ファンタジーランド</option>
-            <option value="トゥーンタウン" {% if area == "トゥーンタウン" %} selected {% endif %}>トゥーンタウン</option>
-            <option value="トゥモローランド" {% if area == "トゥモローランド" %} selected {% endif %}>トゥモローランド</option>
-            <option value="メディテレニアンハーバー" {% if area == "メディテレニアンハーバー" %} selected {% endif %}>メディテレニアンハーバー</option>
-            <option value="アメリカンウォーターフロント" {% if area == "アメリカンウォーターフロント" %} selected {% endif %}>アメリカンウォーターフロント</option>
-            <option value="ポートディスカバリー" {% if area == "ポートディスカバリー" %} selected {% endif %}>ポートディスカバリー</option>
-            <option value="ロストリバーデルタ" {% if area == "ロストリバーデルタ" %} selected {% endif %}>ロストリバーデルタ</option>
-            <option value="ファンタジースプリングス" {% if area == "ファンタジースプリングス" %} selected {% endif %}>ファンタジースプリングス</option>
-            <option value="アラビアンコースト" {% if area == "アラビアンコースト" %} selected {% endif %}>アラビアンコースト</option>
-            <option value="マーメイドラグーン" {% if area == "マーメイドラグーン" %} selected {% endif %}>マーメイドラグーン</option>
-            <option value="ミステリアスアイランド" {% if area == "ミステリアスアイランド" %} selected {% endif %}>ミステリアスアイランド</option>
-        </select>
-        <button id="search-button">検索</button>
-    </div>
+            <!-- エリア -->
+            <select name="area" id="area">
+                <option value="">エリアを選択</option>
+                <option value="ワールドバザール" {% if area == "ワールドバザール" %} selected {% endif %}>ワールドバザール</option>
+                <option value="アドベンチャーランド" {% if area == "アドベンチャーランド" %} selected {% endif %}>アドベンチャーランド</option>
+                <option value="ウエスタンランド" {% if area == "ウエスタンランド" %} selected {% endif %}>ウエスタンランド</option>
+                <option value="クリッターカントリー" {% if area == "クリッターカントリー" %} selected {% endif %}>クリッターカントリー</option>
+                <option value="ファンタジーランド" {% if area == "ファンタジーランド" %} selected {% endif %}>ファンタジーランド</option>
+                <option value="トゥーンタウン" {% if area == "トゥーンタウン" %} selected {% endif %}>トゥーンタウン</option>
+                <option value="トゥモローランド" {% if area == "トゥモローランド" %} selected {% endif %}>トゥモローランド</option>
+                <option value="メディテレニアンハーバー" {% if area == "メディテレニアンハーバー" %} selected {% endif %}>メディテレニアンハーバー</option>
+                <option value="アメリカンウォーターフロント" {% if area == "アメリカンウォーターフロント" %} selected {% endif %}>アメリカンウォーターフロント</option>
+                <option value="ポートディスカバリー" {% if area == "ポートディスカバリー" %} selected {% endif %}>ポートディスカバリー</option>
+                <option value="ロストリバーデルタ" {% if area == "ロストリバーデルタ" %} selected {% endif %}>ロストリバーデルタ</option>
+                <option value="ファンタジースプリングス" {% if area == "ファンタジースプリングス" %} selected {% endif %}>ファンタジースプリングス</option>
+                <option value="アラビアンコースト" {% if area == "アラビアンコースト" %} selected {% endif %}>アラビアンコースト</option>
+                <option value="マーメイドラグーン" {% if area == "マーメイドラグーン" %} selected {% endif %}>マーメイドラグーン</option>
+                <option value="ミステリアスアイランド" {% if area == "ミステリアスアイランド" %} selected {% endif %}>ミステリアスアイランド</option>
+            </select>
+            <button id="search-button">検索</button>
+        </div>
+    </form>
 
     <!-- マップとリスト -->
     <div class="map-container">
@@ -211,31 +215,41 @@
 
                 console.log("選択中 category:", category);
                 console.log("選択中 priceRange:", priceRange);
+                console.log("選択中 area:", area);
 
-                var filteredStores = stores.filter(store => {
-                    console.log("store.category_id:", store.category_id, typeof store.category_id);
+                let filteredStores = [];
 
-                    // フィルター条件
-                    var matchKeyword = !keyword || (store.food_name && store.food_name.toLowerCase().includes(keyword));
-                    var matchCategory = !category || store.category_id === category;
-                    var matchPrice = true;
-                    var price = parseInt(store.price);
-                    if (priceRange === "0") {
-                        matchPrice = parseInt(store.price) <= 500;
-                    } else if (priceRange === "1") {
-                        matchPrice = parseInt(store.price) > 500 && parseInt(store.price) <= 1000;
-                    } else if (priceRange === "2") {
-                        matchPrice = parseInt(store.price) > 1000 && parseInt(store.price) <= 1500;
-                    } else if (priceRange === "3") {
-                        matchPrice = parseInt(store.price) > 1500 && parseInt(store.price) <= 2000;
-                    } else if (priceRange === "4") {
-                        matchPrice = parseInt(store.price) > 2000;
-                    }
+                try {
+                    filteredStores = stores.filter(store => {
+                        console.log("store.area:", store.area, "｜ area:", area);  // ここで undefined か確認！
 
-                    var matchArea = !area || (store.area && store.area.trim() === area);
+                        var matchKeyword = !keyword || (store.food_name && store.food_name.toLowerCase().includes(keyword));
+                        var matchCategory = !category || store.category_id === category;
 
-                    return matchKeyword && matchCategory && matchPrice && matchArea;
-                });
+                        var matchPrice = true;
+                        var price = parseInt(store.price);
+                        if (priceRange === "0") {
+                            matchPrice = price <= 500;
+                        } else if (priceRange === "1") {
+                            matchPrice = price > 500 && price <= 1000;
+                        } else if (priceRange === "2") {
+                            matchPrice = price > 1000 && price <= 1500;
+                        } else if (priceRange === "3") {
+                            matchPrice = price > 1500 && price <= 2000;
+                        } else if (priceRange === "4") {
+                            matchPrice = price > 2000;
+                        }
+
+                        // ⚠️ store.area が存在しないと .trim() でエラーになるので && チェック
+                        var matchArea = !area || (store.area && store.area.trim() === area);
+
+                        return matchKeyword && matchCategory && matchPrice && matchArea;
+                    });
+
+                    console.log("Filtered result:", filteredStores);
+                } catch (e) {
+                    console.error("フィルター処理中にエラー発生:", e);
+                }
 
                 updateMap(filteredStores);
             }
@@ -243,7 +257,7 @@
 
             document.getElementById("search-button").addEventListener("click", filteredStores);
 
-            updateMap(stores);
+            filteredStores();
 
 
             // 店舗リストをクリックしたときの挙動

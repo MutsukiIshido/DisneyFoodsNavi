@@ -156,6 +156,24 @@ class MapView(View):
             except (FoodCategory.DoesNotExist, ValueError):
                 pass
 
+        # 価格帯指定あり → フィルター処理
+        if price_range in ["0", "1", "2", "3", "4"]:
+            try:
+                price_range = int(price_range)
+                if price_range == 0:
+                    foods = foods.filter(price__lte=500)
+                elif price_range == 1:
+                    foods = foods.filter(price__gt=500, price__lte=1000)
+                elif price_range == 2:
+                    foods = foods.filter(price__gt=1000, price__lte=1500)
+                elif price_range == 3:
+                    foods = foods.filter(price__gt=1500, price__lte=2000)
+                elif price_range == 4:
+                    foods = foods.filter(price__gt=2000)
+            except (ValueError, TypeError):
+                pass  # price_rangeが数値でないなどの不正値対策
+
+
         # ストアのフィルタ
         if area:
             stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct()
@@ -176,14 +194,14 @@ class MapView(View):
                         "category": food.category.kind,
                         "category_id": str(food.category.id),  # JSで使う用
                         "price": food.price,
-                        "area": store.area.area_name,
+                        "area": store.area.area_name if store.area else "",
                         "rating": float(food.average_rating)
                     })
 
         context = {
             'stores': store_data,
-            'category': str(category_id) if category_id else "",  # 数値で渡す
-            'category_name': category_name,  # 選択表示用に渡しておく
+            'category': str(category_id) if category_id else "",
+            'category_name': category_name,
             'area': area,
             'price_range': str(price_range) if price_range else "",
         }
