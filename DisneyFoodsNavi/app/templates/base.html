@@ -9,7 +9,10 @@
     <title>{% block title %}DisneyFoodsNavi{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     {% block head %}
-    <!-- ここにCSSなど定義可能 -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     {% endblock %}
 </head>
 <body>
@@ -19,10 +22,13 @@
         </div>
         <nav class="nav-container">
             <ul>
-                <li><a href="{% url 'writereview' %}" class="nav-item">
-                    <img src="{% static 'images/ennpitu.png' %}" alt="レビュー投稿">
-                    <span>レビュー投稿</span>
-                </a></li>
+                <li>
+                    <a href="{% url 'writereview' %}" class="nav-item"
+                       {% if not user.is_authenticated %} data-tooltip="この機能にはログインが必要です" {% endif %}>
+                        <img src="{% static 'images/ennpitu.png' %}" alt="レビュー投稿">
+                        <span>レビュー投稿</span>
+                    </a>
+                </li>
                 
                 <li><a href="{% url 'readingreview' %}" class="nav-item">
                     <img src="{% static 'images/eturann.png' %}" alt="レビュー閲覧">
@@ -39,25 +45,32 @@
                     <span>マップ</span>
                 </a></li>
 
-                <li><a href="{% url 'favorite' %}" class="nav-item">
-                    <img src="{% static 'images/heart.png' %}" alt="お気に入り">
-                    <span>お気に入り</span>
-                </a></li>
+                <li>
+                    <a href="{% url 'favorite' %}" class="nav-item"
+                       {% if not user.is_authenticated %} data-tooltip="この機能にはログインが必要です" {% endif %}>
+                        <img src="{% static 'images/heart.png' %}" alt="お気に入り">
+                        <span>お気に入り</span>
+                    </a>
+                </li>
 
-                <li><a href="{% url 'myreview' %}" class="nav-item">
-                    <img src="{% static 'images/syokki_spoon.png' %}" alt="マイレビュー">
-                    <span>マイレビュー</span>
-                </a></li>
-
+                <li>
+                    <a href="{% url 'myreview' %}" class="nav-item"
+                       {% if not user.is_authenticated %} data-tooltip="この機能にはログインが必要です" {% endif %}>
+                        <img src="{% static 'images/syokki_spoon.png' %}" alt="マイレビュー">
+                        <span>マイレビュー</span>
+                      </a>
+                </li>
+                
                 <!-- アカウント設定（ドロップダウンメニュー） -->
-                <li class="dropdown">
-                    <a href="#" class="nav-item dropdown-toggle">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                       data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{% static 'images/haguruma_gear1_silver.png' %}" alt="アカウント設定">
                         <span>アカウント設定 ▼</span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'email_change' %}">メールアドレス変更</a></li>
-                        <li><a href="{% url 'password_change' %}">パスワード変更</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'email_change' %}">メールアドレス変更</a></li>
+                        <li><a class="dropdown-item" href="{% url 'password_change' %}">パスワード変更</a></li>
                     </ul>
                 </li>
             </ul>
@@ -93,6 +106,23 @@
 
 {% block scripts %}
 <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    // ツールチップをマウスオーバー時に表示するための処理
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipItems = document.querySelectorAll('.nav-item[data-tooltip]');
+
+        tooltipItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.classList.add('tooltip-show');
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('tooltip-show');
+            });
+        });
+    });
+</script>
 {% endblock %}
 </body>
 </html>

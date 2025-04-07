@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>レビューを削除しますか？</h1>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">はい、削除する</button>
+    <a href="{% url 'myreview' %}">キャンセル</a>
+  </form>
+{% endblock %}

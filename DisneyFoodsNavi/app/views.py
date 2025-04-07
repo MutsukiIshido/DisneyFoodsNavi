@@ -8,13 +8,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from app.models import Food, FoodStore, Store, Area, FoodCategory, Review, ReviewImages, Favorite
-from django.db.models import Avg, F
+from django.db.models import Avg, F, Count, Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from itertools import groupby
 from operator import attrgetter
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.http import require_GET
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic.edit import UpdateView, DeleteView
+from django.views.generic import TemplateView
+
 
 
 
@@ -106,13 +112,31 @@ class WriteReviewView(LoginRequiredMixin, View):
             "images_form": ReviewImagesForm()  # フォームをリセット
         })
 
-
-
-    
 class ReadingReviewView(View):
     def get(self, request):
-        reviews = Review.objects.prefetch_related('images').all() # DBから全レビューを取得、一緒に画像も取得
-        return render(request, 'readingreview.html', {'reviews': reviews})
+        request.session['previous_page'] = 'readingreview'
+
+        selected_category = request.GET.get("category")
+        selected_food = request.GET.get("food")
+
+        reviews = Review.objects.prefetch_related('images').all()
+
+        if selected_category:
+            reviews = reviews.filter(food__category_id=selected_category)
+        if selected_food:
+            reviews = reviews.filter(food_id=selected_food)
+
+        categories = FoodCategory.objects.all()
+        foods = Food.objects.filter(category_id=selected_category) if selected_category else Food.objects.all()
+
+        context = {
+            "reviews": reviews,
+            "categories": categories,
+            "foods": foods,
+            "selected_category": selected_category,
+            "selected_food": selected_food,
+        }
+        return render(request, "readingreview.html", context)
     
 
 class FavoriteView(LoginRequiredMixin, View):
@@ -127,6 +151,8 @@ class FavoriteView(LoginRequiredMixin, View):
     
 class RankingView(View):
     def get(self, request):
+        request.session['previous_page'] = 'ranking'
+        
         # フードをカテゴリ別に並べて、評価順にソート
         foods = Food.objects.all().select_related('category').order_by('category', '-average_rating')
         
@@ -135,28 +161,40 @@ class RankingView(View):
         for category, items in groupby(foods, key=attrgetter('category')):
             grouped_foods[category.kind] = list(items)[:3]
         
-        return render(request, "ranking.html", {'grouped_foods': grouped_foods})
-    
+        is_logged_in = request.user.is_authenticated
+        
+        favorites = []
+        if request.user.is_authenticated:
+            favorites = Favorite.objects.filter(user=request.user).values_list('food_id', flat=True)
+
+        return render(request, "ranking.html", {
+            'grouped_foods': grouped_foods,
+            'is_logged_in': is_logged_in,
+            'favorite_food_ids': list(favorites),
+        })
     
 class MapView(View):    
     def get(self, request):
+        request.session['previous_page'] = 'map'
+
         category_id = request.GET.get('category')
         area = request.GET.get('area')
         price_range = request.GET.get('price_range')
+        park = request.GET.get('park')  # ← 追加！
 
         category_name = None
         foods = Food.objects.all()
 
-        # カテゴリID指定あり
+        # カテゴリで絞り込み
         if category_id:
             try:
                 category_obj = FoodCategory.objects.get(id=int(category_id))
                 category_name = category_obj.kind
-                foods = foods.filter(category=category_obj)  # ← IDでフィルタ！
+                foods = foods.filter(category=category_obj)
             except (FoodCategory.DoesNotExist, ValueError):
                 pass
 
-        # 価格帯指定あり → フィルター処理
+        # 価格帯フィルター
         if price_range in ["0", "1", "2", "3", "4"]:
             try:
                 price_range = int(price_range)
@@ -171,14 +209,20 @@ class MapView(View):
                 elif price_range == 4:
                     foods = foods.filter(price__gt=2000)
             except (ValueError, TypeError):
-                pass  # price_rangeが数値でないなどの不正値対策
-
+                pass
 
         # ストアのフィルタ
+        stores = Store.objects.filter(foodstore__food__in=foods)
+
+        # area指定ありならさらに絞る
         if area:
-            stores = Store.objects.filter(area__area_name=area, foodstore__food__in=foods).distinct()
-        else:
-            stores = Store.objects.filter(foodstore__food__in=foods).distinct()
+            stores = stores.filter(area__area_name=area)
+
+        # park指定ありなら絞る
+        if park in ["0", "1"]:
+            stores = stores.filter(area__park=int(park))
+
+        stores = stores.distinct()
 
         store_data = []
         for store in stores:
@@ -192,10 +236,13 @@ class MapView(View):
                         "longitude": float(store.longitude),
                         "food_name": food.foods_name,
                         "category": food.category.kind,
-                        "category_id": str(food.category.id),  # JSで使う用
+                        "category_id": str(food.category.id),
                         "price": food.price,
                         "area": store.area.area_name if store.area else "",
-                        "rating": float(food.average_rating)
+                        "rating": float(food.average_rating),
+                        "food_id": food.id,
+                        "park": store.area.park if store.area else "",
+                        "image_path": food.foods_image_path if food.foods_image_path else ""
                     })
 
         context = {
@@ -204,7 +251,9 @@ class MapView(View):
             'category_name': category_name,
             'area': area,
             'price_range': str(price_range) if price_range else "",
+            'park': park  # ← これもテンプレート側で選択状態を維持するために必要！
         }
+
         return render(request, 'map.html', context)
 
 
@@ -214,6 +263,8 @@ class MyReviewView(LoginRequiredMixin, View):
     redirect_field_name = None
     
     def get(self, request):
+        request.session['previous_page'] = 'myreview'
+
         # ログイン中のユーザーのレビューを取得
         reviews = Review.objects.filter(user=request.user).prefetch_related('images')
 
@@ -236,6 +287,34 @@ class FoodSearchView(View):
         else:
             results = []
         return JsonResponse(results, safe=False)
+    
+    
+def get_stores_for_food(request):
+    food_id = request.GET.get('food_id')
+    stores = []
+
+    if food_id:
+        foodstores = FoodStore.objects.filter(food_id=food_id).select_related('store')
+        for fs in foodstores:
+            stores.append({
+                'id': fs.store.id,
+                'name': fs.store.store_name
+            })
+
+    return JsonResponse(stores, safe=False)
+
+# レビュー一覧画面のカテゴリIDからフード一覧を返すAPI
+@require_GET
+@csrf_exempt
+def get_foods_by_category(request):
+    category_id = request.GET.get("category_id")
+    if category_id:
+        # カテゴリー指定あり：そのカテゴリに属するフードだけ返す
+        foods = Food.objects.filter(category_id=category_id).values("id", "foods_name")
+    else:
+        # カテゴリー指定なし：すべてのフードを返す
+        foods = Food.objects.all().values("id", "foods_name")
+    return JsonResponse(list(foods), safe=False)
     
 # レビュー詳細画面用ビュー
 class ReviewDetailView(View):
@@ -277,24 +356,21 @@ class FavoriteToggleView(View):
     def post(self, request, food_id):
         try:
             food = Food.objects.get(id=food_id)
-            
-            # お気に入り登録
-            favorite, created = Favorite.objects.get_or_create(user=request.user, food=food)
-            if created:
-                message = 'お気に入りに追加しました'
-                status = 'added'
-            else:
+            favorite = Favorite.objects.filter(user=request.user, food=food).first()
+            if favorite:
                 favorite.delete()
                 message = 'お気に入りから削除しました'
                 status = 'removed'
-            return JsonResponse({'status': status, 'message': message}, status=200)
-        
+            else:
+                Favorite.objects.create(user=request.user, food=food)
+                message = 'お気に入りに追加しました'
+                status = 'added'
+
+            return JsonResponse({'status': status, 'message': message})
+
         except Food.DoesNotExist:
             return JsonResponse({'error': '指定されたフードが見つかりません'}, status=404)
-        except Exception as e:
-            return JsonResponse({'error': str(e)}, status=500)
-        
-        
+
 # メールアドレス変更用ビュー
 class EmailChangeView(LoginRequiredMixin, View):
     def get(self, request):
@@ -312,11 +388,90 @@ class EmailChangeView(LoginRequiredMixin, View):
 # パスワード変更用ビュー 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     form_class = CustomPasswordChangeForm
-    template_name = "password_change.html"
-    success_url = reverse_lazy('password_change_done')
-    
+    template_name = 'password_change.html'  # ★オリジナルテンプレート
+    success_url = reverse_lazy('password_change_done')  # ★完了後に飛ばすURL名
+
     def form_valid(self, form):
         response = super().form_valid(form)
-        update_session_auth_hash(self.request, form.user) # セッションのハッシュを更新
-        messages.success(self.request, "パスワードを変更しました。")
+        update_session_auth_hash(self.request, form.user)  # パスワード変更してもログアウトしないため
+        messages.success(self.request, "パスワードを変更しました。")  # 成功メッセージ
         return response
+
+# パスワード変更完了画面用ビュー（オリジナル）
+class CustomPasswordChangeDoneView(TemplateView):
+    template_name = 'password_change_done.html'  # ★オリジナルテンプレート    
+
+
+class FoodDetailView(View):
+    def get(self, request, pk):
+        previous_page = request.session.get('previous_page')  # ←ここで前ページを取得！
+
+        breadcrumbs = [{"name": "ホーム", "url": reverse("home")}]
+
+        # 遷移元によって分岐
+        if previous_page == "ranking":
+            breadcrumbs.append({"name": "ランキング", "url": reverse("ranking")})
+        elif previous_page == "readingreview":
+            breadcrumbs.append({"name": "レビュー一覧", "url": reverse("readingreview")})
+        elif previous_page == "map":
+            breadcrumbs.append({"name": "マップ（検索結果）", "url": reverse("map")})
+        elif previous_page == "favorite":
+            breadcrumbs.append({"name": "お気に入り", "url": reverse("favorite")})
+
+        breadcrumbs.append({"name": "商品詳細", "url": request.path})
+
+        food = get_object_or_404(Food.objects.select_related('category'), pk=pk)
+        stores = Store.objects.filter(foodstore__food=food).select_related('area')
+        reviews = Review.objects.filter(food=food)
+        review_count = reviews.count()
+        is_logged_in = request.user.is_authenticated
+        
+        favorites = []
+        if request.user.is_authenticated:
+            favorites = Favorite.objects.filter(user=request.user).values_list('food_id', flat=True)
+
+        context = {
+            "food": food,
+            "stores": stores,
+            "reviews": reviews,
+            "review_count": review_count,
+            "breadcrumbs": breadcrumbs,
+            "is_logged_in": is_logged_in,
+            'favorite_food_ids': list(favorites),
+        }
+        return render(request, "food_detail.html", context)
+
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
+from app.models import Review
+
+# マイレビュー編集
+class ReviewUpdateView(LoginRequiredMixin, UpdateView):
+    model = Review
+    fields = ['rating', 'comment']  # 編集できる項目だけ指定
+    template_name = 'review_edit.html'
+    success_url = reverse_lazy('myreview')  # 更新後はマイレビューに戻す！
+
+    def get_queryset(self):
+        # 自分のレビューしか編集できないようにする
+        return Review.objects.filter(user=self.request.user)
+
+# マイレビュー削除
+class ReviewDeleteView(LoginRequiredMixin, DeleteView):
+    model = Review
+    template_name = 'review_confirm_delete.html'
+    success_url = reverse_lazy('myreview')
+
+    def get_queryset(self):
+        # 自分のレビューしか削除できないようにする
+        return Review.objects.filter(user=self.request.user)
+
+# お気に入り削除用
+class FavoriteDeleteView(LoginRequiredMixin, DeleteView):
+    model = Favorite
+    template_name = 'favorite_confirm_delete.html'  # 確認画面出すなら。出さないなら無視してOK
+    success_url = reverse_lazy('favorite')  # 削除後にお気に入り一覧に戻る
+
+    def get_queryset(self):
+        # 自分のしか削除できないようにする！
+        return Favorite.objects.filter(user=self.request.user)

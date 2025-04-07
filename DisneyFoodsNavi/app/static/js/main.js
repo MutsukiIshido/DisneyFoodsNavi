@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openFoodSearchButton) {
         openFoodSearchButton.addEventListener('click', function(event) {
             event.preventDefault();
-            const modal = new bootstrap.Modal(document.getElementById('foodModal'));
+            const modal = new bootstrap.Modal(document.getElementById('foodModal'), {
+                backdrop: false
+            });
             modal.show();
         });
     }
@@ -43,54 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const foodResults = document.getElementById('foodResults');
     const foodField = document.getElementById('id_food');
     const foodDisplay = document.getElementById('food_display');
-
-    if (foodSearchInput) {
-        foodSearchInput.addEventListener("input", function () {
-            const query = this.value.trim();
-            console.log("🔍 検索ワード:", query);  // 🔍 デバッグ用
-            
-            if (query.length > 0) {
-                fetch(`/food-search/?q=${query}`)
-                    .then(response => {
-                        console.log("✅ レスポンスステータス:", response.status);  // 🔍 デバッグ用
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("📄 取得したデータ:", data);  // 🔍 デバッグ用
-                        foodResults.innerHTML = "";
-                        if (data.length === 0) {
-                            foodResults.innerHTML = "<li class='list-group-item'>該当なし</li>";
-                            return;
-                        }
-                        data.forEach(food => {
-                            const li = document.createElement("li");
-                            li.className = "list-group-item list-group-item-action";
-                            li.textContent = food.name;
-                            li.onclick = () => {
-                                console.log("✅ 選択した商品:", food.name);
-                                foodField.value = food.id;
-                                foodDisplay.value = food.name;
-
-                                // 🟢 **モーダルを適切に閉じる**
-                                const foodModal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
-                                if (foodModal) {
-                                    foodModal.hide();
-                                } else {
-                                    console.warn("⚠ Bootstrap モーダルのインスタンスが取得できませんでした。");
-                                }
-
-                                foodResults.innerHTML = ""; // 🔹 検索結果をクリア
-
-                            };
-                            foodResults.appendChild(li);
-                        });
-                    })
-                    .catch(error => console.error("❌ エラー発生:", error));  // 🔍 エラーハンドリング
-            } else {
-                foodResults.innerHTML = "";
-            }
-        });
-    }
 
     // **🔹 画像モーダルの初期設定**
     const modal = document.getElementById("imageModal");
@@ -122,4 +76,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (foodSearchInput) {
+        foodSearchInput.addEventListener("input", function () {
+            const query = this.value.trim();
+            if (query.length > 0) {
+                fetch(`/food-search/?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        foodResults.innerHTML = "";
+                        if (data.length === 0) {
+                            foodResults.innerHTML = "<li class='list-group-item'>該当なし</li>";
+                            return;
+                        }
+                        data.forEach(food => {
+                            const li = document.createElement("li");
+                            li.className = "list-group-item list-group-item-action";
+                            li.textContent = food.name;
+                            li.onclick = () => {
+                                console.log("✅ food.id:", food.id);  // ←ここ追加！
+
+                                foodField.value = food.id;
+                                foodDisplay.value = food.name;
+    
+                                // モーダル閉じる
+                                const foodModal = bootstrap.Modal.getInstance(document.getElementById('foodModal'));
+                                if (foodModal) foodModal.hide();
+    
+                                foodResults.innerHTML = "";
+    
+                                // 🔥 商品に紐づく店舗を取得してselectを更新
+                                fetch(`/api/get-stores-for-food/?food_id=${food.id}`)
+                                    .then(res => res.json())
+                                    .then(stores => {
+                                        const storeSelect = document.getElementById("id_store");
+                                        storeSelect.innerHTML = ""; // クリア
+    
+                                        stores.forEach(store => {
+                                            const option = document.createElement("option");
+                                            option.value = store.id;
+                                            option.textContent = store.name;
+                                            storeSelect.appendChild(option);
+                                        });
+    
+                                        if (stores.length === 0) {
+                                            const option = document.createElement("option");
+                                            option.textContent = "該当する店舗がありません";
+                                            option.disabled = true;
+                                            option.selected = true;
+                                            storeSelect.appendChild(option);
+                                        }
+                                    });
+                            };
+                            foodResults.appendChild(li);
+                        });
+                    });
+            } else {
+                foodResults.innerHTML = "";
+            }
+        });
+    }
 });

@@ -9,42 +9,43 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
+    <div class="login-wrapper">
+        <h1 class="site-title">DisneyFoodsNavi</h1>
+        <h2 class="login-title">ログイン画面</h2>
 
-    <h1 class="login-title">ログイン画面</h1>
+        <div class="login-container">
+            <form method="post" class="login-form">
+                {% csrf_token %}
 
-    <div class="login-container">
-        <form method="post" class="login-form">
-            {% csrf_token %}
+                <!-- メールアドレス入力 -->
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
 
-            <!-- メールアドレス入力 -->
-            <div class="form-group">
-                <label for="email">メールアドレス</label>
-                <input type="email" name="email" id="email" required>
-            </div>
+                <!-- パスワード入力 -->
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
 
-            <!-- パスワード入力 -->
-            <div class="form-group">
-                <label for="password">パスワード</label>
-                <input type="password" name="password" id="password" required>
-            </div>
+                <!-- ログインボタン -->
+                <div class="form-group">
+                    <button type="submit" class="login-button">ログイン</button>
+                </div>
 
-            <!-- ログインボタン -->
-            <div class="form-group">
-                <button type="submit" class="login-button">ログイン</button>
-            </div>
+                <!-- エラーメッセージ表示 -->
+                <div class="error-messages">
+                    {{ form.errors }}
+                </div>
 
-            <!-- エラーメッセージ表示 -->
-            <div class="error-messages">
-                {{ form.errors }}
-            </div>
+                <!-- 新規登録リンク -->
+                <div class="signup-link">
+                    <a href="{% url 'signup' %}">新規アカウント登録</a>
+                </div>
 
-            <!-- 新規登録リンク -->
-            <div class="signup-link">
-                <a href="{% url 'signup' %}">新規アカウント登録</a>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
-
 </body>
 </html>

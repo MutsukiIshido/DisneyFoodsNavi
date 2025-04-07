@@ -45,26 +45,59 @@
         /* 検索フォーム */
         .search-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
-            padding: 10px;
+            align-items: center;
             background-color: #eee;
         }
 
-        .search-container input,
+        .search-container input {
+            padding: 5px;
+            width: 150px;
+        }
+
         .search-container select {
             padding: 5px;
+            width: 180px;
+            max-width: 250px;
         }
 
         .search-container button {
-            padding: 5px, 10px;
+            padding: 10px 20px;
+            width: 150px; /* ← 横幅を長くする（ここを好きな値に変えてOK） */
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #d2935c9a;
+            color: #81400c;
+            border: none;
             cursor: pointer;
         }
+
+        .park-select {
+            display: flex;         /* 横並びにする */
+            gap: 5px;             /* ラジオボタン同士の間隔 */
+            align-items: center;   /* 縦方向も中央揃え */
+        }
+
+        .park-select label {
+            display: flex;
+            align-items: center;
+            gap: 5px;  /* ← ちょっとだけ開ける */
+            font-size: 14px;
+        }
+
+        .park-select label input[type="radio"] {
+            width: 30px;    /* ← 幅を指定 */
+            height: 16px;   /* ← 高さも統一 */
+            margin: 0;      /* ← マージンをリセット */
+            vertical-align: middle; /* ← テキストと高さを合わせる */
+        }
+
+
     </style>
 {% endblock%}
 
 {% block content %}
-    <h1>マップ（検索結果）画面</h1>
-
     <!-- 検索フォーム -->
     <form id="search-form" method="get" action="{% url 'map' %}">
         <div class="search-container">
@@ -112,6 +145,14 @@
                 <option value="マーメイドラグーン" {% if area == "マーメイドラグーン" %} selected {% endif %}>マーメイドラグーン</option>
                 <option value="ミステリアスアイランド" {% if area == "ミステリアスアイランド" %} selected {% endif %}>ミステリアスアイランド</option>
             </select>
+            
+            <!-- パーク選択（ラジオボタン） -->
+            <div class="park-select">
+                <label><input type="radio" name="park" value="0" {% if park == "0" %}checked{% endif %}> ディズニーランド</label>
+                <label><input type="radio" name="park" value="1" {% if park == "1" %}checked{% endif %}> ディズニーシー</label>
+                <label><input type="radio" name="park" value="all" {% if park == "all" or not park %}checked{% endif %}> 両パーク</label>
+            </div>
+            
             <button id="search-button">検索</button>
         </div>
     </form>
@@ -121,7 +162,11 @@
         <!-- マップ部分 -->
         <div id="map"></div>
         <!-- 店舗一覧部分 -->
-        <div class="store-list" id="store-list"></div>
+        <div class="store-list" id="store-list">
+            <div id="no-results" style="display: none; color: gray; text-align: center; margin-top: 20px;">
+                検索結果が見つかりませんでした。
+            </div>
+        </div>
     </div>
     
     <!-- JSOnデータを埋め込み -->
@@ -161,42 +206,66 @@
             var storeList = document.getElementById("store-list");
 
             function updateMap(filteredStores) {
-                markers.forEach(m => map.removeLayer(m.marker));  // 既存のピンを削除
-                storeList.innerHTML = "";  // 既存のリストをクリア
+                markers.forEach(m => map.removeLayer(m.marker));  // 既存ピン削除
+                storeList.innerHTML = "";  // リスト初期化
                 markers = [];
 
+                // 検索結果なしの表示用要素をここで新たに作り直す
+                const noResults = document.createElement("div");
+                noResults.id = "no-results";
+                noResults.style.display = "none";
+                noResults.style.color = "gray";
+                noResults.style.textAlign = "center";
+                noResults.style.marginTop = "20px";
+                noResults.textContent = "検索結果が見つかりませんでした。";
+
+                // 🔸storeList に最初に追加しておく（あってもなくてもOKなように）
+                storeList.appendChild(noResults);
+
+                if (filteredStores.length === 0) {
+                    noResults.style.display = "block";
+                    return;
+                } else {
+                    noResults.style.display = "none";
+                }
+
+                // 通常のピン＆リスト生成処理
                 filteredStores.forEach((store, index) => {
-                    console.log("store.category_id:", store.category_id);  // ← これでundefinedならビューの渡し忘れ
+                    var marker = L.marker([store.latitude, store.longitude])
+                        .addTo(map)
+                        .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
 
-                    if (store.latitude && store.longitude) {
-                        var marker = L.marker([store.latitude, store.longitude])
-                            .addTo(map)
-                            .bindPopup(`<strong>${store.store_name}</strong><br>${store.food_name}<br>評価: ${store.rating}⭐️<br>価格: ¥${store.price}`);
-        
-                        markers.push({ marker: marker, index:index });
+                    markers.push({ marker: marker, index:index });
 
-                        // ピンがクリックされたら該当の店舗リストを選択・スクロール
-                        marker.on("click", function() {
-                            highlightStore(index);
-                        });
+                    marker.on("click", function() {
+                        highlightStore(index);
+                    });
 
-                        var storeItem = document.createElement("div");
-                        storeItem.classList.add("store-item");
-                        storeItem.id = "store-" + index;
-                        storeItem.dataset.index = index;
-                        storeItem.innerHTML = `<strong>${store.store_name}</strong><br>
-                            ${store.food_name}<br>
-                            <span class="rating-stars">${store.rating} ${"⭐️".repeat(Math.round(store.rating))}</span> | ¥${store.price}`;
-                        storeItem.addEventListener("click", function() {
-                            marker.openPopup();
-                            map.setView(marker.getLatLng(), 17);
-                            highlightStore(index);
-                        });
+                    var storeItem = document.createElement("div");
+                    storeItem.classList.add("store-item");
+                    storeItem.id = "store-" + index;
+                    storeItem.dataset.index = index;
+                    storeItem.innerHTML = `
+                        <div class="store-info">
+                            <img src="${store.image_path}" alt="${store.food_name}" class="store-image">
+                            <div class="store-details">
+                            <strong>${store.store_name}</strong><br>
+                            <a href="/food/${store.food_id}/">${store.food_name}</a><br>
+                            <span>¥${store.price}</span> | 
+                            <span class="rating-stars">${store.rating} ${"⭐️".repeat(Math.round(store.rating))}</span>
+                            </div>
+                        </div>
+                    `;
+                    storeItem.addEventListener("click", function() {
+                        marker.openPopup();
+                        map.setView(marker.getLatLng(), 17);
+                        highlightStore(index);
+                    });
 
-                        storeList.appendChild(storeItem);
-                    }
+                    storeList.appendChild(storeItem);
                 });
             }
+
 
             console.log("Filtered stores:", filteredStores);
 
@@ -212,7 +281,9 @@
                 var category = document.getElementById("category").value;
                 var priceRange = document.getElementById("price-range").value;
                 var area = document.getElementById("area").value.trim();
-
+                var park = document.querySelector('input[name="park"]:checked')?.value;
+                
+                console.log("選択中 park:", park);
                 console.log("選択中 category:", category);
                 console.log("選択中 priceRange:", priceRange);
                 console.log("選択中 area:", area);
@@ -243,7 +314,10 @@
                         // ⚠️ store.area が存在しないと .trim() でエラーになるので && チェック
                         var matchArea = !area || (store.area && store.area.trim() === area);
 
-                        return matchKeyword && matchCategory && matchPrice && matchArea;
+                        // 🔽 park での絞り込み
+                        var matchPark = (park === "all") || (store.park !== undefined && String(store.park) === park);
+
+                        return matchKeyword && matchCategory && matchPrice && matchArea && matchPark;
                     });
 
                     console.log("Filtered result:", filteredStores);
@@ -254,11 +328,13 @@
                 updateMap(filteredStores);
             }
 
-
-            document.getElementById("search-button").addEventListener("click", filteredStores);
-
+            // ★★★ ページ読み込み時に全件表示する ★★★
             filteredStores();
 
+            document.getElementById("search-button").addEventListener("click", function(event) {
+                event.preventDefault();
+                filteredStores();
+            });
 
             // 店舗リストをクリックしたときの挙動
             document.querySelectorAll(".store-item").forEach((item, index) => {

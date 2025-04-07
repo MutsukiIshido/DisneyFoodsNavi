@@ -4,13 +4,19 @@
 {% block title %}マイレビュー一覧{% endblock %}
 
 {% block content %}
-    <h1>マイレビュー一覧</h1>
     {% if reviews %}
         <div class="review-list">
             {% for review in reviews %}
                 <div class="review-box">
                     <div class="review-content">
                         <p class="review-date">{{ review.updated_at|date:"n月j日 H:i" }}</p>
+                        
+                        <p class="food-name">
+                            <a href="{% url 'food_detail' review.food.id %}">
+                                {{ review.food.foods_name }}
+                            </a>
+                        </p>
+
                         <p class="review-rating">
                             {{ review.rating }}
                             {% for i in "12345" %}
@@ -23,12 +29,22 @@
                         </p>
                         <p class="review-comment">{{ review.comment }}</p>
                         <a href="{% url 'review_detail' review.pk %}" class="more-link">もっと見る</a>
+
+                        <div class="review-actions">
+                            <a href="{% url 'review_edit' review.pk %}" class="edit-link">編集</a>
+                            <form action="{% url 'review_delete' review.pk %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-link" onclick="return confirm('本当に削除しますか？');">削除</button>
+                            </form>
+                        </div>
+    
                     </div>
+
                     <div class="review-images">
                         {% for image in review.images.all|slice:":4" %}
                             <img src="{{ image.review_image_path.url }}" alt="レビュー画像" class="thumbnail">
                         {% endfor %}
-                    </div>
+                    </div>                    
                 </div>
             {% endfor %}
         </div>

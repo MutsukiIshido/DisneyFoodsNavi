@@ -1,12 +1,12 @@
 * {
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     min-height: 100vh;
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
@@ -24,14 +24,25 @@ header {
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
+    padding-top: 50px;
+    padding-bottom: 15px;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;  /* ヘッダーの高さを適宜調整 */
+    height: auto;  /* ヘッダーの高さを適宜調整 */
     z-index: 1000; /* 他の要素より前面に表示 */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 影を追加 */
-    overflow: hidden;
+    overflow: visible;
+}
+
+/* タイトルを中央揃え */
+.site-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
 }
 
 /* タイトルのスタイル */
@@ -39,6 +50,8 @@ header {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
+    width: 100%; 
 }
 
 /* フォーム全体のデザイン */
@@ -47,7 +60,8 @@ header {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
 }
 
 /* 各フォームフィールドのデザイン */
@@ -188,6 +202,14 @@ header {
     text-decoration: underline;
 }
 
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 
 /* ヘッダー全体 */
 .site-header {
@@ -195,8 +217,9 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 60px; /* 高さを少し拡張 */
+    height: 80px; /* 高さを少し拡張 */
     padding: 10px 20px;
+    padding-top: 20px;
     background-color: #f5e1b8; /* 背景色 */
     background-size: cover;
     overflow: visible !important;
@@ -278,9 +301,10 @@ header .logo h1 {
 }
 
 main {
-    max-width: 800px;
-    margin: auto;
-    margin-top: 120px; /* ヘッダーの高さ分だけ下げる */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 90px; /* ヘッダーの高さ分だけ下げる */
     padding: 20px;
 }
 
@@ -394,10 +418,6 @@ button:hover {
     background-color: #f0f0f0;
 }
 
-/* JavaScriptで追加するクラス */
-.dropdown-menu.show {
-    display: block;
-}
 
 #map {
     height: 500px;
@@ -410,16 +430,13 @@ button:hover {
 
 
 .breadcrumb {
-    position: fixed;
-    top: 80px; /* ヘッダーの下に配置 */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* 中央寄せ */
     padding: 10px;
     background: #f8f9fa;
     border-radius: 5px;
-    z-index: 900; /* ヘッダーより前面に表示 */
+    z-index: 900;
 }
 
 .breadcrumb a {
@@ -438,7 +455,7 @@ button:hover {
     padding: 20px;
     background-color: #dfd9c286;
     width: 80%;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 20px auto;
     text-align: center;
 }
@@ -618,6 +635,18 @@ textarea {
     border-radius: 50%; /* 丸い形 */
     position: absolute;
   }
+
+.mickey-btn:hover {
+    background-color: #444;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.mickey-btn:hover .left-ear,
+.mickey-btn:hover .right-ear {
+    background-color: #222;
+}
+
   
 /* 文字を中央に配置する */
 .btn-text {
@@ -658,12 +687,41 @@ textarea {
 /* 各フードアイテムのレイアウト */
 .favorite-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 10px;
     background: #fff;
+    min-height: 250px;
+    justify-content: space-between;
 }
+
+.favorite-item form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ★これ追加！ */
+    margin-top: 10px;
+    min-height: 40px;    /* ★これ追加！ */
+}
+
+.favorite-item form button {
+    width: auto;      /* 横幅をボタン文字列に合わせる */
+    height: auto;     /* 高さも自動 */
+    padding: 5px 10px;  /* ボタンの余白 */
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.favorite-item form button:hover {
+    background-color: #ff3333;
+}
+
 
 /* 画像のスタイル */
 .food-image {
@@ -686,7 +744,7 @@ textarea {
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-    margin: 20px 0;
+    margin: 60px 0 30px 0;
 }
 
 /* カテゴリごとに横並びのレイアウト */
@@ -704,17 +762,18 @@ textarea {
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 30px 10px 10px;
     border-radius: 10px;
     background: #fff;
     width: 150px;
     position: relative;
+    margin-top: 10px;
 }
 
 /* 王冠アイコンと順位のラベル */
 .rank-label {
     position: absolute;
-    top: -30px;  /* 枠外に配置 */
+    top: -40px;  /* 枠外に配置 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -777,15 +836,15 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: center;
+    align-items: stretch;
 }
 
 .review-box {
     display: flex;
-    flex-direction: space-between;
+    flex-direction: row;
     align-items: center;
-    width: 80%;
-    max-width: 800%;
+    width: 100%;
+    max-width: 1000px;
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
@@ -901,6 +960,11 @@ textarea {
     cursor: pointer;
 }
 
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
 /* 戻るリンク */
 .back-link {
     display: block;
@@ -914,14 +978,6 @@ textarea {
 .back-link:hover {
     text-decoration: underline;
 }
-
-/* .thumbnail {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-} */
 
 /* 画面が狭い場合は横1列に */
 @media (max-width: 600px) {
@@ -953,4 +1009,171 @@ textarea {
 
 .login-link a:hover {
     text-decoration: underline;  /* ホバー時に下線を表示 */
+}
+
+/* 自作ツールチップ */
+.nav-item[data-tooltip] {
+    position: relative;
+    z-index: 10;
+}
+
+.nav-item[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 9999;
+}
+
+.nav-item[data-tooltip]:hover::after {
+    opacity: 1;
+}
+
+.email-form input[type="email"] {
+    width: 500px; /* お好みで幅を調整 */
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.change-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #d2935c9a;
+    color: rgb(126, 48, 11);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#foodResults {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#category-select,
+#food-select {
+    width: 250px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.food-name {
+    text-align: left;
+    font-size: 18px; /* お好みで大きさも整える */
+    margin-bottom: 5px; /* 下に少しスペースをつけると自然 */
+}
+
+.food-name a {
+    color: #007bff; /* リンクの色 */
+    text-decoration: none; /* 下線を消す */
+    font-weight: bold; /* 太字にする */
+}
+
+.food-name a:hover {
+    text-decoration: underline; /* ホバーしたら下線 */
+}
+
+.review-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px; /* ボタン同士の間隔 */
+}
+
+.edit-link, .delete-link {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+}
+
+.edit-link:hover, .delete-link:hover {
+    background-color: #ddd;
+}
+
+.favorite-button.favorited {
+    background-color: #ffcccc;
+    color: red;
+}
+
+/* food_detail.html専用のスタイル */
+.food-image-wrapper {
+    text-align: center; /* 中央寄せ */
+    margin-bottom: 20px; /* 下に余白 */
+}
+
+.food-image-wrapper img {
+    width: 250px;
+    max-width: 300%;
+    height: auto;
+}
+
+.favorite-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.favorite-button.favorited {
+    background-color: #ffcccc;
+    color: red;
+}
+
+.favorite-delete-button {
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+.favorite-delete-button:hover {
+    background-color: #ff3333;
+}
+
+.store-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.store-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.store-details {
+    display: flex;
+    flex-direction: column;
 }

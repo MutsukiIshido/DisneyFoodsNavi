@@ -1,106 +1,86 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<!-- <!DOCTYPE html> -->
-<!-- <html lang="ja"> -->
-<!-- <head> -->
-    <!-- <meta charset="UTF-8"> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <title>{% block title %}レビュー投稿{% endblock %}</title>
-{% block head %}
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    #foodResults {
-        max-height: 200px;
-        overflow-y: auto;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-</style>
-{% endblock %}
-<!-- </head> -->
-<!-- <body> -->
+
 {% block content %}
-    <div class="container mt-5">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+<div class="container mt-5">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-            <!-- レビュー投稿フォーム -->
-            <div class="mb-3">
-                <label for="id_food_display" class="form-label">商品名</label>
-                <!-- ユーザーが選択した商品名を表示するフィールド -->
-                <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" readonly>
-                <!-- フォームに送信される隠しフィールド -->
-                {{ review_form.food }}
-                <!-- 子ウィンドウ起動ボタン -->
-                <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
-                    商品名を選択
-                </button>
-            </div>
-
-            <!-- 利用した店舗 -->
-            <div class="mb-3">
-                <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
-                {{ review_form.store }}
-            </div>
-
-            <!-- 評価 -->
-            <div class="mb-3">
-                <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価</label>
-                {{ review_form.rating }}
-            </div>
-        
-            <!-- 画像アップロードフォーム -->
-            <div class="mb-3">
-                <label for="id_review_image_path">画像</label>
-                {{ images_formset.management_form }}  <!-- フォームセットの管理フォーム -->                 
-            
-                <div class="image-grid">
-                    {% for form in images_formset|slice:"4" %}
-                        <div class="upload-box">
-                            {{ form.review_image_path }}  <!-- Django のフォーム -->
-                            <div class="plus-icon">+</div>  <!-- 「＋」ボタン -->
-                        </div>
-                    {% endfor %}
-                </div>            
-            </div>
-
-            <!-- レビュー -->
-            <div class="comment-container">
-                <div class="comment-label">
-                    <label for="{{ review_form.comment.id_for_label }}">レビュー</label>
-                    <span class="char-limit">(400文字以内)</span>
-                </div>
-                {{ review_form.comment }}
-            </div>
-        
-            <button type="submit" class="btn mickey-btn">
-                <span class="mickey-ear left-ear"></span>
-                <span class="mickey-ear right-ear"></span>
-                <span class="mickey-head"></span>
-                <span class="btn-text">投稿する</span>
+        <!-- レビュー投稿フォーム -->
+        <div class="mb-3">
+            <label for="id_food_display" class="form-label">商品名</label>
+            <!-- ユーザーが選択した商品名を表示するフィールド -->
+            <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" readonly>
+            <!-- フォームに送信される隠しフィールド -->
+            {{ review_form.food }}
+            <!-- 子ウィンドウ起動ボタン -->
+            <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
+                商品名を選択
             </button>
-        </form>
+        </div>
 
-        <a href="{% url 'home' %}" class="home-btn">ホーム画面へ</a>
-    </div>
+        <!-- 利用した店舗 -->
+        <div class="mb-3">
+            <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
+            {{ review_form.store }}
+        </div>
 
-    <!-- 商品検索モーダル -->
-    <div class="modal fade" id="foodModal" tabindex="-1" aria-labelledby="foodModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="foodModalLabel">商品名を検索</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" id="foodSearch" class="form-control" placeholder="商品名を検索">
-                    <ul id="foodResults" class="list-group mt-3"></ul>
-                </div>
+        <!-- 評価 -->
+        <div class="mb-3">
+            <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価</label>
+            {{ review_form.rating }}
+        </div>
+    
+        <!-- 画像アップロードフォーム -->
+        <div class="mb-3">
+            <label for="id_review_image_path">画像</label>
+            {{ images_formset.management_form }}  <!-- フォームセットの管理フォーム -->                 
+        
+            <div class="image-grid">
+                {% for form in images_formset|slice:"4" %}
+                    <div class="upload-box">
+                        {{ form.review_image_path }}  <!-- Django のフォーム -->
+                        <div class="plus-icon">+</div>  <!-- 「＋」ボタン -->
+                    </div>
+                {% endfor %}
+            </div>            
+        </div>
+
+        <!-- レビュー -->
+        <div class="comment-container">
+            <div class="comment-label">
+                <label for="{{ review_form.comment.id_for_label }}">レビュー</label>
+                <span class="char-limit">(400文字以内)</span>
+            </div>
+            {{ review_form.comment }}
+        </div>
+    
+        <button type="submit" class="btn mickey-btn">
+            <span class="mickey-ear left-ear"></span>
+            <span class="mickey-ear right-ear"></span>
+            <span class="mickey-head"></span>
+            <span class="btn-text">投稿する</span>
+        </button>
+    </form>
+</div>
+
+<!-- 商品検索モーダル -->
+<div class="modal fade" id="foodModal" tabindex="-1" aria-labelledby="foodModalLabel" aria-hidden="true" data-bs-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="foodModalLabel">商品名を検索</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="foodSearch" class="form-control" placeholder="商品名を検索">
+                <ul id="foodResults" class="list-group mt-3"></ul>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}

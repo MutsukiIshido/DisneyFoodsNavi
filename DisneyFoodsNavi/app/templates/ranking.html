@@ -24,10 +24,16 @@
                     {% endif %}
 
                     <img src="{{ food.foods_image_path }}" alt="{{ food.foods_name }}" class="food-image">
-                    <div class="food-name">{{ food.foods_name }}</div>
+                    <div class="food-name">
+                        <a href="{% url 'food_detail' pk=food.id %}">
+                            {{ food.foods_name }}
+                        </a>
+                    </div>
                     <div class="food-rating">評価: {{ food.average_rating }}</div>
-                    <button class="favorite-button" data-food-id="{{ food.id }}">
-                        お気に入りに追加
+                    <button class="favorite-button" 
+                        data-food-id="{{ food.id }}" 
+                        data-favorited="{% if food.id in favorite_food_ids %}true{% else %}false{% endif %}">
+                        <!-- 初期表示は空でOK、JSで中身変える -->
                     </button>
                 </div>
             {% endfor %}
@@ -38,6 +44,9 @@
 {% endblock %}
 
 {% block scripts %}
+<script>
+    window.isLoggedIn = {{ is_logged_in|yesno:"true,false" }};
+</script>
 {{ block.super }}
 <script src="{% static 'js/favorite.js' %}" defer></script>
 {% endblock %}

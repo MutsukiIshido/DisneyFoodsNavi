@@ -1,25 +1,28 @@
 {% extends 'base.html' %}
 
+{% block title %}メールアドレス変更{% endblock %}
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}メールアドレス変更{% endblock %}</title>
-</head>
-<body>
 {% block content %}
-<div class="container mt-4">
-    <h2>メールアドレス変更画面</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">変更</button>
-    </form>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">メールアドレス変更画面</h2>
 
-    <a href="{% url 'home' %}">ホーム画面へ</a>
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="email-form mx-auto" style="max-width: 400px;">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="id_email" class="form-label">新しいメールアドレス</label>
+            {{ form.email }}
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">変更</button>
+    </form>
 </div>
 {% endblock %}
-</body>
-</html>

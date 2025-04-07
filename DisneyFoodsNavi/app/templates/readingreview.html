@@ -4,8 +4,24 @@
 {% block title %}レビュー一覧{% endblock %}
 
 {% block content %}
-    <h1>レビュー一覧</h1>
+    <form method="get">
+        <select name="category" id="category-select">
+            <option value="">カテゴリーを選択</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}" {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}>{{ category.kind }}</option>
+            {% endfor %}
+        </select>
+            
+        <select name="food" id="food-select">
+            <option value="">フードを選択</option>
+            {% for food in foods %}
+                <option value="{{ food.id }}" {% if selected_food == food.id|stringformat:"s" %}selected{% endif %}>{{ food.foods_name }}</option>
+            {% endfor %}
+        </select>
 
+        <button type="button" id="filter-button">絞り込み</button>
+    </form>
+    
     {% if reviews %}
         <div class="review-list">
             {% for review in reviews %}
@@ -23,6 +39,13 @@
                                 {% endif %}
                             {% endfor %}
                         </p>
+
+                        <p class="review-food-name">
+                            <a href="{% url 'food_detail' review.food.id %}">
+                                {{ review.food.foods_name }}
+                            </a>
+                        </p>
+                                                
                         <p class="review-comment">{{ review.comment }}</p>
                         <a href="{% url 'review_detail' review.pk %}" class="more-link">もっと見る</a>
                     </div>
@@ -38,8 +61,73 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>レビューはまだありません。</p>
+        <p style="text-align: center; color: gray; margin-top: 30px;">まだレビューは投稿されていません。</p>
     {% endif %}
 
     <a href="{% url 'home' %}">ホーム画面へ</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const categorySelect = document.getElementById("category-select");
+    const foodSelect = document.getElementById("food-select");
+
+    categorySelect.addEventListener("change", function() {
+        const categoryId = this.value;
+
+        foodSelect.innerHTML = '<option value="">フードを選択</option>';
+
+        if (categoryId) {
+            // カテゴリーが選ばれているとき（いつもの処理）
+            fetch("{% url 'foods_by_category' %}?category_id=" + categoryId)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(food => {
+                        const option = document.createElement('option');
+                        option.value = food.id;
+                        option.textContent = food.foods_name;
+                        foodSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        } else {
+            // ★ カテゴリー未選択のとき（全部表示する）
+            fetch("{% url 'foods_by_category' %}")  // カテゴリIDなし
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(food => {
+                        const option = document.createElement('option');
+                        option.value = food.id;
+                        option.textContent = food.foods_name;
+                        foodSelect.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('エラー:', error);
+                });
+        }
+    });
+
+    document.getElementById("filter-button").addEventListener("click", function() {
+        const selectedCategory = document.getElementById("category-select").value;
+        const selectedFood = document.getElementById("food-select").value;
+
+        let url = "/readingreview/?";
+
+        if (selectedCategory) {
+            url += `category=${selectedCategory}&`;
+        }
+        if (selectedFood) {
+            url += `food=${selectedFood}`;
+        }
+
+        window.location.href = url;
+    });
+});
+</script>
 {% endblock %}

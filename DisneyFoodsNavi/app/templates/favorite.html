@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block content %}
-    <h1>お気に入り画面</h1>
     {% if favorites %}
         <div class="favorites-grid">
             {% for favorite in favorites %}
@@ -15,6 +14,12 @@
                         <strong>{{ favorite.food.foods_name }}</strong><br>
                         <span>{{ favorite.food.price }} 円</span>
                     </div>
+
+                    <!-- 削除ボタン -->
+                    <form method="post" action="{% url 'favorite_delete' favorite.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="favorite-delete-button">削除</button>
+                      </form>
                 </div>
             {% endfor %}
         </div>

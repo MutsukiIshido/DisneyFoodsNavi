@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView
+from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView, get_stores_for_food, FoodDetailView, get_foods_by_category, ReviewUpdateView, ReviewDeleteView, FavoriteDeleteView, CustomPasswordChangeView, CustomPasswordChangeDoneView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import PasswordChangeDoneView, LogoutView
@@ -37,7 +37,13 @@ urlpatterns = [
     path('review/<int:pk>/', ReviewDetailView.as_view(), name='review_detail'), # レビュー詳細画面
     path('favorite/toggle/<int:food_id>/', FavoriteToggleView.as_view(), name='favorite_toggle'),
     path('email_change/', EmailChangeView.as_view(), name='email_change'),    
-    path('password_change/', PasswordChangeView.as_view(), name='password_change'),    
-    path('password_change/done/', PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),    
     path('logout/', LogoutView.as_view(), name='logout'),
+    path("api/get-stores-for-food/", get_stores_for_food, name="get_stores_for_food"),
+    path('food/<int:pk>/', FoodDetailView.as_view(), name='food_detail'),
+    path('api/foods_by_category/', get_foods_by_category, name='foods_by_category'),
+    path('review/<int:pk>/edit/', ReviewUpdateView.as_view(), name='review_edit'),
+    path('review/<int:pk>/delete/', ReviewDeleteView.as_view(), name='review_delete'),
+    path('favorite/delete/<int:pk>/', FavoriteDeleteView.as_view(), name='favorite_delete'),
+    path('password_change/', CustomPasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

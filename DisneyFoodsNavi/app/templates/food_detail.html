@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ food.foods_name }}{% endblock %}
+
+{% block content %}
+<h2>{{ food.foods_name }}</h2>
+<p>カテゴリー: {{ food.category.kind }}</p>
+<p>価格: ￥{{ food.price }}</p>
+<p>
+    平均評価: ★{{ food.average_rating }}
+    （
+    <a href="{% url 'readingreview' %}?food={{ food.id }}">
+      レビュー{{ review_count }}件
+    </a>
+    ）
+</p>
+
+<div class="food-image-wrapper">
+    <img src="{{ food.foods_image_path }}" alt="{{ food.foods_name }}" class="food-image">
+
+    <!-- お気に入りボタン -->
+    <button class="favorite-button" 
+        data-food-id="{{ food.id }}" 
+        data-favorited="{% if food.id in favorite_food_ids %}true{% else %}false{% endif %}">
+        <!-- 中身はJSで変える -->
+    </button>
+</div>
+
+<h3>取扱店舗</h3>
+<ul>
+    {% for store in stores %}
+        <li>{{ store.store_name }}（{{ store.area.area_name }}）</li>
+    {% empty %}
+        <li>取扱店舗はありません。</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'home' %}" class="btn btn-primary mt-3">ホームに戻る</a>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.isLoggedIn = {{ is_logged_in|yesno:"true,false" }};
+</script>
+
+{{ block.super }}
+<script src="{% static 'js/favorite.js' %}" defer></script>
+{% endblock %}

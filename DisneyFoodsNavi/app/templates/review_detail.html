@@ -3,8 +3,6 @@
 {% block title %}レビュー詳細{% endblock %}
 
 {% block content %}
-    <h1>レビュー詳細</h1>
-
     <div class="review-container">
         <div class="review-header">
             <span class="review-user">👤 {{ review.user.nickname }} さん</span>
@@ -21,7 +19,11 @@
         </div>
 
         <div class="review-info">
-            <p>商品名： {{ review.food.foods_name }}</p>
+            <p>商品名：
+                <a href="{% url 'food_detail' review.food.id %}">
+                    {{ review.food.foods_name }}
+                </a>
+            </p>
             <p>ジャンル： {{ review.food.category.kind }}</p>
             <p>パーク： {{ review.store.area.area_name }}</p>
             <p>利用した店舗： {{ review.store.store_name }}</p>
