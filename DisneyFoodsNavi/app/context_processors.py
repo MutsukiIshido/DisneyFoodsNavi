@@ -21,6 +21,7 @@ def breadcrumbs_context(request):
         "/readingreview/": "レビュー一覧",
         "/myreview/": "マイレビュー一覧",
         "/email_change/": "メールアドレス変更",
+        "/password_change/": "パスワード変更"
     }
 
     if current_path in simple_pages:
