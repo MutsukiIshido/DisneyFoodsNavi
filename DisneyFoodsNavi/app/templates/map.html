@@ -71,7 +71,14 @@
             color: #81400c;
             border: none;
             cursor: pointer;
+            margin-bottom: 15px;
         }
+
+        .search-container button:hover {
+            background-color: #d2935c;
+            color: #fff;
+        }
+
 
         .park-select {
             display: flex;         /* 横並びにする */
@@ -102,7 +109,7 @@
     <form id="search-form" method="get" action="{% url 'map' %}">
         <div class="search-container">
             <!-- キーワード -->
-            <input type="text" id="food-name" placeholder="フード名を入力">
+            <input type="text" id="food-name" name="food_name" placeholder="フード名を入力" value="{{ food_name }}">
             
             <!-- カテゴリ -->
             <select id="category" name="category">
@@ -267,7 +274,7 @@
             }
 
 
-            console.log("Filtered stores:", filteredStores);
+            console.log("Apply Filters 関数を呼び出せます");
 
             function highlightStore(index) {
                 document.querySelectorAll(".store-item").forEach(item => item.classList.remove("active"));
@@ -276,7 +283,7 @@
                 selectedItem.scrollIntoView({ behavior: "smooth", block: "center"});
             }
 
-            function filteredStores() {
+            function applyFilters() {
                 var keyword = document.getElementById("food-name").value.toLowerCase().trim();
                 var category = document.getElementById("category").value;
                 var priceRange = document.getElementById("price-range").value;
@@ -295,7 +302,7 @@
                         console.log("store.area:", store.area, "｜ area:", area);  // ここで undefined か確認！
 
                         var matchKeyword = !keyword || (store.food_name && store.food_name.toLowerCase().includes(keyword));
-                        var matchCategory = !category || store.category_id === category;
+                        var matchCategory = !category || String(store.category_id) === category;
 
                         var matchPrice = true;
                         var price = parseInt(store.price);
@@ -328,13 +335,12 @@
                 updateMap(filteredStores);
             }
 
-            // ★★★ ページ読み込み時に全件表示する ★★★
-            filteredStores();
 
             document.getElementById("search-button").addEventListener("click", function(event) {
-                event.preventDefault();
-                filteredStores();
             });
+
+            // ★★★ ページ読み込み時に全件表示する ★★★
+            applyFilters();
 
             // 店舗リストをクリックしたときの挙動
             document.querySelectorAll(".store-item").forEach((item, index) => {
@@ -355,5 +361,4 @@
             }
         });
     </script>
-<a href="{% url 'home' %}">ホーム画面へ</a>
 {% endblock %}

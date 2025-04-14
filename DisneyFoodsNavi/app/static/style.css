@@ -306,6 +306,7 @@ main {
     margin: 0 auto;
     margin-top: 90px; /* ヘッダーの高さ分だけ下げる */
     padding: 20px;
+    margin-bottom: 150px;
 }
 
 #foodResults {
@@ -584,22 +585,23 @@ textarea {
 
 /* ミッキーボタンの基本スタイル */
 .mickey-btn {
-    position: absolute;
+    position: relative;
     width: 100px;
     height: 100px;
     background-color: black;
-    border-radius: 50%; /* 丸い形にする */
+    border-radius: 50%;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: white; /* 文字色を白に */
-    font-size: 14px; /* 文字サイズ */
-    font-weight: bold; /* 文字を太字に */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
     overflow: visible;
+    margin: 20px auto 0 auto; /* 上に50px余白、中央寄せ */
     z-index: 1000;
-  }
+}
   
   /* ミッキーの耳 */
   .mickey-ear {
@@ -913,6 +915,7 @@ textarea {
     gap: 5px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 80px;
 }
 
 .review-thumbnail {
@@ -922,9 +925,9 @@ textarea {
     transition: transform 0.2s;
 }
 
-.review-thumbnail:hover {
+/* .review-thumbnail:hover {
     transform: scale(1.05);
-}
+} */
 
 /* モーダル（拡大画像） */
 .modal {
@@ -936,7 +939,7 @@ textarea {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.8);
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
 }
@@ -1176,4 +1179,15 @@ textarea {
 .store-details {
     display: flex;
     flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ★ これ追加：フォーム内の要素を中央寄せ！ */
+}
+
+.login-form .form-group {
+    width: 100%; /* これだと広すぎるので */
+    max-width: 300px; /* ★ 例えば、最大300pxくらいに制限！ */
 }

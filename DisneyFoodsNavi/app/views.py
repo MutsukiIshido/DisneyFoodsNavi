@@ -173,14 +173,16 @@ class RankingView(View):
             'favorite_food_ids': list(favorites),
         })
     
-class MapView(View):    
+class MapView(View):
     def get(self, request):
         request.session['previous_page'] = 'map'
 
+        # クエリパラメータ取得
         category_id = request.GET.get('category')
         area = request.GET.get('area')
-        price_range = request.GET.get('price_range')
-        park = request.GET.get('park')  # ← 追加！
+        price_range_raw = request.GET.get('price_range')  # ← 文字列のまま保存（重要！）
+        park = request.GET.get('park')
+        food_name = request.GET.get('food_name', '')
 
         category_name = None
         foods = Food.objects.all()
@@ -195,9 +197,9 @@ class MapView(View):
                 pass
 
         # 価格帯フィルター
-        if price_range in ["0", "1", "2", "3", "4"]:
+        if price_range_raw in ["0", "1", "2", "3", "4"]:
             try:
-                price_range = int(price_range)
+                price_range = int(price_range_raw)  # ← ここだけintにしてフィルター用に使う
                 if price_range == 0:
                     foods = foods.filter(price__lte=500)
                 elif price_range == 1:
@@ -214,11 +216,9 @@ class MapView(View):
         # ストアのフィルタ
         stores = Store.objects.filter(foodstore__food__in=foods)
 
-        # area指定ありならさらに絞る
         if area:
             stores = stores.filter(area__area_name=area)
 
-        # park指定ありなら絞る
         if park in ["0", "1"]:
             stores = stores.filter(area__park=int(park))
 
@@ -250,8 +250,9 @@ class MapView(View):
             'category': str(category_id) if category_id else "",
             'category_name': category_name,
             'area': area,
-            'price_range': str(price_range) if price_range else "",
-            'park': park  # ← これもテンプレート側で選択状態を維持するために必要！
+            'price_range': price_range_raw if price_range_raw else "",  # ← 文字列でテンプレートに渡す！
+            'park': park,
+            "food_name": food_name
         }
 
         return render(request, 'map.html', context)
@@ -404,22 +405,6 @@ class CustomPasswordChangeDoneView(TemplateView):
 
 class FoodDetailView(View):
     def get(self, request, pk):
-        previous_page = request.session.get('previous_page')  # ←ここで前ページを取得！
-
-        breadcrumbs = [{"name": "ホーム", "url": reverse("home")}]
-
-        # 遷移元によって分岐
-        if previous_page == "ranking":
-            breadcrumbs.append({"name": "ランキング", "url": reverse("ranking")})
-        elif previous_page == "readingreview":
-            breadcrumbs.append({"name": "レビュー一覧", "url": reverse("readingreview")})
-        elif previous_page == "map":
-            breadcrumbs.append({"name": "マップ（検索結果）", "url": reverse("map")})
-        elif previous_page == "favorite":
-            breadcrumbs.append({"name": "お気に入り", "url": reverse("favorite")})
-
-        breadcrumbs.append({"name": "商品詳細", "url": request.path})
-
         food = get_object_or_404(Food.objects.select_related('category'), pk=pk)
         stores = Store.objects.filter(foodstore__food=food).select_related('area')
         reviews = Review.objects.filter(food=food)
@@ -435,7 +420,6 @@ class FoodDetailView(View):
             "stores": stores,
             "reviews": reviews,
             "review_count": review_count,
-            "breadcrumbs": breadcrumbs,
             "is_logged_in": is_logged_in,
             'favorite_food_ids': list(favorites),
         }

@@ -11,7 +11,11 @@
 
                     <!-- フード情報 -->
                     <div class="food-info">
-                        <strong>{{ favorite.food.foods_name }}</strong><br>
+                        <strong>
+                            <a href="{% url 'food_detail' favorite.food.id %}?origin=favorite">
+                                {{ favorite.food.foods_name }}
+                            </a>
+                        </strong><br>
                         <span>{{ favorite.food.price }} 円</span>
                     </div>
 
@@ -26,5 +30,4 @@
     {% else %}
         <p>お気に入りに登録されたフードはありません。</p>
     {% endif %}
-    <a href="{% url 'home' %}" class="home-btn">ホーム画面へ</a>
 {% endblock %}

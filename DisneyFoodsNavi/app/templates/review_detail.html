@@ -20,7 +20,7 @@
 
         <div class="review-info">
             <p>商品名：
-                <a href="{% url 'food_detail' review.food.id %}">
+                <a href="{% url 'food_detail' review.food.id %}?origin=review_detail">
                     {{ review.food.foods_name }}
                 </a>
             </p>
