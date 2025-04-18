@@ -27,7 +27,7 @@
                                 {% endif %}
                             {% endfor %}
                         </p>
-                        <p class="review-comment">{{ review.comment }}</p>
+                        <p class="review-comment">{{ review.comment|linebreaksbr }}</p>
                         <a href="{% url 'review_detail' review.pk %}" class="more-link">もっと見る</a>
 
                         <div class="review-actions">

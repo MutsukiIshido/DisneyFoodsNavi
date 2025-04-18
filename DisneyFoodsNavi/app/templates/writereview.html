@@ -1,30 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
-<title>{% block title %}レビュー投稿{% endblock %}</title>
+
+{% block title %}レビュー投稿{% endblock %}
 
 {% block content %}
 <div class="container mt-5">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <!-- レビュー投稿フォーム -->
+        <!-- 商品名（モーダル検索） -->
         <div class="mb-3">
-            <label for="id_food_display" class="form-label">商品名</label>
-            <!-- ユーザーが選択した商品名を表示するフィールド -->
-            <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" readonly>
-            <!-- フォームに送信される隠しフィールド -->
+            <label for="food_display" class="form-label">商品名</label>
+            <input type="text" id="food_display" class="form-control" placeholder="商品名を選択してください" readonly data-bs-toggle="modal" data-bs-target="#foodModal" style="cursor: pointer;">
             {{ review_form.food }}
-            <!-- 子ウィンドウ起動ボタン -->
-            <button type="button" class="btn btn-outline-primary mt-2" id="openFoodSearch">
-                商品名を選択
-            </button>
         </div>
 
-        <!-- 利用した店舗 -->
+        <!-- 店舗選択 -->
         <div class="mb-3">
             <label for="{{ review_form.store.id_for_label }}" class="form-label">利用した店舗</label>
-            {{ review_form.store }}
+            <select id="{{ review_form.store.id_for_label }}" name="{{ review_form.store.html_name }}" class="form-control" disabled>
+                <option value="">先に商品を選択してください</option>
+            </select>
         </div>
 
         <!-- 評価 -->
@@ -32,31 +30,32 @@
             <label for="{{ review_form.rating.id_for_label }}" class="form-label">評価</label>
             {{ review_form.rating }}
         </div>
-    
-        <!-- 画像アップロードフォーム -->
+
+        <!-- 画像アップロード -->
         <div class="mb-3">
-            <label for="id_review_image_path">画像</label>
-            {{ images_formset.management_form }}  <!-- フォームセットの管理フォーム -->                 
-        
+            <label for="id_review_image_path" class="form-label">画像</label>
+            {{ images_formset.management_form }}
+
             <div class="image-grid">
                 {% for form in images_formset|slice:"4" %}
                     <div class="upload-box">
-                        {{ form.review_image_path }}  <!-- Django のフォーム -->
-                        <div class="plus-icon">+</div>  <!-- 「＋」ボタン -->
+                        {{ form.review_image_path }}
+                        <div class="plus-icon">+</div>
                     </div>
                 {% endfor %}
-            </div>            
+            </div>
         </div>
 
-        <!-- レビュー -->
-        <div class="comment-container">
+        <!-- コメント欄 -->
+        <div class="comment-container mb-3">
             <div class="comment-label">
-                <label for="{{ review_form.comment.id_for_label }}">レビュー</label>
+                <label for="{{ review_form.comment.id_for_label }}" class="form-label">レビュー</label>
                 <span class="char-limit">(400文字以内)</span>
             </div>
-            {{ review_form.comment }}
+            {{ review_form.comment|add_class:"form-control" }}
         </div>
-    
+
+        <!-- 投稿ボタン -->
         <button type="submit" class="btn mickey-btn">
             <span class="mickey-ear left-ear"></span>
             <span class="mickey-ear right-ear"></span>
@@ -66,7 +65,7 @@
     </form>
 </div>
 
-<!-- 商品検索モーダル -->
+<!-- 商品選択モーダル -->
 <div class="modal fade" id="foodModal" tabindex="-1" aria-labelledby="foodModalLabel" aria-hidden="true" data-bs-backdrop="false">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -84,63 +83,57 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const uploadBoxes = document.querySelectorAll(".upload-box");
-
-    uploadBoxes.forEach(box => {
-        const input = box.querySelector("input[type='file']");
-        const plusIcon = box.querySelector(".plus-icon");
-
-        // クリックでファイル選択
-        box.addEventListener("click", function () {
-            input.click();
-        });
-
-        // 画像が選択されたらプレビュー表示
-        input.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    let img = box.querySelector("img");
-                    if (!img) {
-                        img = document.createElement("img");
-                        box.appendChild(img);
-                    }
-                    img.src = e.target.result;
-                    img.style.display = "block";
-                    plusIcon.style.display = "none";
-
-                    // 削除ボタンの追加
-                    let deleteButton = box.querySelector(".delete-button");
-                    if (!deleteButton) {
-                        deleteButton = document.createElement("button");
-                        deleteButton.innerHTML = "✗";
-                        deleteButton.classList.add("delete-button");
-                        box.appendChild(deleteButton);
-
-                        deleteButton.addEventListener("click", function (e) {
-                            e.stopPropagation(); // クリックイベントが親要素に伝播しないようにする
-                            input.value = "";
-                            img.style.display = "none";
-                            plusIcon.style.display = "block";
-                            deleteButton.remove();
-                        });
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
+    document.addEventListener("DOMContentLoaded", function () {
+        const uploadBoxes = document.querySelectorAll(".upload-box");
+    
+        uploadBoxes.forEach(box => {
+            const input = box.querySelector("input[type='file']");
+            const plusIcon = box.querySelector(".plus-icon");
+    
+            // クリックでファイル選択
+            box.addEventListener("click", function () {
+                input.click();
+            });
+    
+            // 画像が選択されたらプレビュー表示
+            input.addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        let img = box.querySelector("img");
+                        if (!img) {
+                            img = document.createElement("img");
+                            box.appendChild(img);
+                        }
+                        img.src = e.target.result;
+                        img.style.display = "block";
+                        plusIcon.style.display = "none";
+    
+                        // 削除ボタンの追加
+                        let deleteButton = box.querySelector(".delete-button");
+                        if (!deleteButton) {
+                            deleteButton = document.createElement("button");
+                            deleteButton.innerHTML = "✗";
+                            deleteButton.classList.add("delete-button");
+                            box.appendChild(deleteButton);
+    
+                            deleteButton.addEventListener("click", function (e) {
+                                e.stopPropagation(); // クリックイベントが親要素に伝播しないようにする
+                                input.value = "";
+                                img.style.display = "none";
+                                plusIcon.style.display = "block";
+                                deleteButton.remove();
+                            });
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
         });
     });
-});
 </script>
-
-<script src="{% static 'js/main.js' %}"></script>
 {% endblock %}
-
-</body>
-</html>

@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView, get_stores_for_food, FoodDetailView, get_foods_by_category, ReviewUpdateView, ReviewDeleteView, FavoriteDeleteView, CustomPasswordChangeView, CustomPasswordChangeDoneView
+from app.views import PortfolioView, SignupView, LoginView, HomeView, WriteReviewView, ReadingReviewView, FavoriteView, RankingView, MapView, MyReviewView, FoodSearchView, ReviewDetailView, FavoriteToggleView, EmailChangeView, PasswordChangeView, get_stores_for_food, FoodDetailView, get_foods_by_category, ReviewUpdateView, ReviewDeleteView, FavoriteDeleteView, CustomPasswordChangeView, CustomPasswordChangeDoneView, stores_for_food
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import PasswordChangeDoneView, LogoutView
+from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -46,4 +47,5 @@ urlpatterns = [
     path('favorite/delete/<int:pk>/', FavoriteDeleteView.as_view(), name='favorite_delete'),
     path('password_change/', CustomPasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/', CustomPasswordChangeDoneView.as_view(), name='password_change_done'),
+    path('api/stores_for_food/<int:food_id>/', views.stores_for_food, name='stores_for_food'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

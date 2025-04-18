@@ -451,6 +451,9 @@ button:hover {
 
 /* 検索フォームを枠で囲む */
 .search-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* フォーム全体を中央揃え */
     border: 2px solid #c6902d6e;
     border-radius: 10px;
     padding: 20px;
@@ -463,6 +466,8 @@ button:hover {
 
 /* 検索フォームの項目を整える */
 .form-group {
+    width: 100%; /* これを最大幅に制限したい場合はmax-widthを指定 */
+    max-width: 300px; /* 必要に応じて変更 */
     margin-bottom: 15px;
 }
 
@@ -472,7 +477,9 @@ button:hover {
     margin-bottom: 5px;
 }
 
-
+.form-group select {
+    width: 330px;
+}
 
 
 .image-upload img {
@@ -1069,7 +1076,7 @@ textarea {
 #category-select,
 #food-select {
     width: 250px;
-    max-width: 100%;
+    max-width: 200%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -1190,4 +1197,18 @@ textarea {
 .login-form .form-group {
     width: 100%; /* これだと広すぎるので */
     max-width: 300px; /* ★ 例えば、最大300pxくらいに制限！ */
+}
+
+.delete-link {
+    background-color: #dc3545;  /* Bootstrap風の赤 */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-link:hover {
+    background-color: #c82333;  /* ホバー時は少し濃い赤 */
 }

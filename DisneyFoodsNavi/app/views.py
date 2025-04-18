@@ -102,8 +102,9 @@ class WriteReviewView(LoginRequiredMixin, View):
                         image = form.save(commit=False)
                         image.review = review
                         image.save()
-                        
-            return redirect("home")
+                  
+            # 投稿後にレビュー詳細ページへリダイレクト 
+            return redirect(reverse("review_detail", kwargs={"pk": review.pk}))
         
         print("❌ フォームのバリデーションエラー:", review_form.errors)
         
@@ -459,3 +460,15 @@ class FavoriteDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         # 自分のしか削除できないようにする！
         return Favorite.objects.filter(user=self.request.user)
+    
+
+def stores_for_food(request, food_id):
+    try:
+        food = Food.objects.get(id=food_id)
+        stores = food.stores.all()
+        data = {
+            "stores": [{"id": s.id, "name": s.name} for s in stores]
+        }
+        return JsonResponse(data)
+    except Food.DoesNotExist:
+        return JsonResponse({"stores": []})
